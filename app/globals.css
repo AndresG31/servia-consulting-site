@@ -1,10 +1,13 @@
 @import "tailwindcss";
 
+/* ====== THEME VARIABLES ====== */
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --rotate: 6deg; /* default rotation for animations */
 }
 
+/* Tailwind Theme Variables (Tailwind v4 syntax) */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -12,6 +15,7 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* ====== DARK MODE ====== */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -19,8 +23,318 @@
   }
 }
 
+/* ====== GLOBAL STYLES ====== */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans, Arial, Helvetica, sans-serif);
+  overflow-x: hidden; /* prevent overflow from absolute decorations */
+}
+
+/* ====== SECTION TRANSITION ANIMATIONS ====== */
+
+/* Section sliding overlap effect */
+@keyframes slideInOverlap {
+  0% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.section-transition {
+  animation: slideInOverlap 1s ease-out;
+  animation-fill-mode: both;
+}
+
+/* Staggered delays for sequential sections */
+.section-delay-1 {
+  animation-delay: 0.2s;
+}
+.section-delay-2 {
+  animation-delay: 0.4s;
+}
+.section-delay-3 {
+  animation-delay: 0.6s;
+}
+.section-delay-4 {
+  animation-delay: 0.8s;
+}
+
+/* ====== TEXT REVEAL/PASTE ANIMATIONS ====== */
+
+/* Text typing/paste effect */
+@keyframes textReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* Character by character reveal (for headings) */
+@keyframes charReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade and slide up for paragraphs */
+@keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Base animation classes */
+.text-reveal {
+  animation: textReveal 0.8s ease-out;
+  animation-fill-mode: both;
+}
+
+.fade-slide-up {
+  animation: fadeSlideUp 0.8s ease-out;
+  animation-fill-mode: both;
+}
+
+/* Staggered text delays */
+.text-delay-1 {
+  animation-delay: 0.1s;
+}
+.text-delay-2 {
+  animation-delay: 0.2s;
+}
+.text-delay-3 {
+  animation-delay: 0.3s;
+}
+.text-delay-4 {
+  animation-delay: 0.4s;
+}
+.text-delay-5 {
+  animation-delay: 0.5s;
+}
+.text-delay-6 {
+  animation-delay: 0.6s;
+}
+.text-delay-7 {
+  animation-delay: 0.7s;
+}
+.text-delay-8 {
+  animation-delay: 0.8s;
+}
+
+/* ====== FLOATING DECORATIVE ANIMATION ====== */
+
+/* Base keyframes */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(var(--rotate, 6deg));
+  }
+  50% {
+    transform: translateY(-10px) rotate(var(--rotate, 9deg));
+  }
+}
+
+/* Pulsating glow animation */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.3),
+                0 0 20px rgba(16, 185, 129, 0.2),
+                0 0 30px rgba(16, 185, 129, 0.1);
+    opacity: 0.6;
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.5),
+                0 0 40px rgba(16, 185, 129, 0.3),
+                0 0 60px rgba(16, 185, 129, 0.2);
+    opacity: 1;
+  }
+}
+
+/* Pulsating pattern opacity animation with green glow */
+@keyframes pulse-pattern {
+  0%, 100% {
+    opacity: 0.15;
+    filter: brightness(1) drop-shadow(0 0 20px rgba(16, 185, 129, 0.3));
+  }
+  50% {
+    opacity: 0.35;
+    filter: brightness(1.5) drop-shadow(0 0 40px rgba(16, 185, 129, 0.6));
+  }
+}
+
+/* Black pulsating shadow animation - both inset and outset */
+@keyframes pulse-black-shadow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4),
+                0 0 25px rgba(0, 0, 0, 0.3),
+                0 0 35px rgba(0, 0, 0, 0.2),
+                inset 0 0 15px rgba(0, 0, 0, 0.3),
+                inset 0 0 25px rgba(0, 0, 0, 0.2);
+    opacity: 0.7;
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.6),
+                0 0 45px rgba(0, 0, 0, 0.5),
+                0 0 65px rgba(0, 0, 0, 0.4),
+                inset 0 0 25px rgba(0, 0, 0, 0.5),
+                inset 0 0 45px rgba(0, 0, 0, 0.4);
+    opacity: 1;
+  }
+}
+
+/* Core animation class */
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+
+/* Speed variations */
+.animate-float-slow {
+  animation-duration: 12s;
+}
+.animate-float-fast {
+  animation-duration: 6s;
+}
+
+/* Pulsating glow class */
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Pulsating pattern class */
+.animate-pulse-pattern {
+  animation: pulse-pattern 3s ease-in-out infinite;
+}
+
+/* Black pulsating shadow class */
+.animate-pulse-black {
+  animation: pulse-black-shadow 3s ease-in-out infinite;
+}
+
+/* Delay variations (for natural desync) */
+.anim-delay-0 {
+  animation-delay: 0s;
+}
+.anim-delay-400 {
+  animation-delay: 0.4s;
+}
+.anim-delay-800 {
+  animation-delay: 0.8s;
+}
+.anim-delay-1200 {
+  animation-delay: 1.2s;
+}
+.anim-delay-1600 {
+  animation-delay: 1.6s;
+}
+.anim-delay-2000 {
+  animation-delay: 2s;
+}
+
+/* ====== HERO SECTION DELAYED ANIMATIONS ====== */
+
+/* Fade in animation for black background filter */
+@keyframes fadeInDelayed {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Slide in from left animation for text elements */
+@keyframes slideInDelayed {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in-delayed {
+  animation: fadeInDelayed 1s ease-out 2s forwards;
+}
+
+.animate-slide-in-delayed {
+  animation: slideInDelayed 0.8s ease-out forwards;
+  animation-delay: 2s;
+}
+
+/* ====== ACCESSIBILITY ====== */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-float-slow,
+  .animate-float-fast,
+  .animate-pulse-glow,
+  .animate-pulse-black,
+  .animate-twinkle,
+  .section-transition,
+  .text-reveal,
+  .fade-slide-up,
+  .animate-fade-in-delayed,
+  .animate-slide-in-delayed {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+}
+
+/* ====== SCOPED DECORATION CONTROL ======
+   Ensures only elements with `.footer-deco` get animated
+   (avoids accidental animations elsewhere)
+*/
+.footer-deco.animate-float,
+.footer-deco.animate-float-slow,
+.footer-deco.animate-float-fast {
+  animation-name: float;
+}
+
+/* ====== STARFIELD TWINKLE ANIMATION ====== */
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  25% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.8);
+  }
+  75% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+.animate-twinkle {
+  animation: twinkle 3s ease-in-out infinite;
+  will-change: opacity, transform;
 }
