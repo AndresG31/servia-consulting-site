@@ -46,9 +46,9 @@ Logos/
 Business Logos/
 Servia Consulting HomePage_files/
 
-# stray root-level assets
-*.png
-*.jpg
-*.jpeg
-*.docx
-*.pdf
+# stray root-level assets (leading slash = root only, does not affect public/)
+/*.png
+/*.jpg
+/*.jpeg
+/*.docx
+/*.pdf
