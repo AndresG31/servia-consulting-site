@@ -39,3 +39,16 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local asset folders (not part of the build)
+InsightScreenshot/
+Logos/
+Business Logos/
+Servia Consulting HomePage_files/
+
+# stray root-level assets
+*.png
+*.jpg
+*.jpeg
+*.docx
+*.pdf

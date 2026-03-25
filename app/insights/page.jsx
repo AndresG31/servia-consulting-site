@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Footer from '../components/Footer'
 
@@ -85,7 +85,7 @@ const InsightsPage = () => {
       description: "Management tips and insights from business leaders",
       url: "https://hbr.org/topic/business-management",
       category: "Strategy",
-      iconImage: "/assets/insights/icons/Harvard.png",
+      iconImage: "/assets/insights/Icons/Harvard.png",
       color: "from-blue-500 to-blue-600",
       featured: true,
       image: "/assets/insights/Photos/Harvard.png"
@@ -96,7 +96,7 @@ const InsightsPage = () => {
       url: "https://www.forbes.com/business/",
       category: "Business News",
       icon: "💼",
-      iconImage: "/assets/insights/icons/Forbes.png",
+      iconImage: "/assets/insights/Icons/Forbes.png",
       color: "from-gray-700 to-gray-800",
       featured: true,
       image: "/assets/insights/Photos/Forbes.png"
@@ -107,7 +107,7 @@ const InsightsPage = () => {
       url: "https://www.entrepreneur.com/topic/starting-a-business",
       category: "Entrepreneurship",
       icon: "🚀",
-      iconImage: "/assets/insights/icons/entrelogo.png",
+      iconImage: "/assets/insights/Icons/EntreLogo.png",
       color: "from-red-500 to-red-600",
       featured: true,
       image: "/assets/insights/Photos/Entreprenuer.png"
@@ -118,7 +118,7 @@ const InsightsPage = () => {
       url: "https://www.inc.com/",
       category: "Growth",
       icon: "📈",
-      iconImage: "/assets/insights/icons/IncLogo.png",
+      iconImage: "/assets/insights/Icons/IncLogo.png",
       color: "from-emerald-500 to-emerald-600",
       featured: false
     },
@@ -127,7 +127,7 @@ const InsightsPage = () => {
       description: "Innovation, technology, and business creativity",
       url: "https://www.fastcompany.com/section/news",
       category: "Innovation",
-      iconImage: "/assets/insights/icons/fastcompany.png",
+      iconImage: "/assets/insights/Icons/fastcompany.png",
       logoPadding: "p-0 scale-125",
       color: "from-orange-500 to-orange-600",
       featured: false
@@ -137,7 +137,7 @@ const InsightsPage = () => {
       description: "Global business and financial market news",
       url: "https://www.bloomberg.com/businessweek",
       category: "Finance",
-      iconImage: "/assets/insights/icons/bloomberg.png",
+      iconImage: "/assets/insights/Icons/Bloomberg.png",
       color: "from-indigo-500 to-indigo-600",
       featured: true,
       image: "/assets/insights/Photos/Bloomberg.png"
@@ -148,7 +148,7 @@ const InsightsPage = () => {
       url: "https://www.restaurantbusinessonline.com/",
       category: "Restaurant",
       icon: "🍽️",
-      iconImage: "/assets/insights/icons/restaurantbusiness.png",
+      iconImage: "/assets/insights/Icons/restaurantbusiness.png",
       color: "from-pink-500 to-pink-600",
       featured: false
     },
@@ -158,7 +158,7 @@ const InsightsPage = () => {
       url: "https://www.nrn.com/",
       category: "Restaurant",
       icon: "🏪",
-      iconImage: "/assets/insights/icons/nrn.png",
+      iconImage: "/assets/insights/Icons/nrn.png",
       color: "from-purple-500 to-purple-600",
       featured: false
     },
@@ -195,7 +195,7 @@ const InsightsPage = () => {
       description: "Startup and technology business news",
       url: "https://techcrunch.com/category/startups/",
       category: "Tech",
-      iconImage: "/assets/insights/icons/techcrunch.png",
+      iconImage: "/assets/insights/Icons/TechCrunch.png",
       color: "from-green-500 to-green-600",
       featured: true,
       image: "/assets/insights/Photos/TechCrunch.png"
@@ -205,7 +205,7 @@ const InsightsPage = () => {
       description: "Breaking business and financial news",
       url: "https://www.wsj.com/news/business",
       category: "Business News",
-      iconImage: "/assets/insights/icons/wallstreetjournal.png",
+      iconImage: "/assets/insights/Icons/wallstreetjournal.png",
       color: "from-slate-600 to-slate-700",
       featured: true,
       image: "/assets/insights/Photos/Wallstreetjournal.png"
@@ -334,7 +334,11 @@ const InsightsPage = () => {
     return stars
   }
 
-  const stars = useMemo(() => generateStars(200), []) // Create 200 stars, stable across renders
+  const [stars, setStars] = useState([])
+
+  useEffect(() => {
+    setStars(generateStars(200))
+  }, [])
 
   return (
     <div className="min-h-screen bg-emerald-950 relative overflow-hidden">
