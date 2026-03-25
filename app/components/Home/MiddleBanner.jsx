@@ -1,8 +1,9 @@
 import React from 'react'
+import Link from 'next/link'
 
 const MiddleBanner = () => {
   return (
-    <section className="relative bg-black py-16 overflow-hidden">
+    <section className="relative bg-emerald-900 py-16 overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute top-1/2 left-0 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl -translate-y-1/2"></div>
       <div className="absolute top-1/2 right-0 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl -translate-y-1/2"></div>
@@ -20,7 +21,7 @@ const MiddleBanner = () => {
 
           {/* Heading */}
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight">
-            In Need of a Business Assessment?
+            In Need of a Business Audit?
           </h2>
 
           {/* Subheading */}
@@ -63,19 +64,19 @@ const MiddleBanner = () => {
 
           {/* CTA Button */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-            <button className="bg-emerald-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-emerald-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 inline-flex items-center gap-3">
-              Request Free Assessment
+            <Link href="/audit" className="bg-emerald-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-emerald-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 inline-flex items-center gap-3">
+              Request Free Audit
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
-            </button>
+            </Link>
 
-            <button className="bg-transparent border-2 border-emerald-600 text-emerald-400 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-emerald-600/10 transition-all inline-flex items-center gap-3">
+            <Link href="/about" className="bg-transparent border-2 border-emerald-600 text-emerald-400 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-emerald-600/10 transition-all inline-flex items-center gap-3">
               Learn More
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-            </button>
+            </Link>
           </div>
         </div>
       </div>

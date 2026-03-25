@@ -1,15 +1,22 @@
 import React from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const Header = () => {
   return (
-    <header className="relative bg-black shadow-sm z-50">
+    <header className="relative bg-emerald-900 shadow-sm z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between py-6">
           {/* Logo and Company Name */}
           <Link href="/" className="flex items-center space-x-3">
-            <div className="h-10 w-10 bg-emerald-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">S</span>
+            <div className="flex items-center justify-center flex-shrink-0 -mx-2">
+              <Image
+                src="/assets/logos/servia-icon.png"
+                alt="Servia Consulting"
+                width={72}
+                height={72}
+                className="object-contain brightness-0 invert"
+              />
             </div>
             <div>
             <h1 className="text-2xl font-bold text-white">
@@ -35,6 +42,9 @@ const Header = () => {
             </Link>
             <Link href="/insights" className="text-white hover:text-emerald-400 transition-colors font-medium">
               Insights
+            </Link>
+            <Link href="/audit" className="text-white hover:text-emerald-400 transition-colors font-medium">
+              Restaurant Audit
             </Link>
             <Link href="/contact" className="bg-emerald-600 text-white px-6 py-1.5 rounded-lg hover:bg-emerald-700 transition-colors font-medium">
               Contact Us

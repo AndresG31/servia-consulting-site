@@ -1,12 +1,13 @@
 import React from 'react'
+import Link from 'next/link'
 import Footer from '../components/Footer'
 
 const ServicePage = () => {
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-emerald-950">
 
       {/* Hero Section */}
-      <section className="relative bg-black overflow-hidden min-h-[600px]">
+      <section className="relative bg-emerald-950 overflow-hidden min-h-[600px]">
         {/* Full-width Video Background */}
         <div className="absolute inset-0">
           <video
@@ -58,12 +59,12 @@ const ServicePage = () => {
 
                 {/* CTA Buttons */}
                 <div className="flex flex-col sm:flex-row gap-4 opacity-0 animate-slide-in-delayed" style={{ animationDelay: '2.8s' }}>
-                  <button className="bg-emerald-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-emerald-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
-                    Start Your Assessment
-                  </button>
-                  <button className="border-2 border-emerald-400 text-emerald-400 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-emerald-400/10 transition-all">
+                  <Link href="/audit" className="bg-emerald-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-emerald-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                    Start Your Audit
+                  </Link>
+                  <Link href="/service" className="border-2 border-emerald-400 text-emerald-400 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-emerald-400/10 transition-all">
                     View Packages
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -78,7 +79,7 @@ const ServicePage = () => {
       </section>
 
       {/* Packages Section */}
-      <section className="relative bg-gradient-to-b from-black via-gray-900 to-black py-24 overflow-hidden">
+      <section className="relative bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-950 py-24 overflow-hidden">
         {/* Decorative background elements */}
         <div className="absolute top-1/2 left-0 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl -translate-y-1/2"></div>
         <div className="absolute top-1/2 right-0 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl -translate-y-1/2"></div>
@@ -105,7 +106,7 @@ const ServicePage = () => {
           <div className="grid md:grid-cols-3 gap-8">
 
             {/* Package 1 - Foundation */}
-            <div className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-2xl p-8 border-2 border-emerald-600/30 hover:border-emerald-400 hover:bg-gradient-to-b hover:from-emerald-600 hover:to-emerald-700 transition-all group hover:scale-105 transform duration-300 hover:shadow-2xl hover:shadow-emerald-500/50">
+            <div className="relative bg-gradient-to-b from-emerald-800 to-emerald-900 rounded-2xl p-8 border-2 border-emerald-600/30 hover:border-emerald-400 hover:bg-gradient-to-b hover:from-emerald-600 hover:to-emerald-700 transition-all group hover:scale-105 transform duration-300 hover:shadow-2xl hover:shadow-emerald-500/50">
               {/* Package Badge */}
               <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-emerald-600 text-white px-6 py-2 rounded-full font-bold text-sm group-hover:bg-white group-hover:text-emerald-600 transition-colors">
                 PACKAGE 1
@@ -156,12 +157,12 @@ const ServicePage = () => {
                   </div>
                 </div>
 
-                <button className="w-full bg-emerald-600 text-white group-hover:bg-white group-hover:text-emerald-600 py-4 rounded-xl font-bold text-lg transition-all hover:shadow-lg flex items-center justify-center gap-2">
+                <Link href="/contact?service=package1" className="w-full bg-emerald-600 text-white group-hover:bg-white group-hover:text-emerald-600 py-4 rounded-xl font-bold text-lg transition-all hover:shadow-lg flex items-center justify-center gap-2">
                   Get Started
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
-                </button>
+                </Link>
               </div>
             </div>
 
@@ -223,17 +224,17 @@ const ServicePage = () => {
                   </div>
                 </div>
 
-                <button className="w-full bg-emerald-500 text-white group-hover:bg-white group-hover:text-emerald-600 py-4 rounded-xl font-bold text-lg transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
+                <Link href="/contact?service=package2" className="w-full bg-emerald-500 text-white group-hover:bg-white group-hover:text-emerald-600 py-4 rounded-xl font-bold text-lg transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
                   Get Started
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
-                </button>
+                </Link>
               </div>
             </div>
 
             {/* Package 3 - Enterprise */}
-            <div className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-2xl p-8 border-2 border-emerald-600/30 hover:border-emerald-400 hover:bg-gradient-to-b hover:from-emerald-600 hover:to-emerald-700 transition-all group hover:scale-105 transform duration-300 hover:shadow-2xl hover:shadow-emerald-500/50">
+            <div className="relative bg-gradient-to-b from-emerald-800 to-emerald-900 rounded-2xl p-8 border-2 border-emerald-600/30 hover:border-emerald-400 hover:bg-gradient-to-b hover:from-emerald-600 hover:to-emerald-700 transition-all group hover:scale-105 transform duration-300 hover:shadow-2xl hover:shadow-emerald-500/50">
               {/* Package Badge */}
               <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-emerald-600 text-white px-6 py-2 rounded-full font-bold text-sm group-hover:bg-white group-hover:text-emerald-600 transition-colors">
                 PACKAGE 3
@@ -296,12 +297,12 @@ const ServicePage = () => {
                   </div>
                 </div>
 
-                <button className="w-full bg-emerald-600 text-white group-hover:bg-white group-hover:text-emerald-600 py-4 rounded-xl font-bold text-lg transition-all hover:shadow-lg flex items-center justify-center gap-2">
+                <Link href="/contact?service=package3" className="w-full bg-emerald-600 text-white group-hover:bg-white group-hover:text-emerald-600 py-4 rounded-xl font-bold text-lg transition-all hover:shadow-lg flex items-center justify-center gap-2">
                   Get Started
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
-                </button>
+                </Link>
               </div>
             </div>
 
@@ -333,7 +334,7 @@ const ServicePage = () => {
           {/* Section Header */}
           <div className="text-center mb-16">
             <div className="w-20 h-1 bg-emerald-600 mx-auto mb-6"></div>
-            <h2 className="text-4xl sm:text-5xl font-bold text-black mb-6">
+            <h2 className="text-4xl sm:text-5xl font-bold text-emerald-700 mb-6">
               Our Core
               <span className="block text-emerald-600 mt-2">Services</span>
             </h2>
@@ -358,7 +359,7 @@ const ServicePage = () => {
 
                 {/* Content */}
                 <div>
-                  <h3 className="text-3xl font-bold text-black mb-4">Business Assessment</h3>
+                  <h3 className="text-3xl font-bold text-emerald-700 mb-4">Business Assessment</h3>
                   <p className="text-gray-700 text-lg mb-6 leading-relaxed">
                     We conduct a thorough analysis of your business operations, identifying strengths, weaknesses,
                     opportunities, and potential roadblocks. Our assessment covers your sales pipeline, operational
@@ -407,7 +408,7 @@ const ServicePage = () => {
 
                 {/* Content */}
                 <div>
-                  <h3 className="text-3xl font-bold text-black mb-4">Custom Plan of Action</h3>
+                  <h3 className="text-3xl font-bold text-emerald-700 mb-4">Custom Plan of Action</h3>
                   <p className="text-gray-700 text-lg mb-6 leading-relaxed">
                     Based on our assessment, we develop a tailored strategic plan designed specifically for your business.
                     This actionable roadmap includes clear milestones, timelines, resource allocation, and measurable KPIs
@@ -444,56 +445,7 @@ const ServicePage = () => {
               </div>
             </div>
 
-            {/* Service 3 - Online Ordering Platform */}
-            <div className="bg-gradient-to-r from-emerald-50 to-white rounded-2xl p-8 border-2 border-emerald-600/20 hover:border-emerald-600 hover:shadow-xl transition-all group">
-              <div className="grid md:grid-cols-[auto,1fr] gap-8 items-start">
-                {/* Icon */}
-                <div className="w-20 h-20 bg-emerald-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0 shadow-lg">
-                  <svg className="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                  </svg>
-                </div>
-
-                {/* Content */}
-                <div>
-                  <h3 className="text-3xl font-bold text-black mb-4">Online Ordering Platform</h3>
-                  <p className="text-gray-700 text-lg mb-6 leading-relaxed">
-                    Transform your restaurant operations with our comprehensive digital ordering platform. Manage orders,
-                    menus, pricing, and customer data from a single unified dashboard. Designed for restaurants in the
-                    Rio Grande Valley to compete in the digital marketplace.
-                  </p>
-
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div className="flex items-start gap-3">
-                      <svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span className="text-gray-800 font-medium">Order Management</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span className="text-gray-800 font-medium">Menu Control</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span className="text-gray-800 font-medium">Real-time Analytics</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span className="text-gray-800 font-medium">Multi-location Support</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Service 4 - In-Field Consulting */}
+            {/* Service 3 - In-Field Consulting */}
             <div className="bg-gradient-to-r from-white to-emerald-50 rounded-2xl p-8 border-2 border-emerald-600/20 hover:border-emerald-600 hover:shadow-xl transition-all group">
               <div className="grid md:grid-cols-[auto,1fr] gap-8 items-start">
                 {/* Icon */}
@@ -505,7 +457,7 @@ const ServicePage = () => {
 
                 {/* Content */}
                 <div>
-                  <h3 className="text-3xl font-bold text-black mb-4">In-Field Consultant</h3>
+                  <h3 className="text-3xl font-bold text-emerald-700 mb-4">In-Field Consultant</h3>
                   <p className="text-gray-700 text-lg mb-6 leading-relaxed">
                     Our dedicated consultant works on-site at your business five days a week to ensure your strategic
                     plan is executed flawlessly. This hands-on approach provides accountability, real-time problem-solving,
@@ -517,7 +469,7 @@ const ServicePage = () => {
                       <svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
-                      <span className="text-gray-800 font-medium">5 Days/Week On-Site</span>
+                      <span className="text-gray-800 font-medium">3 Days/Week On-Site</span>
                     </div>
                     <div className="flex items-start gap-3">
                       <svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -7,7 +7,7 @@ const AboutPage = () => {
     <div className="font-sans">
 
       {/* Hero Section */}
-      <section className="relative bg-black overflow-hidden min-h-[600px]">
+      <section className="relative bg-emerald-950 overflow-hidden min-h-[600px]">
         {/* Full-width Image Background */}
         <div className="absolute inset-0">
           <Image
@@ -62,21 +62,21 @@ const AboutPage = () => {
       </section>
 
       {/* Our Story Section */}
-      <section className="relative bg-white py-20">
+      <section className="relative bg-emerald-900 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <div className="w-20 h-1 bg-emerald-600"></div>
-              <h2 className="text-4xl sm:text-5xl font-bold text-black leading-tight">
+              <div className="w-20 h-1 bg-emerald-400"></div>
+              <h2 className="text-4xl sm:text-5xl font-bold text-white leading-tight">
                 Five Years of
-                <span className="block text-emerald-600 mt-2">Strategic Excellence</span>
+                <span className="block text-emerald-400 mt-2">Strategic Excellence</span>
               </h2>
-              <p className="text-lg text-gray-700 leading-relaxed">
+              <p className="text-lg text-gray-300 leading-relaxed">
                 For the past five years, Servia Consulting has been at the forefront of the consulting industry,
                 helping businesses transform their operations and achieve sustainable growth. Our journey has been
                 defined by unwavering commitment to service and excellence.
               </p>
-              <p className="text-lg text-gray-700 leading-relaxed">
+              <p className="text-lg text-gray-300 leading-relaxed">
                 We've built our reputation on deep industry expertise, strategic thinking, and a genuine dedication
                 to our clients' success. Every engagement is approached with the same level of care and attention
                 that has become our hallmark.
@@ -84,16 +84,16 @@ const AboutPage = () => {
               <div className="pt-4">
                 <div className="grid grid-cols-3 gap-6">
                   <div className="text-center">
-                    <div className="text-4xl font-bold text-emerald-600">5+</div>
-                    <div className="text-sm text-gray-600 mt-1">Years</div>
+                    <div className="text-4xl font-bold text-emerald-400">5+</div>
+                    <div className="text-sm text-gray-400 mt-1">Years</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-4xl font-bold text-emerald-600">500+</div>
-                    <div className="text-sm text-gray-600 mt-1">Clients</div>
+                    <div className="text-4xl font-bold text-emerald-400">500+</div>
+                    <div className="text-sm text-gray-400 mt-1">Clients</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-4xl font-bold text-emerald-600">98%</div>
-                    <div className="text-sm text-gray-600 mt-1">Success Rate</div>
+                    <div className="text-4xl font-bold text-emerald-400">98%</div>
+                    <div className="text-sm text-gray-400 mt-1">Success Rate</div>
                   </div>
                 </div>
               </div>
@@ -109,7 +109,7 @@ const AboutPage = () => {
                         </svg>
                       </div>
                       <div>
-                        <h3 className="font-bold text-black text-lg">Client-First Approach</h3>
+                        <h3 className="font-bold text-emerald-700 text-lg">Client-First Approach</h3>
                         <p className="text-gray-600 text-sm">Every strategy tailored to your unique needs</p>
                       </div>
                     </div>
@@ -120,7 +120,7 @@ const AboutPage = () => {
                         </svg>
                       </div>
                       <div>
-                        <h3 className="font-bold text-black text-lg">Proven Results</h3>
+                        <h3 className="font-bold text-emerald-700 text-lg">Proven Results</h3>
                         <p className="text-gray-600 text-sm">Measurable outcomes that drive growth</p>
                       </div>
                     </div>
@@ -131,7 +131,7 @@ const AboutPage = () => {
                         </svg>
                       </div>
                       <div>
-                        <h3 className="font-bold text-black text-lg">Expert Team</h3>
+                        <h3 className="font-bold text-emerald-700 text-lg">Expert Team</h3>
                         <p className="text-gray-600 text-sm">Industry veterans with deep expertise</p>
                       </div>
                     </div>
@@ -143,118 +143,6 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Partnership Section - OuiTrend */}
-      <section className="relative bg-black py-20 overflow-hidden">
-        {/* Background Pattern Image */}
-        <div className="absolute inset-0 z-0">
-          <div
-            className="absolute inset-0 animate-pulse-pattern"
-            style={{
-              backgroundImage: 'url(/assets/patrons/ouitrendpatron.png)',
-              backgroundSize: 'cover',
-              backgroundRepeat: 'no-repeat',
-              backgroundPosition: 'center'
-            }}
-          />
-        </div>
-
-        <div className="absolute top-1/2 left-0 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl -translate-y-1/2 z-0"></div>
-        <div className="absolute top-1/2 right-0 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl -translate-y-1/2 z-0"></div>
-
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
-          <div className="text-center space-y-6 mb-12">
-            <div className="flex justify-center">
-              <div className="w-20 h-1 bg-emerald-600"></div>
-            </div>
-            <h2 className="text-4xl sm:text-5xl font-bold text-white leading-tight">
-              Powered by
-              <span className="block text-emerald-400 mt-2">Cutting-Edge Technology</span>
-            </h2>
-            <p className="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Our partnership with OuiTrend Marketing Agency brings the newest platform technologies
-              to our clients, ensuring they stay ahead in today's digital landscape.
-            </p>
-          </div>
-
-          <div className="bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl border-2 border-emerald-600/30 shadow-2xl">
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div className="space-y-6">
-                <h3 className="text-3xl font-bold text-white">Partnership with OuiTrend</h3>
-                <p className="text-gray-300 leading-relaxed">
-                  Through our strategic alliance with <a href="https://www.ouitrend.com" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 underline font-semibold">OuiTrend Marketing Agency</a>,
-                  we deliver state-of-the-art technology solutions that amplify our consulting services.
-                </p>
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 bg-emerald-600/20 rounded-lg flex items-center justify-center mt-1 flex-shrink-0">
-                      <svg className="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-white">Latest Platform Technologies</h4>
-                      <p className="text-gray-400 text-sm">Access to cutting-edge tools and platforms</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 bg-emerald-600/20 rounded-lg flex items-center justify-center mt-1 flex-shrink-0">
-                      <svg className="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-white">Integrated Solutions</h4>
-                      <p className="text-gray-400 text-sm">Seamless blend of strategy and technology</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 bg-emerald-600/20 rounded-lg flex items-center justify-center mt-1 flex-shrink-0">
-                      <svg className="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-white">Marketing Excellence</h4>
-                      <p className="text-gray-400 text-sm">Combined expertise for maximum impact</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-gradient-to-br from-emerald-600/20 to-emerald-400/10 p-8 rounded-xl">
-                <div className="text-center space-y-2">
-                  <div className="text-emerald-400 font-bold text-2xl">Strategic Partnership</div>
-                  <div className="text-6xl font-bold text-white">OuiTrend</div>
-                  <div className="text-gray-300 pb-2">Marketing Agency</div>
-
-                  {/* OuiTrend Green Logo */}
-                  <div className="flex justify-center py-2">
-                    <div className="relative w-80 h-40 animate-float" style={{ '--rotate': '0deg' }}>
-                      <Image
-                        src="/assets/logos/ouitrendgreen.png"
-                        alt="OuiTrend Logo"
-                        fill
-                        className="object-contain"
-                        priority={false}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="pt-2">
-                    <a
-                      href="https://www.ouitrend.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-block bg-emerald-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-emerald-700 transition-all"
-                    >
-                      Visit OuiTrend
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Roots in Service - Boy Scouts & Order of the Arrow */}
       <section className="relative bg-white py-20 overflow-hidden">
@@ -267,7 +155,7 @@ const AboutPage = () => {
             <div className="flex justify-center">
               <div className="w-20 h-1 bg-emerald-600"></div>
             </div>
-            <h2 className="text-4xl sm:text-5xl font-bold text-black leading-tight">
+            <h2 className="text-4xl sm:text-5xl font-bold text-emerald-700 leading-tight">
               Rooted in
               <span className="block text-emerald-600 mt-2">Service & Leadership</span>
             </h2>
@@ -280,7 +168,7 @@ const AboutPage = () => {
           {/* Service in Action - Moved to top */}
           <div className="bg-gradient-to-br from-emerald-50 to-white border-2 border-emerald-600/20 rounded-2xl p-8 mb-16">
             <div className="text-center mb-8">
-              <h3 className="text-3xl font-bold text-black mb-4">Service in Action</h3>
+              <h3 className="text-3xl font-bold text-emerald-700 mb-4">Service in Action</h3>
               <p className="text-gray-700 max-w-3xl mx-auto">
                 These organizations don't just teach values—they demand action. Service isn't a concept;
                 it's a way of life that shapes how we approach every challenge and opportunity.
@@ -293,7 +181,7 @@ const AboutPage = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                   </svg>
                 </div>
-                <h4 className="font-bold text-black mb-2">Cheerful Service</h4>
+                <h4 className="font-bold text-emerald-700 mb-2">Cheerful Service</h4>
                 <p className="text-gray-600 text-sm">Serving with enthusiasm and positivity</p>
               </div>
               <div className="text-center">
@@ -302,7 +190,7 @@ const AboutPage = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                   </svg>
                 </div>
-                <h4 className="font-bold text-black mb-2">Brotherhood</h4>
+                <h4 className="font-bold text-emerald-700 mb-2">Brotherhood</h4>
                 <p className="text-gray-600 text-sm">Building lasting partnerships</p>
               </div>
               <div className="text-center">
@@ -311,7 +199,7 @@ const AboutPage = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
-                <h4 className="font-bold text-black mb-2">Leadership</h4>
+                <h4 className="font-bold text-emerald-700 mb-2">Leadership</h4>
                 <p className="text-gray-600 text-sm">Leading by example and integrity</p>
               </div>
             </div>
@@ -326,7 +214,7 @@ const AboutPage = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-bold text-black">Boy Scouts of America</h3>
+                <h3 className="text-2xl font-bold text-emerald-700">Boy Scouts of America</h3>
               </div>
               <p className="text-gray-700 leading-relaxed mb-6">
                 Founded in 1910, the Boy Scouts of America has instilled values of character, citizenship, and
@@ -349,7 +237,7 @@ const AboutPage = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-bold text-black">Order of the Arrow</h3>
+                <h3 className="text-2xl font-bold text-emerald-700">Order of the Arrow</h3>
               </div>
               <p className="text-gray-700 leading-relaxed mb-6">
                 The Order of the Arrow, Scouting's National Honor Society, was founded on the principles of
@@ -366,7 +254,7 @@ const AboutPage = () => {
       </section>
 
       {/* Founder's Experience - Chick-fil-A */}
-      <section className="relative bg-black py-20 overflow-hidden">
+      <section className="relative bg-emerald-950 py-20 overflow-hidden">
         {/* Full-width Video Background */}
         <div className="absolute inset-0 z-0">
           <video
@@ -395,7 +283,7 @@ const AboutPage = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                       </svg>
                     </div>
-                    <h3 className="text-2xl font-bold text-black mb-2">Service Industry Expertise</h3>
+                    <h3 className="text-2xl font-bold text-emerald-700 mb-2">Service Industry Expertise</h3>
                     <p className="text-emerald-600 font-semibold">5 Years at Chick-fil-A</p>
                   </div>
                   <div className="space-y-3">
@@ -445,7 +333,7 @@ const AboutPage = () => {
                 creates a powerful foundation for transformative business solutions.
               </p>
 
-              <div className="bg-black/70 border-l-4 border-emerald-400 p-6 rounded-r-lg">
+              <div className="bg-emerald-900/70 border-l-4 border-emerald-400 p-6 rounded-r-lg">
                 <p className="text-gray-100 italic leading-relaxed">
                   "My pleasure"—these two words represent more than customer service; they embody a mindset of
                   cheerful service that I carry into every client engagement. Excellence isn't an act; it's a habit.
@@ -454,11 +342,11 @@ const AboutPage = () => {
               </div>
 
               <div className="grid grid-cols-2 gap-4 pt-4">
-                <div className="bg-black/70 border border-emerald-600/30 p-6 rounded-lg">
+                <div className="bg-emerald-900/70 border border-emerald-600/30 p-6 rounded-lg">
                   <div className="text-3xl font-bold text-emerald-400 mb-1">5 Years</div>
                   <div className="text-sm text-gray-300">Chick-fil-A Service</div>
                 </div>
-                <div className="bg-black/70 border border-emerald-600/30 p-6 rounded-lg">
+                <div className="bg-emerald-900/70 border border-emerald-600/30 p-6 rounded-lg">
                   <div className="text-3xl font-bold text-emerald-400 mb-1">Eagle Scout</div>
                   <div className="text-sm text-gray-300">Leadership Honor</div>
                 </div>
@@ -469,7 +357,7 @@ const AboutPage = () => {
       </section>
 
       {/* Values in Action */}
-      <section className="relative bg-black py-20 overflow-hidden">
+      <section className="relative bg-emerald-900 py-20 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-20 left-10 w-20 h-20 border-2 border-emerald-600 rounded-lg rotate-12"></div>
           <div className="absolute bottom-20 right-10 w-24 h-24 border-2 border-emerald-600 rounded-lg -rotate-12"></div>
@@ -489,38 +377,38 @@ const AboutPage = () => {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl border border-emerald-600/30 hover:border-emerald-600/60 transition-all">
-              <div className="w-16 h-16 bg-emerald-600/20 rounded-full flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="bg-gradient-to-br from-emerald-800 to-emerald-900 p-8 rounded-2xl border border-emerald-600/30 hover:border-emerald-400 hover:from-emerald-600 hover:to-emerald-700 transition-all group hover:scale-105 transform duration-300 hover:shadow-2xl hover:shadow-emerald-500/50">
+              <div className="w-16 h-16 bg-emerald-600/20 rounded-full flex items-center justify-center mb-6 group-hover:bg-white/20 transition-colors">
+                <svg className="w-8 h-8 text-emerald-400 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Integrity First</h3>
-              <p className="text-gray-300 leading-relaxed">
+              <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-white transition-colors">Integrity First</h3>
+              <p className="text-gray-300 group-hover:text-white leading-relaxed transition-colors">
                 Trustworthy, loyal, and honest in every interaction. Our word is our bond, and we honor our commitments.
               </p>
             </div>
 
-            <div className="bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl border border-emerald-600/30 hover:border-emerald-600/60 transition-all">
-              <div className="w-16 h-16 bg-emerald-600/20 rounded-full flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="bg-gradient-to-br from-emerald-800 to-emerald-900 p-8 rounded-2xl border border-emerald-600/30 hover:border-emerald-400 hover:from-emerald-600 hover:to-emerald-700 transition-all group hover:scale-105 transform duration-300 hover:shadow-2xl hover:shadow-emerald-500/50">
+              <div className="w-16 h-16 bg-emerald-600/20 rounded-full flex items-center justify-center mb-6 group-hover:bg-white/20 transition-colors">
+                <svg className="w-8 h-8 text-emerald-400 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Service Above Self</h3>
-              <p className="text-gray-300 leading-relaxed">
+              <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-white transition-colors">Service Above Self</h3>
+              <p className="text-gray-300 group-hover:text-white leading-relaxed transition-colors">
                 Cheerfully serving our clients with dedication, going beyond expectations to ensure their success.
               </p>
             </div>
 
-            <div className="bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl border border-emerald-600/30 hover:border-emerald-600/60 transition-all">
-              <div className="w-16 h-16 bg-emerald-600/20 rounded-full flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="bg-gradient-to-br from-emerald-800 to-emerald-900 p-8 rounded-2xl border border-emerald-600/30 hover:border-emerald-400 hover:from-emerald-600 hover:to-emerald-700 transition-all group hover:scale-105 transform duration-300 hover:shadow-2xl hover:shadow-emerald-500/50">
+              <div className="w-16 h-16 bg-emerald-600/20 rounded-full flex items-center justify-center mb-6 group-hover:bg-white/20 transition-colors">
+                <svg className="w-8 h-8 text-emerald-400 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Excellence Always</h3>
-              <p className="text-gray-300 leading-relaxed">
+              <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-white transition-colors">Excellence Always</h3>
+              <p className="text-gray-300 group-hover:text-white leading-relaxed transition-colors">
                 Prepared, resourceful, and committed to delivering the highest quality in everything we do.
               </p>
             </div>
@@ -532,7 +420,7 @@ const AboutPage = () => {
       <section className="relative bg-gradient-to-b from-white to-gray-50 py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="space-y-6">
-            <h2 className="text-4xl sm:text-5xl font-bold text-black leading-tight">
+            <h2 className="text-4xl sm:text-5xl font-bold text-emerald-700 leading-tight">
               Ready to Experience
               <span className="block text-emerald-600 mt-2">Service-Driven Consulting?</span>
             </h2>

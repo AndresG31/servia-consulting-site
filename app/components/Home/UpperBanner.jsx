@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 const UpperBanner = () => {
   return (
-    <section className="relative bg-black py-16 overflow-hidden">
+    <section className="relative bg-emerald-900 py-16 overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute top-1/2 left-0 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl -translate-y-1/2"></div>
       <div className="absolute top-1/2 right-0 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl -translate-y-1/2"></div>
@@ -74,7 +74,7 @@ const UpperBanner = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-emerald-600/20 to-emerald-400/10 rounded-full blur-2xl scale-110"></div>
 
               {/* Badge container */}
-              <div className="relative bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl border-2 border-emerald-600/30 shadow-2xl">
+              <div className="relative bg-gradient-to-br from-emerald-800 to-emerald-900 p-8 rounded-2xl border-2 border-emerald-600/30 shadow-2xl">
                 <div className="relative w-64 h-64 flex items-center justify-center">
                   <Image
                     src="/assets/homepage/Images/UpperBanner.png"

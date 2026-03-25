@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 
 const TestimonialBanner = () => {
   const testimonials = [
@@ -37,20 +38,20 @@ const TestimonialBanner = () => {
 
       {/* Animated Black Square Decorations */}
       {/* LEFT (6) */}
-      <div className="absolute bottom-8 left-8 w-20 h-20 border-2 border-black/40 rounded-lg rotate-12 animate-float animate-pulse-black anim-delay-0 pointer-events-none z-10" />
-      <div className="absolute bottom-24 left-24 w-24 h-24 border-2 border-black/30 rounded-lg rotate-6 animate-float-slow animate-pulse-black anim-delay-400 pointer-events-none z-10" />
-      <div className="absolute top-1/3 left-16 w-16 h-16 border-2 border-black/35 rounded-lg -rotate-6 animate-float animate-pulse-black anim-delay-800 pointer-events-none z-10" />
-      <div className="absolute top-10 left-1/4 w-28 h-28 border-2 border-black/25 rounded-lg rotate-3 animate-float-fast animate-pulse-black anim-delay-1200 pointer-events-none z-10" style={{ '--rotate': '8deg' }} />
-      <div className="absolute top-20 left-32 w-14 h-14 border-2 border-black/45 rounded-lg -rotate-12 animate-float-slow animate-pulse-black anim-delay-1600 pointer-events-none z-10" style={{ '--rotate': '12deg' }} />
-      <div className="absolute bottom-1/3 left-12 w-18 h-18 border-2 border-black/40 rounded-lg rotate-8 animate-float-fast animate-pulse-black anim-delay-2000 pointer-events-none z-10" style={{ '--rotate': '15deg' }} />
+      <div className="absolute bottom-8 left-8 w-20 h-20 border-2 border-white/40 rounded-lg rotate-12 animate-float animate-pulse-black anim-delay-0 pointer-events-none z-10" />
+      <div className="absolute bottom-24 left-24 w-24 h-24 border-2 border-white/30 rounded-lg rotate-6 animate-float-slow animate-pulse-black anim-delay-400 pointer-events-none z-10" />
+      <div className="absolute top-1/3 left-16 w-16 h-16 border-2 border-white/35 rounded-lg -rotate-6 animate-float animate-pulse-black anim-delay-800 pointer-events-none z-10" />
+      <div className="absolute top-10 left-1/4 w-28 h-28 border-2 border-white/25 rounded-lg rotate-3 animate-float-fast animate-pulse-black anim-delay-1200 pointer-events-none z-10" style={{ '--rotate': '8deg' }} />
+      <div className="absolute top-20 left-32 w-14 h-14 border-2 border-white/45 rounded-lg -rotate-12 animate-float-slow animate-pulse-black anim-delay-1600 pointer-events-none z-10" style={{ '--rotate': '12deg' }} />
+      <div className="absolute bottom-1/3 left-12 w-18 h-18 border-2 border-white/40 rounded-lg rotate-8 animate-float-fast animate-pulse-black anim-delay-2000 pointer-events-none z-10" style={{ '--rotate': '15deg' }} />
 
       {/* RIGHT (6) */}
-      <div className="absolute top-1/3 right-12 w-16 h-16 border-2 border-black/40 rounded-lg -rotate-12 animate-float animate-pulse-black anim-delay-400 pointer-events-none z-10" />
-      <div className="absolute top-10 right-20 w-24 h-24 border-2 border-black/35 rounded-lg rotate-6 animate-float-slow animate-pulse-black anim-delay-800 pointer-events-none z-10" />
-      <div className="absolute bottom-16 right-16 w-20 h-20 border-2 border-black/30 rounded-lg rotate-12 animate-float animate-pulse-black anim-delay-1200 pointer-events-none z-10" />
-      <div className="absolute bottom-8 right-1/4 w-28 h-28 border-2 border-black/25 rounded-lg -rotate-3 animate-float-fast animate-pulse-black anim-delay-0 pointer-events-none z-10" style={{ '--rotate': '10deg' }} />
-      <div className="absolute top-24 right-32 w-14 h-14 border-2 border-black/45 rounded-lg rotate-15 animate-float-slow animate-pulse-black anim-delay-1600 pointer-events-none z-10" style={{ '--rotate': '18deg' }} />
-      <div className="absolute bottom-1/4 right-28 w-18 h-18 border-2 border-black/40 rounded-lg -rotate-8 animate-float-fast animate-pulse-black anim-delay-2000 pointer-events-none z-10" style={{ '--rotate': '14deg' }} />
+      <div className="absolute top-1/3 right-12 w-16 h-16 border-2 border-white/40 rounded-lg -rotate-12 animate-float animate-pulse-black anim-delay-400 pointer-events-none z-10" />
+      <div className="absolute top-10 right-20 w-24 h-24 border-2 border-white/35 rounded-lg rotate-6 animate-float-slow animate-pulse-black anim-delay-800 pointer-events-none z-10" />
+      <div className="absolute bottom-16 right-16 w-20 h-20 border-2 border-white/30 rounded-lg rotate-12 animate-float animate-pulse-black anim-delay-1200 pointer-events-none z-10" />
+      <div className="absolute bottom-8 right-1/4 w-28 h-28 border-2 border-white/25 rounded-lg -rotate-3 animate-float-fast animate-pulse-black anim-delay-0 pointer-events-none z-10" style={{ '--rotate': '10deg' }} />
+      <div className="absolute top-24 right-32 w-14 h-14 border-2 border-white/45 rounded-lg rotate-15 animate-float-slow animate-pulse-black anim-delay-1600 pointer-events-none z-10" style={{ '--rotate': '18deg' }} />
+      <div className="absolute bottom-1/4 right-28 w-18 h-18 border-2 border-white/40 rounded-lg -rotate-8 animate-float-fast animate-pulse-black anim-delay-2000 pointer-events-none z-10" style={{ '--rotate': '14deg' }} />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-20">
         {/* Section Header */}
@@ -97,7 +98,7 @@ const TestimonialBanner = () => {
                   </span>
                 </div>
                 <div>
-                  <div className="font-bold text-black text-base">
+                  <div className="font-bold text-emerald-700 text-base">
                     {testimonial.name}
                   </div>
                   <div className="text-gray-600 text-sm">
@@ -117,7 +118,7 @@ const TestimonialBanner = () => {
           <p className="text-emerald-50 text-lg mb-6">
             Ready to transform your business?
           </p>
-          <button className="bg-white text-black px-10 py-4 rounded-lg font-bold text-lg hover:bg-emerald-50 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 inline-flex items-center gap-3">
+          <Link href="/contact" className="bg-white text-emerald-700 px-10 py-4 rounded-lg font-bold text-lg hover:bg-emerald-50 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 inline-flex items-center gap-3">
             <span>Start Your Journey</span>
             <svg
               className="w-5 h-5"
@@ -127,7 +128,7 @@ const TestimonialBanner = () => {
             >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
-          </button>
+          </Link>
         </div>
       </div>
 

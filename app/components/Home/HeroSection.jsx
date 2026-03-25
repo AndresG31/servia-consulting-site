@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 const HeroSection = () => {
   return (
-    <section className="relative bg-black overflow-hidden min-h-[600px]">
+    <section className="relative bg-emerald-950 overflow-hidden min-h-[600px]">
       {/* Full-width Video Background */}
       <div className="absolute inset-0">
         <video
@@ -42,7 +42,7 @@ const HeroSection = () => {
 
               <p className="text-xl sm:text-xl text-gray-100 mb-8 leading-relaxed opacity-0 animate-slide-in-delayed" style={{ animationDelay: '2.4s' }}>
                 We transform complex challenges into clear opportunities,
-                empowering businesses to achieve sustainable growth within the Rio Grande Valley through Consulting and Software paired for results.
+                empowering businesses to achieve sustainable growth within the Rio Grande Valley through expert consulting and actionable strategy.
               </p>
 
               <p className="text-lg text-gray-200 mb-10 max-w-xl opacity-0 animate-slide-in-delayed" style={{ animationDelay: '2.6s' }}>

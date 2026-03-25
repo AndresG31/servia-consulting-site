@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import Image from 'next/image'
 import Footer from '../components/Footer'
 
@@ -9,6 +9,74 @@ const InsightsPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [searchTerm, setSearchTerm] = useState('')
   const [showDropdown, setShowDropdown] = useState(false)
+  const [placeholderText, setPlaceholderText] = useState('')
+  const [activePhraseIndex, setActivePhraseIndex] = useState(0)
+  const [previewFading, setPreviewFading] = useState(false)
+
+  // Phrases mapped 1-to-1 with preview sources below
+  const previewSourceNames = [
+    'Harvard Business Review',
+    'Forbes Business',
+    'Wall Street Journal',
+    'Bloomberg Business',
+    'TechCrunch',
+    'Nation\'s Restaurant News',
+    'QSR Magazine',
+    'McKinsey Insights',
+  ]
+
+  const previewAssociations = {
+    'Harvard Business Review': { icon: '🎓', text: 'Trusted by executives and business school leaders worldwide for management strategy.' },
+    'Forbes Business':         { icon: '💼', text: 'Go-to source for entrepreneurs, innovators, and business executives across every industry.' },
+    'Wall Street Journal':     { icon: '📰', text: 'The gold standard in financial and business journalism — essential daily reading for operators.' },
+    'Bloomberg Business':      { icon: '📈', text: 'Real-time market intelligence and business coverage relied on by finance professionals globally.' },
+    'TechCrunch':              { icon: '💡', text: 'Stay ahead of the technology disruptions reshaping every corner of the business world.' },
+    'Nation\'s Restaurant News':{ icon: '🍽️', text: 'The leading trade publication covering foodservice trends, operations, and restaurant news.' },
+    'QSR Magazine':            { icon: '🍔', text: 'Dedicated coverage of quick-service and fast-casual restaurant trends, technology, and growth.' },
+    'McKinsey Insights':       { icon: '🎯', text: 'Research-backed strategy insights from one of the world\'s top management consulting firms.' },
+  }
+
+  useEffect(() => {
+    const phrases = previewSourceNames.map(n => n + '...')
+    let phraseIndex = 0
+    let charIndex = 0
+    let deleting = false
+    let timeout
+
+    const type = () => {
+      const current = phrases[phraseIndex]
+
+      if (!deleting) {
+        charIndex++
+        setPlaceholderText(current.slice(0, charIndex))
+        if (charIndex === current.length) {
+          // Phrase fully typed — surface the preview card then hold 4 s
+          setActivePhraseIndex(phraseIndex)
+          setPreviewFading(false)
+          deleting = true
+          timeout = setTimeout(type, 5000)
+        } else {
+          timeout = setTimeout(type, 60)
+        }
+      } else {
+        charIndex--
+        setPlaceholderText(current.slice(0, charIndex))
+        if (charIndex === 0) {
+          // Word fully erased — fade the card out then switch to next phrase
+          setPreviewFading(true)
+          deleting = false
+          phraseIndex = (phraseIndex + 1) % phrases.length
+          timeout = setTimeout(type, 400)
+        } else {
+          timeout = setTimeout(type, 30)
+        }
+      }
+    }
+
+    timeout = setTimeout(type, 800)
+    return () => clearTimeout(timeout)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   // Curated business news sources
   const newsources = [
@@ -17,8 +85,7 @@ const InsightsPage = () => {
       description: "Management tips and insights from business leaders",
       url: "https://hbr.org/topic/business-management",
       category: "Strategy",
-      icon: "📊",
-      iconImage: "/assets/insights/icons/Harvard.jpeg",
+      iconImage: "/assets/insights/icons/Harvard.png",
       color: "from-blue-500 to-blue-600",
       featured: true,
       image: "/assets/insights/Photos/Harvard.png"
@@ -60,7 +127,8 @@ const InsightsPage = () => {
       description: "Innovation, technology, and business creativity",
       url: "https://www.fastcompany.com/section/news",
       category: "Innovation",
-      icon: "💡",
+      iconImage: "/assets/insights/icons/fastcompany.png",
+      logoPadding: "p-0 scale-125",
       color: "from-orange-500 to-orange-600",
       featured: false
     },
@@ -69,7 +137,7 @@ const InsightsPage = () => {
       description: "Global business and financial market news",
       url: "https://www.bloomberg.com/businessweek",
       category: "Finance",
-      icon: "💰",
+      iconImage: "/assets/insights/icons/bloomberg.png",
       color: "from-indigo-500 to-indigo-600",
       featured: true,
       image: "/assets/insights/Photos/Bloomberg.png"
@@ -80,6 +148,7 @@ const InsightsPage = () => {
       url: "https://www.restaurantbusinessonline.com/",
       category: "Restaurant",
       icon: "🍽️",
+      iconImage: "/assets/insights/icons/restaurantbusiness.png",
       color: "from-pink-500 to-pink-600",
       featured: false
     },
@@ -89,6 +158,7 @@ const InsightsPage = () => {
       url: "https://www.nrn.com/",
       category: "Restaurant",
       icon: "🏪",
+      iconImage: "/assets/insights/icons/nrn.png",
       color: "from-purple-500 to-purple-600",
       featured: false
     },
@@ -98,6 +168,7 @@ const InsightsPage = () => {
       url: "https://www.qsrmagazine.com/",
       category: "Fast Casual",
       icon: "🍔",
+      iconImage: "/assets/insights/Icons/qsr.png",
       color: "from-yellow-500 to-yellow-600",
       featured: false
     },
@@ -124,7 +195,7 @@ const InsightsPage = () => {
       description: "Startup and technology business news",
       url: "https://techcrunch.com/category/startups/",
       category: "Tech",
-      icon: "💻",
+      iconImage: "/assets/insights/icons/techcrunch.png",
       color: "from-green-500 to-green-600",
       featured: true,
       image: "/assets/insights/Photos/TechCrunch.png"
@@ -134,7 +205,7 @@ const InsightsPage = () => {
       description: "Breaking business and financial news",
       url: "https://www.wsj.com/news/business",
       category: "Business News",
-      icon: "📰",
+      iconImage: "/assets/insights/icons/wallstreetjournal.png",
       color: "from-slate-600 to-slate-700",
       featured: true,
       image: "/assets/insights/Photos/Wallstreetjournal.png"
@@ -214,6 +285,7 @@ const InsightsPage = () => {
 
   const categories = ['All', ...new Set(newsources.map(source => source.category))]
 
+  // Used only for the search dropdown — filters by both search term and category
   const filteredSources = newsources.filter(source => {
     const matchesCategory = selectedCategory === 'All' || source.category === selectedCategory
     const matchesSearch = source.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -222,8 +294,13 @@ const InsightsPage = () => {
     return matchesCategory && matchesSearch
   })
 
-  // Featured sources also filtered by search
-  const featuredSources = filteredSources.filter(source => source.featured)
+  // Used for the library grid — only filters by category, never by search
+  const librarySources = newsources.filter(source =>
+    selectedCategory === 'All' || source.category === selectedCategory
+  )
+
+  // Featured sources — always show all, never filtered by search
+  const featuredSources = newsources.filter(source => source.featured)
 
   // Show search is active
   const isSearching = searchTerm.length > 0
@@ -257,14 +334,14 @@ const InsightsPage = () => {
     return stars
   }
 
-  const stars = generateStars(200) // Create 200 stars
+  const stars = useMemo(() => generateStars(200), []) // Create 200 stars, stable across renders
 
   return (
-    <div className="min-h-screen bg-black relative overflow-hidden">
+    <div className="min-h-screen bg-emerald-950 relative overflow-hidden">
       {/* Starfield Background - Fixed across entire page */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         {/* Animated gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/20 via-black to-purple-900/20"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/20 via-emerald-950 to-purple-900/20"></div>
         <div className="absolute top-20 left-10 w-72 h-72 bg-emerald-600/20 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
         <div className="absolute top-1/2 left-1/2 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
@@ -291,7 +368,9 @@ const InsightsPage = () => {
       <div className="relative z-10">
 
       {/* Hero Section with Animated Background */}
-      <section className="relative bg-transparent overflow-visible min-h-[700px] pb-32">
+      <section className="relative overflow-visible min-h-[700px] pb-32">
+        {/* Black transparent overlay */}
+        <div className="absolute inset-0 bg-black/30 z-0" />
 
         {/* Content */}
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 z-10">
@@ -321,7 +400,7 @@ const InsightsPage = () => {
               <div className="relative" onClick={handleSearchClick}>
                 <input
                   type="text"
-                  placeholder="Search news sources..."
+                  placeholder={searchTerm ? 'Search news sources...' : placeholderText}
                   value={searchTerm}
                   onChange={(e) => {
                     setSearchTerm(e.target.value)
@@ -378,7 +457,7 @@ const InsightsPage = () => {
                                   src={source.iconImage}
                                   alt={`${source.name} logo`}
                                   fill
-                                  className="object-contain p-1"
+                                  className={`object-contain ${source.logoPadding ?? 'p-1'}`}
                                 />
                               </div>
                             ) : (
@@ -414,12 +493,79 @@ const InsightsPage = () => {
                 </div>
               )}
             </div>
+
+            {/* Typewriter Preview Card */}
+            {!searchTerm && (() => {
+              const previewSource = newsources.find(s => s.name === previewSourceNames[activePhraseIndex])
+              if (!previewSource) return null
+              return (
+                <>
+                <a
+                  href={previewSource.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full mt-4"
+                  style={{ opacity: previewFading ? 0 : 1, transition: 'opacity 0.35s ease' }}
+                >
+                  <div className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br ${previewSource.color} flex flex-row items-stretch`}>
+                    {/* Text content — left */}
+                    <div className="flex-1 px-10 py-10 flex flex-col justify-center relative z-10 text-left">
+                      <div className="flex items-center gap-3 mb-3">
+                        <span className="text-white font-bold text-2xl leading-tight">{previewSource.name}</span>
+                        <svg className="w-6 h-6 text-white/70 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </div>
+                      <p className="text-white/80 text-base leading-relaxed mb-4 line-clamp-3">{previewSource.description}</p>
+                      <span className="inline-block self-start bg-white/20 backdrop-blur-sm text-white text-sm font-semibold px-5 py-1.5 rounded-full">
+                        {previewSource.category}
+                      </span>
+                    </div>
+
+                    {/* Logo — right */}
+                    <div className="w-72 sm:w-96 flex-shrink-0 relative bg-white">
+                      {previewSource.iconImage ? (
+                        <Image
+                          src={previewSource.iconImage}
+                          alt={`${previewSource.name} logo`}
+                          fill
+                          className={`object-contain ${previewSource.logoPadding ?? 'p-4'}`}
+                        />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center text-8xl">
+                          {previewSource.icon}
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Hover overlay */}
+                    <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors duration-300 pointer-events-none" />
+                  </div>
+                </a>
+
+                {/* Association Banner */}
+                {(() => {
+                  const assoc = previewAssociations[previewSourceNames[activePhraseIndex]]
+                  if (!assoc) return null
+                  return (
+                    <div
+                      className="w-full mt-1 px-5 py-3 rounded-xl bg-emerald-900/60 backdrop-blur-sm border border-emerald-700/40 flex items-center gap-3"
+                      style={{ opacity: previewFading ? 0 : 1, transition: 'opacity 0.35s ease' }}
+                    >
+                      <span className="text-xl flex-shrink-0">{assoc.icon}</span>
+                      <p className="text-emerald-300 text-sm leading-snug">{assoc.text}</p>
+                    </div>
+                  )
+                })()}
+                </>
+              )
+            })()}
           </div>
         </div>
       </section>
 
       {/* Featured Sources - Bento Grid Style */}
-      {!isSearching && featuredSources.length > 0 && (
+      {featuredSources.length > 0 && (
       <section className="relative bg-transparent py-20">
         {/* Subtle gradient overlay for depth */}
         <div className="absolute inset-0 bg-gradient-to-b from-emerald-900/5 via-transparent to-purple-900/5 pointer-events-none"></div>
@@ -516,9 +662,20 @@ const InsightsPage = () => {
 
                   <div className="relative z-10">
                     <div className="flex items-start justify-between mb-4">
-                      <div className="text-6xl">
-                        {source.icon}
-                      </div>
+                      {source.iconImage ? (
+                        <div className="w-20 h-20 relative flex-shrink-0 rounded-xl overflow-hidden bg-white">
+                          <Image
+                            src={source.iconImage}
+                            alt={`${source.name} logo`}
+                            fill
+                            className={`object-contain ${source.logoPadding ?? 'p-2'}`}
+                          />
+                        </div>
+                      ) : (
+                        <div className="text-6xl">
+                          {source.icon}
+                        </div>
+                      )}
                       <div className="bg-white/20 backdrop-blur-sm rounded-full p-2 group-hover:bg-white/30 transition-colors">
                         <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -548,6 +705,19 @@ const InsightsPage = () => {
       </section>
       )}
 
+      {/* Business News Hub Library Title */}
+      <section className="relative bg-transparent pt-16 pb-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="w-16 h-1 bg-emerald-600 mx-auto mb-6" />
+          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+            Business News Hub Library
+          </h2>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            A curated collection of the world's most trusted business publications — hand-picked to keep you informed and ahead.
+          </p>
+        </div>
+      </section>
+
       {/* Search Results Section Title */}
       {isSearching && (
         <section className="relative bg-transparent py-12">
@@ -563,7 +733,7 @@ const InsightsPage = () => {
       )}
 
       {/* Category Filter Pills */}
-      <section className="relative py-8 sticky top-0 z-40 backdrop-blur-lg bg-black/80">
+      <section className="relative py-8 sticky top-0 z-40 backdrop-blur-lg bg-emerald-950/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center gap-3">
             {categories.map((category) => (
@@ -572,8 +742,8 @@ const InsightsPage = () => {
                 onClick={() => setSelectedCategory(category)}
                 className={`px-6 py-3 rounded-full font-semibold transition-all transform hover:scale-105 ${
                   selectedCategory === category
-                    ? 'bg-gradient-to-r from-emerald-600 to-emerald-500 text-white shadow-lg shadow-emerald-500/50'
-                    : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+                    ? 'bg-gradient-to-r from-emerald-600 to-emerald-500 text-white shadow-lg shadow-emerald-500/50 animate-pulse-glow'
+                    : 'bg-emerald-800 text-gray-300 hover:bg-emerald-700 hover-glow-emerald'
                 }`}
               >
                 {category}
@@ -599,7 +769,7 @@ const InsightsPage = () => {
             </div>
           )}
 
-          {!loading && filteredSources.length === 0 && (
+          {!loading && librarySources.length === 0 && (
             <div className="text-center py-20">
               <div className="text-6xl mb-4">🔍</div>
               <h3 className="text-2xl font-bold text-white mb-2">No sources found</h3>
@@ -625,9 +795,9 @@ const InsightsPage = () => {
             </div>
           )}
 
-          {!loading && filteredSources.length > 0 && (
+          {!loading && librarySources.length > 0 && (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredSources.map((source, index) => (
+              {librarySources.map((source, index) => (
                 <a
                   key={index}
                   href={source.url}
@@ -647,7 +817,7 @@ const InsightsPage = () => {
                             src={source.iconImage}
                             alt={`${source.name} logo`}
                             fill
-                            className="object-contain p-2"
+                            className={`object-contain ${source.logoPadding ?? 'p-2'}`}
                           />
                         </div>
                       ) : (
@@ -686,19 +856,19 @@ const InsightsPage = () => {
 
           {/* Stats */}
           <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="bg-gradient-to-br from-emerald-600 to-emerald-700 rounded-2xl p-6 text-center">
+            <div className="bg-gradient-to-br from-emerald-600 to-emerald-700 rounded-2xl p-6 text-center hover-glow-emerald">
               <div className="text-4xl font-bold text-white mb-2">{newsources.length}</div>
               <div className="text-emerald-100 text-sm">Total Sources</div>
             </div>
-            <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-6 text-center">
+            <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-6 text-center hover-glow-blue">
               <div className="text-4xl font-bold text-white mb-2">{categories.length - 1}</div>
               <div className="text-blue-100 text-sm">Categories</div>
             </div>
-            <div className="bg-gradient-to-br from-purple-600 to-purple-700 rounded-2xl p-6 text-center">
+            <div className="bg-gradient-to-br from-purple-600 to-purple-700 rounded-2xl p-6 text-center hover-glow-purple">
               <div className="text-4xl font-bold text-white mb-2">24/7</div>
               <div className="text-purple-100 text-sm">Live Updates</div>
             </div>
-            <div className="bg-gradient-to-br from-pink-600 to-pink-700 rounded-2xl p-6 text-center">
+            <div className="bg-gradient-to-br from-pink-600 to-pink-700 rounded-2xl p-6 text-center hover-glow-pink">
               <div className="text-4xl font-bold text-white mb-2">Free</div>
               <div className="text-pink-100 text-sm">Access</div>
             </div>

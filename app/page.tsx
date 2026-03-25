@@ -5,7 +5,6 @@ import TestimonialBanner from "./components/Home/TestimonialBanner";
 import MiddleBanner from "./components/Home/MiddleBanner";
 import ContentSection from "./components/Home/ContentSection";
 import LowerBanner from "./components/Home/LowerBanner";
-import PlatformSection from "./components/Home/PlatformSection";
 import Footer from "./components/Footer";
 
 export default function Home() {
@@ -17,7 +16,6 @@ export default function Home() {
       <MiddleBanner />
       <ContentSection />
       <LowerBanner />
-      <PlatformSection />
       <Footer />
     </div>
   );

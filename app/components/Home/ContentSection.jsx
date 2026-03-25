@@ -13,7 +13,7 @@ const ContentSection = () => {
             <div className="w-20 h-1 bg-emerald-600 text-reveal text-delay-1"></div>
 
             <div>
-              <h2 className="text-4xl sm:text-5xl font-bold text-black mb-6 leading-tight text-reveal text-delay-2">
+              <h2 className="text-4xl sm:text-5xl font-bold text-emerald-700 mb-6 leading-tight text-reveal text-delay-2">
                 Transforming Vision Into
                 <span className="block text-emerald-600 mt-2">
                   Measurable Success
@@ -56,7 +56,7 @@ const ContentSection = () => {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="font-bold text-black text-lg mb-1">{item.title}</h3>
+                    <h3 className="font-bold text-emerald-700 text-lg mb-1">{item.title}</h3>
                     <p className="text-gray-600">{item.description}</p>
                   </div>
                 </div>
@@ -103,7 +103,7 @@ const ContentSection = () => {
                       </svg>
                     </div>
                     <div>
-                      <div className="font-bold text-black text-sm">Success Story</div>
+                      <div className="font-bold text-emerald-700 text-sm">Success Story</div>
                       <div className="text-emerald-600 text-xs font-semibold">250% Growth Achieved</div>
                     </div>
                   </div>
