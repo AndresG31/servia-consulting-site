@@ -7,7 +7,7 @@ const AboutPage = () => {
     <div className="font-sans">
 
       {/* Hero Section */}
-      <section className="relative bg-emerald-950 overflow-hidden min-h-[600px]">
+      <section className="relative bg-emerald-950 overflow-hidden min-h-[900px]">
         {/* Full-width Image Background */}
         <div className="absolute inset-0">
           <Image
@@ -21,7 +21,7 @@ const AboutPage = () => {
 
         {/* Content Overlay */}
         <div className="relative max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-0 min-h-[600px]">
+          <div className="grid lg:grid-cols-2 gap-0 min-h-[900px]">
 
             {/* Left Side - Headline Content with Black Background Filter */}
             <div className="relative flex flex-col justify-center px-8 sm:px-12 lg:px-16 py-12 lg:py-16 z-10">

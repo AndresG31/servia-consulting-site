@@ -5,7 +5,6 @@ import Image from 'next/image'
 import Footer from '../components/Footer'
 
 const InsightsPage = () => {
-  const [loading, setLoading] = useState(true)
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [searchTerm, setSearchTerm] = useState('')
   const [showDropdown, setShowDropdown] = useState(false)
@@ -256,12 +255,6 @@ const InsightsPage = () => {
       featured: false
     }
   ]
-
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false)
-    }, 500)
-  }, [])
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -576,7 +569,7 @@ const InsightsPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-white mb-4">
-              ⭐ Featured Sources
+              Featured Sources
             </h2>
             <p className="text-gray-400">
               Our top recommendations for essential business news
@@ -766,14 +759,7 @@ const InsightsPage = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-purple-900/5 via-blue-900/5 to-transparent pointer-events-none"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-          {loading && (
-            <div className="text-center py-20">
-              <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-600"></div>
-              <p className="text-gray-400 mt-4">Loading news sources...</p>
-            </div>
-          )}
-
-          {!loading && librarySources.length === 0 && (
+          {librarySources.length === 0 && (
             <div className="text-center py-20">
               <div className="text-6xl mb-4">🔍</div>
               <h3 className="text-2xl font-bold text-white mb-2">No sources found</h3>
@@ -799,7 +785,7 @@ const InsightsPage = () => {
             </div>
           )}
 
-          {!loading && librarySources.length > 0 && (
+          {librarySources.length > 0 && (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {librarySources.map((source, index) => (
                 <a

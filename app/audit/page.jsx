@@ -8,7 +8,6 @@ const auditCategories = [
   {
     id: 'operations',
     title: 'Operations & Kitchen Management',
-    icon: '🍳',
     description: 'Evaluate the efficiency and consistency of your back-of-house operations.',
     items: [
       { id: 'op1', label: 'Documented opening and closing procedures are followed daily' },
@@ -22,7 +21,6 @@ const auditCategories = [
   {
     id: 'financial',
     title: 'Financial Performance',
-    icon: '📊',
     description: 'Assess how well your financials are monitored, managed, and optimized.',
     items: [
       { id: 'fin1', label: 'Food cost percentage is tracked weekly and benchmarked against target' },
@@ -36,7 +34,6 @@ const auditCategories = [
   {
     id: 'menu',
     title: 'Menu & Product Quality',
-    icon: '📋',
     description: 'Review how strategically your menu is designed, priced, and maintained.',
     items: [
       { id: 'men1', label: 'Menu items are analyzed for profitability and popularity (menu engineering)' },
@@ -50,7 +47,6 @@ const auditCategories = [
   {
     id: 'staff',
     title: 'Staff & Human Resources',
-    icon: '👥',
     description: 'Gauge the strength of your team, training programs, and leadership pipeline.',
     items: [
       { id: 'stf1', label: 'A structured onboarding and training program exists for all roles' },
@@ -64,7 +60,6 @@ const auditCategories = [
   {
     id: 'customer',
     title: 'Customer Experience',
-    icon: '⭐',
     description: 'Measure how consistently you deliver exceptional experiences that drive loyalty.',
     items: [
       { id: 'cus1', label: 'Online reviews (Google, Yelp) are monitored and responded to within 48 hours' },
@@ -78,7 +73,6 @@ const auditCategories = [
   {
     id: 'marketing',
     title: 'Marketing & Brand',
-    icon: '📣',
     description: 'Evaluate your brand presence, visibility, and marketing effectiveness.',
     items: [
       { id: 'mkt1', label: 'Social media accounts are updated at least 3 times per week with original content' },
@@ -92,7 +86,6 @@ const auditCategories = [
   {
     id: 'technology',
     title: 'Technology & Systems',
-    icon: '💻',
     description: 'Identify gaps in your tech stack that may be limiting efficiency or revenue.',
     items: [
       { id: 'tec1', label: 'POS system provides detailed sales, labor, and menu performance reporting' },
@@ -106,7 +99,6 @@ const auditCategories = [
   {
     id: 'compliance',
     title: 'Compliance & Safety',
-    icon: '🛡️',
     description: 'Confirm your operation is legally protected and safety-certified.',
     items: [
       { id: 'com1', label: 'All applicable health permits and licenses are current and displayed' },
@@ -114,7 +106,7 @@ const auditCategories = [
       { id: 'com3', label: 'A HACCP (Hazard Analysis Critical Control Points) plan is written and followed' },
       { id: 'com4', label: 'Fire safety equipment is inspected and staff is trained on emergency procedures' },
       { id: 'com5', label: 'Labor law requirements (breaks, overtime, tip reporting) are documented and followed' },
-      { id: 'com6', label: 'Insurance coverage (general liability, workers\' comp, liquor) is reviewed annually' },
+      { id: 'com6', label: 'Insurance coverage (general liability, workers\'s comp, liquor) is reviewed annually' },
     ],
   },
 ]
@@ -122,6 +114,23 @@ const auditCategories = [
 const SCORE_LABELS = ['Not in Place', 'Partially in Place', 'Fully in Place']
 const SCORE_COLORS = ['bg-red-500', 'bg-yellow-500', 'bg-emerald-600']
 const SCORE_TEXT = ['text-red-400', 'text-yellow-400', 'text-emerald-400']
+
+// Pill button colors for selected state (full fill)
+const SCORE_PILL_SELECTED = [
+  'bg-red-500 text-white border-red-500',
+  'bg-yellow-500 text-white border-yellow-500',
+  'bg-emerald-600 text-white border-emerald-600',
+]
+
+// Left border classes for answered question cards
+const SCORE_BORDER_L = [
+  'border-l-4 border-l-red-500',
+  'border-l-4 border-l-yellow-500',
+  'border-l-4 border-l-emerald-500',
+]
+
+// Dot colors for sidebar progress dots
+const SCORE_DOT_COLORS = ['bg-red-500', 'bg-yellow-500', 'bg-emerald-500']
 
 function getPerformanceBand(pct) {
   if (pct >= 86) return { label: 'Optimized', color: 'text-emerald-400', bg: 'bg-emerald-600', desc: 'Your restaurant is operating at a high level. Focus on sustaining performance and innovating for growth.' }
@@ -143,8 +152,10 @@ export default function AuditPage() {
   const [showResults, setShowResults] = useState(false)
   const [showProPopup, setShowProPopup] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const [copiedSummary, setCopiedSummary] = useState(false)
   const popupShown = useRef(false)
   const timerRef = useRef(null)
+  const mainPanelRef = useRef(null)
 
   useEffect(() => {
     setMounted(true)
@@ -206,6 +217,103 @@ export default function AuditPage() {
   const activeCatStats = categoryStats.find(c => c.id === activeCategory)
 
   const progress = Math.round((answeredItems / totalItems) * 100)
+
+  // Live score preview (partial %)
+  const liveAnsweredScore = Object.values(scores).reduce((acc, v) => acc + v, 0)
+  const liveMaxScore = answeredItems * 2
+  const livePct = liveMaxScore > 0 ? Math.round((liveAnsweredScore / liveMaxScore) * 100) : 0
+
+  // Change active category and scroll main panel to top
+  const changeCategory = (newCatId) => {
+    setActiveCategory(newCatId)
+    setTimeout(() => {
+      mainPanelRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, 0)
+  }
+
+  // Download results as PDF
+  const downloadPdf = () => {
+    const html = `<!DOCTYPE html>
+<html>
+<head>
+  <title>Restaurant Audit Results — Servia Consulting</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; padding: 48px; color: #111; }
+    h1 { color: #065f46; font-size: 28px; margin-bottom: 4px; }
+    .subtitle { color: #6b7280; font-size: 14px; margin-bottom: 32px; }
+    .score-block { margin-bottom: 32px; }
+    .score-number { font-size: 72px; font-weight: 900; color: #059669; line-height: 1; }
+    .band-pill { display: inline-block; background: #059669; color: #fff; padding: 4px 18px; border-radius: 999px; font-weight: 700; font-size: 16px; margin-top: 10px; }
+    .band-desc { margin-top: 12px; color: #374151; font-size: 14px; max-width: 520px; line-height: 1.6; }
+    h2 { color: #065f46; font-size: 18px; margin: 32px 0 12px; border-bottom: 2px solid #d1fae5; padding-bottom: 6px; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th { background: #f0fdf4; color: #065f46; text-align: left; padding: 8px 12px; }
+    td { padding: 8px 12px; border-bottom: 1px solid #e5e7eb; }
+    .bar-wrap { background: #e5e7eb; border-radius: 4px; height: 6px; width: 120px; overflow: hidden; display: inline-block; vertical-align: middle; margin-left: 8px; }
+    .bar-fill { height: 100%; background: #059669; border-radius: 4px; }
+    .footer { margin-top: 48px; font-size: 12px; color: #9ca3af; border-top: 1px solid #e5e7eb; padding-top: 12px; }
+    @media print { body { padding: 24px; } }
+  </style>
+</head>
+<body>
+  <h1>Restaurant Audit Framework</h1>
+  <p class="subtitle">Servia Consulting — Diagnostic Report</p>
+
+  <div class="score-block">
+    <div class="score-number">${overallPct}%</div>
+    <div class="band-pill">${band.label}</div>
+    <p class="band-desc">${band.desc}</p>
+  </div>
+
+  <h2>Category Breakdown</h2>
+  <table>
+    <tr><th>Category</th><th>Score</th><th>Status</th><th>Progress</th></tr>
+    ${categoryStats.map(cat => `
+    <tr>
+      <td>${cat.title}</td>
+      <td><strong>${cat.catPct}%</strong></td>
+      <td>${cat.band.label}</td>
+      <td><span class="bar-wrap"><span class="bar-fill" style="width:${cat.catPct}%"></span></span></td>
+    </tr>`).join('')}
+  </table>
+
+  <h2>Score Distribution</h2>
+  <table>
+    <tr><th>Rating</th><th>Count</th><th>% of Total</th></tr>
+    ${[0, 1, 2].map(v => {
+      const count = Object.values(scores).filter(x => x === v).length
+      const pct = Math.round((count / totalItems) * 100)
+      return `<tr><td>${SCORE_LABELS[v]}</td><td>${count}</td><td>${pct}%</td></tr>`
+    }).join('')}
+  </table>
+
+  <p class="footer">Generated by Servia Consulting · Restaurant Audit Framework · ${answeredItems} of ${totalItems} criteria scored</p>
+  <script>window.onload = () => { window.print() }</script>
+</body>
+</html>`
+    const w = window.open('', '_blank')
+    w.document.write(html)
+    w.document.close()
+  }
+
+  // Copy summary to clipboard
+  const copySummary = () => {
+    const lines = [
+      'Restaurant Audit Summary',
+      '========================',
+      `Overall Score: ${overallPct}% — ${band.label}`,
+      '',
+      'Category Scores:',
+      ...categoryStats.map(cat => `  ${cat.title}: ${cat.catPct}% — ${cat.band.label} (${cat.answered}/${cat.items.length} answered)`),
+      '',
+      `Criteria scored: ${answeredItems} of ${totalItems}`,
+    ]
+    navigator.clipboard.writeText(lines.join('\n')).then(() => {
+      setCopiedSummary(true)
+      setTimeout(() => setCopiedSummary(false), 2500)
+    })
+  }
 
   return (
     <div className="min-h-screen bg-emerald-950">
@@ -287,11 +395,11 @@ export default function AuditPage() {
             Restaurant
             <span className="block text-emerald-400 mt-2">Audit Framework</span>
           </h1>
-          <p className="text-xl text-gray-300 max-w-2xl mb-10 leading-relaxed">
+          <p className="text-xl text-white max-w-2xl mb-10 leading-relaxed">
             A structured 48-point diagnostic across 8 critical business areas. Score your
             restaurant honestly and receive a clear picture of where to focus first.
           </p>
-          <div className="flex flex-wrap gap-8 text-sm text-gray-400">
+          <div className="flex flex-wrap gap-8 text-sm text-white">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-emerald-500" />
               8 Assessment Categories
@@ -321,7 +429,7 @@ export default function AuditPage() {
                 <span className="text-3xl font-black text-emerald-600 opacity-60 leading-none">{s.step}</span>
                 <div>
                   <p className="font-semibold text-white mb-1">{s.title}</p>
-                  <p className="text-sm text-gray-400">{s.desc}</p>
+                  <p className="text-sm text-white">{s.desc}</p>
                 </div>
               </div>
             ))}
@@ -335,7 +443,7 @@ export default function AuditPage() {
         {/* Progress bar */}
         <div className="mb-10">
           <div className="flex justify-between items-center mb-2">
-            <span className="text-sm font-medium text-gray-400">Overall Progress</span>
+            <span className="text-sm font-medium text-white">Overall Progress</span>
             <span className="text-sm font-bold text-emerald-400">{answeredItems} / {totalItems} criteria scored</span>
           </div>
           <div className="h-2 bg-emerald-800 rounded-full overflow-hidden">
@@ -346,60 +454,105 @@ export default function AuditPage() {
           </div>
         </div>
 
+        {/* Mobile horizontal scrollable category tabs (lg:hidden) */}
+        <div className="flex gap-2 overflow-x-auto pb-2 lg:hidden mb-6">
+          {categoryStats.map(cat => {
+            const isActive = cat.id === activeCategory
+            const isComplete = cat.answered === cat.items.length
+            // Abbreviated title: first word or first two words if short
+            const words = cat.title.split(' ')
+            const abbrev = words.length > 2 ? words[0] + ' ' + words[1] : cat.title
+            return (
+              <button
+                key={cat.id}
+                onClick={() => changeCategory(cat.id)}
+                className={`flex-shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-semibold border transition-all ${
+                  isActive
+                    ? 'bg-emerald-600 text-white border-emerald-600'
+                    : 'bg-emerald-900 text-white border-emerald-700 hover:bg-emerald-800'
+                }`}
+              >
+                {abbrev}
+                {isComplete && (
+                  <span className={`w-2 h-2 rounded-full flex-shrink-0 ${cat.band.bar}`} />
+                )}
+              </button>
+            )
+          })}
+        </div>
+
         <div className="grid lg:grid-cols-[280px_1fr] gap-8">
 
-          {/* Sidebar: Category Nav */}
-          <aside>
-            <p className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4 px-1">Categories</p>
+          {/* Sidebar: Category Nav (hidden on mobile, shown on lg+) */}
+          <aside className="hidden lg:block">
+            <p className="text-xs font-bold uppercase tracking-widest text-white mb-4 px-1">Categories</p>
             <nav className="space-y-1">
               {categoryStats.map(cat => {
                 const isActive = cat.id === activeCategory
                 return (
                   <button
                     key={cat.id}
-                    onClick={() => setActiveCategory(cat.id)}
-                    className={`w-full text-left px-4 py-3 rounded-lg transition-all flex items-center justify-between gap-3 group ${
+                    onClick={() => changeCategory(cat.id)}
+                    className={`w-full text-left px-4 py-3 rounded-lg transition-all flex flex-col gap-2 group ${
                       isActive
                         ? 'bg-emerald-600 text-white'
-                        : 'bg-emerald-900 text-gray-300 hover:bg-emerald-700'
+                        : 'bg-emerald-900 text-white hover:bg-emerald-700'
                     }`}
                   >
-                    <div className="flex items-center gap-3 min-w-0">
-                      <span className="text-lg flex-shrink-0">{cat.icon}</span>
+                    <div className="flex items-center justify-between gap-3">
                       <span className="text-sm font-medium truncate">{cat.title}</span>
+                      <div className="flex items-center gap-2 flex-shrink-0">
+                        {cat.answered === cat.items.length && (
+                          <span className={`text-xs font-bold ${isActive ? 'text-emerald-200' : cat.band.color}`}>
+                            {cat.catPct}%
+                          </span>
+                        )}
+                        {cat.answered > 0 && cat.answered < cat.items.length && (
+                          <span className="text-xs text-white">{cat.answered}/{cat.items.length}</span>
+                        )}
+                        {cat.answered === cat.items.length && (
+                          <svg className={`w-4 h-4 ${isActive ? 'text-emerald-200' : 'text-emerald-500'}`} fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                          </svg>
+                        )}
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2 flex-shrink-0">
-                      {cat.answered === cat.items.length && (
-                        <span className={`text-xs font-bold ${isActive ? 'text-emerald-200' : cat.band.color}`}>
-                          {cat.catPct}%
-                        </span>
-                      )}
-                      {cat.answered > 0 && cat.answered < cat.items.length && (
-                        <span className="text-xs text-gray-500">{cat.answered}/{cat.items.length}</span>
-                      )}
-                      {cat.answered === cat.items.length && (
-                        <svg className={`w-4 h-4 ${isActive ? 'text-emerald-200' : 'text-emerald-500'}`} fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
-                      )}
+                    {/* Progress dots — one per question */}
+                    <div className="flex gap-1">
+                      {cat.items.map(item => {
+                        const s = scores[item.id]
+                        return (
+                          <span
+                            key={item.id}
+                            className={`w-2 h-2 rounded-full flex-shrink-0 ${
+                              s !== undefined ? SCORE_DOT_COLORS[s] : 'bg-emerald-800'
+                            }`}
+                          />
+                        )
+                      })}
                     </div>
                   </button>
                 )
               })}
             </nav>
 
-            {/* Score key */}
-            <div className="mt-8 bg-emerald-900 rounded-xl p-4">
-              <p className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">Scoring Key</p>
-              <div className="space-y-2">
-                {SCORE_LABELS.map((label, i) => (
-                  <div key={i} className="flex items-center gap-2">
-                    <div className={`w-3 h-3 rounded-full ${SCORE_COLORS[i]}`} />
-                    <span className="text-xs text-gray-400">{i} — {label}</span>
-                  </div>
-                ))}
+            {/* Live Score Preview */}
+            {answeredItems > 0 && (
+              <div className="mt-6 bg-emerald-900 rounded-xl p-4 border border-emerald-800">
+                <p className="text-xs font-bold uppercase tracking-widest text-white mb-2">Live Score</p>
+                <div className="flex items-baseline gap-2 mb-2">
+                  <span className="text-2xl font-black text-emerald-400">{livePct}%</span>
+                  <span className="text-xs text-white">of answered items</span>
+                </div>
+                <div className="h-1.5 bg-emerald-800 rounded-full overflow-hidden mb-2">
+                  <div
+                    className="h-full bg-emerald-500 rounded-full transition-all duration-500"
+                    style={{ width: `${livePct}%` }}
+                  />
+                </div>
+                <p className="text-xs text-white">{answeredItems} of {totalItems} scored</p>
               </div>
-            </div>
+            )}
 
             {/* Reset All */}
             {answeredItems > 0 && (
@@ -416,16 +569,15 @@ export default function AuditPage() {
           </aside>
 
           {/* Main Panel */}
-          <main>
+          <main ref={mainPanelRef}>
             {!showResults ? (
               <div>
                 {/* Category Header */}
                 <div className="bg-emerald-900 rounded-2xl p-8 mb-6 border border-emerald-800">
                   <div className="flex items-start gap-4 mb-3">
-                    <span className="text-4xl">{activeCat.icon}</span>
                     <div>
                       <h2 className="text-2xl font-bold text-white">{activeCat.title}</h2>
-                      <p className="text-gray-400 mt-1">{activeCat.description}</p>
+                      <p className="text-white mt-1">{activeCat.description}</p>
                     </div>
                   </div>
                   {activeCatStats.answered > 0 && (
@@ -443,37 +595,67 @@ export default function AuditPage() {
                   )}
                 </div>
 
+                {/* Inline Scoring Key */}
+                <div className="flex flex-wrap gap-4 mb-4 text-xs text-white items-center">
+                  <span className="font-bold uppercase tracking-wider text-white">Key:</span>
+                  <span className="flex items-center gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-red-500 inline-block" />
+                    0 — Not in Place
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-yellow-500 inline-block" />
+                    1 — Partial
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-600 inline-block" />
+                    2 — Fully in Place
+                  </span>
+                </div>
+
                 {/* Audit Items */}
                 <div className="space-y-4">
                   {activeCat.items.map((item, idx) => {
                     const currentScore = scores[item.id]
+                    const borderClass = currentScore !== undefined
+                      ? SCORE_BORDER_L[currentScore]
+                      : 'border-emerald-800'
                     return (
                       <div
                         key={item.id}
-                        className={`bg-emerald-900 rounded-xl p-6 border transition-all ${
-                          currentScore !== undefined ? 'border-emerald-700' : 'border-emerald-800'
-                        }`}
+                        className={`bg-emerald-900 rounded-xl p-6 border transition-all ${borderClass}`}
                       >
                         <div className="flex items-start gap-4">
-                          <span className="text-xs font-bold text-gray-600 mt-1 flex-shrink-0 w-5">{idx + 1}</span>
+                          <span className="text-xs font-bold text-white mt-1 flex-shrink-0 w-5">{idx + 1}</span>
                           <div className="flex-1">
                             <p className="text-white font-medium mb-4 leading-relaxed">{item.label}</p>
                             <div className="flex flex-wrap gap-3">
-                              {SCORE_LABELS.map((label, value) => (
-                                <button
-                                  key={value}
-                                  onClick={() => setScore(item.id, value)}
-                                  onDoubleClick={() => currentScore === value && unsetScore(item.id)}
-                                  className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium border transition-all ${
-                                    currentScore === value
-                                      ? `${SCORE_COLORS[value]} border-transparent text-white`
-                                      : 'border-emerald-700 text-gray-400 hover:border-gray-500 hover:text-gray-200 bg-emerald-800'
-                                  }`}
-                                >
-                                  <span className="font-bold">{value}</span>
-                                  <span>{label}</span>
-                                </button>
-                              ))}
+                              {SCORE_LABELS.map((label, value) => {
+                                const isSelected = currentScore === value
+                                return (
+                                  <button
+                                    key={value}
+                                    onClick={() => setScore(item.id, value)}
+                                    className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium border transition-all ${
+                                      isSelected
+                                        ? SCORE_PILL_SELECTED[value]
+                                        : 'border-emerald-700 text-white hover:border-gray-500 hover:text-gray-200 bg-emerald-800'
+                                    }`}
+                                  >
+                                    <span className="font-bold">{value}</span>
+                                    <span>{label}</span>
+                                    {isSelected && (
+                                      <span
+                                        role="button"
+                                        aria-label="Clear score"
+                                        onClick={e => { e.stopPropagation(); unsetScore(item.id) }}
+                                        className="ml-1 flex items-center justify-center w-4 h-4 rounded-full bg-white/20 hover:bg-white/40 transition-colors leading-none text-xs font-bold"
+                                      >
+                                        ×
+                                      </span>
+                                    )}
+                                  </button>
+                                )
+                              })}
                             </div>
                           </div>
                         </div>
@@ -487,10 +669,10 @@ export default function AuditPage() {
                   <button
                     onClick={() => {
                       const idx = auditCategories.findIndex(c => c.id === activeCategory)
-                      if (idx > 0) setActiveCategory(auditCategories[idx - 1].id)
+                      if (idx > 0) changeCategory(auditCategories[idx - 1].id)
                     }}
                     disabled={auditCategories.findIndex(c => c.id === activeCategory) === 0}
-                    className="px-6 py-3 rounded-lg border border-emerald-700 text-gray-400 font-medium hover:border-gray-500 hover:text-gray-200 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+                    className="px-6 py-3 rounded-lg border border-emerald-700 text-white font-medium hover:border-gray-500 hover:text-gray-200 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
                   >
                     ← Previous
                   </button>
@@ -506,7 +688,7 @@ export default function AuditPage() {
                     <button
                       onClick={() => {
                         const idx = auditCategories.findIndex(c => c.id === activeCategory)
-                        if (idx < auditCategories.length - 1) setActiveCategory(auditCategories[idx + 1].id)
+                        if (idx < auditCategories.length - 1) changeCategory(auditCategories[idx + 1].id)
                       }}
                       disabled={auditCategories.findIndex(c => c.id === activeCategory) === auditCategories.length - 1}
                       className="px-6 py-3 rounded-lg bg-emerald-600 text-white font-medium hover:bg-emerald-700 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
@@ -526,13 +708,57 @@ export default function AuditPage() {
               /* ===== RESULTS PANEL ===== */
               <div>
                 {/* Overall Score Card */}
-                <div className="bg-emerald-900 rounded-2xl p-8 border border-emerald-800 mb-8 text-center">
-                  <p className="text-sm font-bold uppercase tracking-widest text-gray-500 mb-4">Overall Audit Score</p>
-                  <div className={`inline-block text-8xl font-black mb-3 ${band.color}`}>{overallPct}%</div>
-                  <div className={`inline-flex items-center gap-2 px-5 py-2 rounded-full text-white font-bold text-lg mb-4 ${band.bg}`}>
-                    {band.label}
+                <div className="bg-emerald-900 rounded-2xl p-8 border border-emerald-800 mb-4 text-center">
+                  <p className="text-sm font-bold uppercase tracking-widest text-white mb-4">Overall Audit Score</p>
+                  <div className="inline-flex flex-col items-center gap-3 mb-4">
+                    <span className={`text-8xl font-black ${band.color}`}>{overallPct}%</span>
+                    <div className={`inline-flex items-center gap-2 px-5 py-2 rounded-full text-white font-bold text-lg ${band.bg}`}>
+                      {band.label}
+                    </div>
                   </div>
-                  <p className="text-gray-300 max-w-xl mx-auto leading-relaxed">{band.desc}</p>
+                  <p className="text-white max-w-xl mx-auto leading-relaxed">{band.desc}</p>
+                </div>
+
+                {/* Copy Summary + Print buttons */}
+                <div className="flex gap-3 mb-8 justify-center">
+                  <button
+                    onClick={copySummary}
+                    className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-emerald-800 text-emerald-300 text-sm font-medium border border-emerald-700 hover:bg-emerald-700 transition-all"
+                  >
+                    {copiedSummary ? (
+                      <>
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                        Copied!
+                      </>
+                    ) : (
+                      <>
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        </svg>
+                        Copy Summary
+                      </>
+                    )}
+                  </button>
+                  <button
+                    onClick={() => window.print()}
+                    className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-emerald-800 text-emerald-300 text-sm font-medium border border-emerald-700 hover:bg-emerald-700 transition-all"
+                  >
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                    </svg>
+                    Print
+                  </button>
+                  <button
+                    onClick={downloadPdf}
+                    className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-emerald-800 text-emerald-300 text-sm font-medium border border-emerald-700 hover:bg-emerald-700 transition-all"
+                  >
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
+                    Download PDF
+                  </button>
                 </div>
 
                 {/* Category Breakdown */}
@@ -543,7 +769,6 @@ export default function AuditPage() {
                       <div key={cat.id}>
                         <div className="flex items-center justify-between mb-2">
                           <div className="flex items-center gap-2">
-                            <span>{cat.icon}</span>
                             <span className="text-sm font-medium text-white">{cat.title}</span>
                           </div>
                           <div className="flex items-center gap-3">
@@ -566,7 +791,7 @@ export default function AuditPage() {
                 {weakestCategories.length > 0 && (
                   <div className="bg-emerald-900 rounded-2xl p-8 border border-emerald-800 mb-8">
                     <h3 className="text-xl font-bold text-white mb-2">Priority Focus Areas</h3>
-                    <p className="text-gray-400 text-sm mb-6">Your lowest-scoring categories where targeted effort will have the greatest impact.</p>
+                    <p className="text-white text-sm mb-6">Your lowest-scoring categories where targeted effort will have the greatest impact.</p>
                     <div className="space-y-4">
                       {weakestCategories.map((cat, i) => (
                         <div key={cat.id} className="flex items-center gap-4 bg-emerald-800 rounded-xl p-5">
@@ -575,10 +800,9 @@ export default function AuditPage() {
                           </div>
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2 mb-1">
-                              <span>{cat.icon}</span>
                               <p className="font-semibold text-white">{cat.title}</p>
                             </div>
-                            <p className="text-sm text-gray-400">
+                            <p className="text-sm text-white">
                               Scored {cat.catPct}% — {cat.catMax - cat.catScore} points of improvement available in this category.
                             </p>
                           </div>
@@ -604,7 +828,7 @@ export default function AuditPage() {
                         <div key={s.value} className={`rounded-xl p-5 ${s.bg} border ${s.border}`}>
                           <p className={`text-4xl font-black mb-1 ${s.color}`}>{count}</p>
                           <p className={`text-sm font-semibold mb-1 ${s.color}`}>{pct}%</p>
-                          <p className="text-xs text-gray-400">{s.label}</p>
+                          <p className="text-xs text-white">{s.label}</p>
                         </div>
                       )
                     })}
@@ -614,7 +838,7 @@ export default function AuditPage() {
                 {/* CTA */}
                 <div className="bg-emerald-950 rounded-2xl p-8 border border-emerald-800 text-center">
                   <h3 className="text-2xl font-bold text-white mb-3">Ready to Close the Gaps?</h3>
-                  <p className="text-gray-300 mb-8 max-w-xl mx-auto leading-relaxed">
+                  <p className="text-white mb-8 max-w-xl mx-auto leading-relaxed">
                     This audit gives you a clear map. Our consultants turn that map into an execution plan with
                     measurable milestones, accountability systems, and hands-on support at every stage.
                   </p>
@@ -647,7 +871,7 @@ export default function AuditPage() {
         <div className="max-w-7xl mx-auto px-8 sm:px-12 lg:px-16 py-16">
           <div className="w-16 h-1 bg-emerald-600 mb-6" />
           <h2 className="text-3xl font-bold text-white mb-2">Performance Bands</h2>
-          <p className="text-gray-400 mb-10">Understand what each score range means for your restaurant&apos;s operational maturity.</p>
+          <p className="text-white mb-10">Understand what each score range means for your restaurant&apos;s operational maturity.</p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { label: 'Critical', range: '0 – 40%', color: 'text-red-400', border: 'border-red-800', bg: 'bg-red-900/20', glow: 'hover-glow-red', desc: 'Fundamental operational gaps are present. Immediate strategic intervention is required to stabilize the business.' },
@@ -658,7 +882,7 @@ export default function AuditPage() {
               <div key={band.label} className={`rounded-xl p-6 border ${band.border} ${band.bg} ${band.glow}`}>
                 <p className={`text-xl font-black mb-1 ${band.color}`}>{band.label}</p>
                 <p className={`text-sm font-semibold mb-4 ${band.color} opacity-70`}>{band.range}</p>
-                <p className="text-sm text-gray-400 leading-relaxed">{band.desc}</p>
+                <p className="text-sm text-white leading-relaxed">{band.desc}</p>
               </div>
             ))}
           </div>
