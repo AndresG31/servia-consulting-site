@@ -186,7 +186,7 @@ const ServicePage = () => {
                 <div className="mb-6">
                   <p className="text-sm text-emerald-300 group-hover:text-white font-semibold mb-3 transition-colors">MOST POPULAR</p>
                   <p className="text-gray-200 group-hover:text-white leading-relaxed transition-colors">
-                    Everything in Foundation, plus our powerful online ordering platform to digitize your operations.
+                    Everything in Foundation, plus deeper operational coaching to sharpen your team, refine your menu, and accelerate revenue growth.
                   </p>
                 </div>
 
@@ -202,25 +202,25 @@ const ServicePage = () => {
                     <svg className="w-5 h-5 text-emerald-300 group-hover:text-white flex-shrink-0 mt-0.5 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    <span className="text-gray-100 group-hover:text-white transition-colors">Online Ordering Platform</span>
+                    <span className="text-gray-100 group-hover:text-white transition-colors">Revenue Optimization Strategy</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <svg className="w-5 h-5 text-emerald-300 group-hover:text-white flex-shrink-0 mt-0.5 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    <span className="text-gray-100 group-hover:text-white transition-colors">Real-time Order Management</span>
+                    <span className="text-gray-100 group-hover:text-white transition-colors">Menu Engineering & Pricing Strategy</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <svg className="w-5 h-5 text-emerald-300 group-hover:text-white flex-shrink-0 mt-0.5 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    <span className="text-gray-100 group-hover:text-white transition-colors">Menu & Pricing Control</span>
+                    <span className="text-gray-100 group-hover:text-white transition-colors">Staff Training & Development Plan</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <svg className="w-5 h-5 text-emerald-300 group-hover:text-white flex-shrink-0 mt-0.5 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    <span className="text-gray-100 group-hover:text-white transition-colors">Analytics Dashboard</span>
+                    <span className="text-gray-100 group-hover:text-white transition-colors">Performance Analytics & Reporting Strategy</span>
                   </div>
                 </div>
 
@@ -263,7 +263,7 @@ const ServicePage = () => {
                     <svg className="w-5 h-5 text-emerald-400 group-hover:text-white flex-shrink-0 mt-0.5 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    <span className="text-gray-200 group-hover:text-white font-medium transition-colors">Everything in Growth</span>
+                    <span className="text-gray-200 group-hover:text-white font-medium transition-colors">Everything in Foundation & Growth</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <svg className="w-5 h-5 text-emerald-400 group-hover:text-white flex-shrink-0 mt-0.5 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -275,7 +275,7 @@ const ServicePage = () => {
                     <svg className="w-5 h-5 text-emerald-400 group-hover:text-white flex-shrink-0 mt-0.5 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    <span className="text-gray-200 group-hover:text-white transition-colors">5 Days/Week On-Site Support</span>
+                    <span className="text-gray-200 group-hover:text-white transition-colors">3 Days/Week On-Site Support</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <svg className="w-5 h-5 text-emerald-400 group-hover:text-white flex-shrink-0 mt-0.5 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">

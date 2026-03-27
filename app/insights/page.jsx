@@ -25,14 +25,14 @@ const InsightsPage = () => {
   ]
 
   const previewAssociations = {
-    'Harvard Business Review': { icon: '🎓', text: 'Trusted by executives and business school leaders worldwide for management strategy.' },
-    'Forbes Business':         { icon: '💼', text: 'Go-to source for entrepreneurs, innovators, and business executives across every industry.' },
-    'Wall Street Journal':     { icon: '📰', text: 'The gold standard in financial and business journalism — essential daily reading for operators.' },
-    'Bloomberg Business':      { icon: '📈', text: 'Real-time market intelligence and business coverage relied on by finance professionals globally.' },
-    'TechCrunch':              { icon: '💡', text: 'Stay ahead of the technology disruptions reshaping every corner of the business world.' },
-    'Nation\'s Restaurant News':{ icon: '🍽️', text: 'The leading trade publication covering foodservice trends, operations, and restaurant news.' },
-    'QSR Magazine':            { icon: '🍔', text: 'Dedicated coverage of quick-service and fast-casual restaurant trends, technology, and growth.' },
-    'McKinsey Insights':       { icon: '🎯', text: 'Research-backed strategy insights from one of the world\'s top management consulting firms.' },
+    'Harvard Business Review':  { text: 'Trusted by executives and business school leaders worldwide for management strategy.' },
+    'Forbes Business':          { text: 'Go-to source for entrepreneurs, innovators, and business executives across every industry.' },
+    'Wall Street Journal':      { text: 'The gold standard in financial and business journalism — essential daily reading for operators.' },
+    'Bloomberg Business':       { text: 'Real-time market intelligence and business coverage relied on by finance professionals globally.' },
+    'TechCrunch':               { text: 'Stay ahead of the technology disruptions reshaping every corner of the business world.' },
+    'Nation\'s Restaurant News':{ text: 'The leading trade publication covering foodservice trends, operations, and restaurant news.' },
+    'QSR Magazine':             { text: 'Dedicated coverage of quick-service and fast-casual restaurant trends, technology, and growth.' },
+    'McKinsey Insights':        { text: 'Research-backed strategy insights from one of the world\'s top management consulting firms.' },
   }
 
   useEffect(() => {
@@ -94,7 +94,6 @@ const InsightsPage = () => {
       description: "Latest business news, entrepreneurs, and innovation",
       url: "https://www.forbes.com/business/",
       category: "Business News",
-      icon: "💼",
       iconImage: "/assets/insights/Icons/Forbes.png",
       color: "from-gray-700 to-gray-800",
       featured: true,
@@ -105,7 +104,6 @@ const InsightsPage = () => {
       description: "Startup advice, small business tips, and success stories",
       url: "https://www.entrepreneur.com/topic/starting-a-business",
       category: "Entrepreneurship",
-      icon: "🚀",
       iconImage: "/assets/insights/Icons/EntreLogo.png",
       color: "from-red-500 to-red-600",
       featured: true,
@@ -116,7 +114,6 @@ const InsightsPage = () => {
       description: "Resources for growing your business and leadership",
       url: "https://www.inc.com/",
       category: "Growth",
-      icon: "📈",
       iconImage: "/assets/insights/Icons/IncLogo.png",
       color: "from-emerald-500 to-emerald-600",
       featured: false
@@ -146,7 +143,6 @@ const InsightsPage = () => {
       description: "News and trends in the restaurant industry",
       url: "https://www.restaurantbusinessonline.com/",
       category: "Restaurant",
-      icon: "🍽️",
       iconImage: "/assets/insights/Icons/restaurantbusiness.png",
       color: "from-pink-500 to-pink-600",
       featured: false
@@ -156,7 +152,6 @@ const InsightsPage = () => {
       description: "Foodservice industry insights and restaurant operations",
       url: "https://www.nrn.com/",
       category: "Restaurant",
-      icon: "🏪",
       iconImage: "/assets/insights/Icons/nrn.png",
       color: "from-purple-500 to-purple-600",
       featured: false
@@ -166,7 +161,6 @@ const InsightsPage = () => {
       description: "Quick-service restaurant news and trends",
       url: "https://www.qsrmagazine.com/",
       category: "Fast Casual",
-      icon: "🍔",
       iconImage: "/assets/insights/Icons/qsr.png",
       color: "from-yellow-500 to-yellow-600",
       featured: false
@@ -176,7 +170,7 @@ const InsightsPage = () => {
       description: "News, tips, and resources for small business owners",
       url: "https://smallbiztrends.com/",
       category: "Small Business",
-      icon: "🏢",
+      iconImage: "/assets/insights/Icons/SmallBusinessTrends.png",
       color: "from-teal-500 to-teal-600",
       featured: false
     },
@@ -185,13 +179,14 @@ const InsightsPage = () => {
       description: "Business strategy and consulting insights",
       url: "https://www.mckinsey.com/featured-insights",
       category: "Consulting",
-      icon: "🎯",
+      iconImage: "/assets/insights/Icons/mckinseyandcompany.png",
+      logoPadding: "p-0",
       color: "from-cyan-500 to-cyan-600",
       featured: false
     },
     {
       name: "TechCrunch",
-      description: "Startup and technology business news",
+      description: "Stay ahead of the technology disruptions",
       url: "https://techcrunch.com/category/startups/",
       category: "Tech",
       iconImage: "/assets/insights/Icons/TechCrunch.png",
@@ -214,7 +209,7 @@ const InsightsPage = () => {
       description: "Business strategy, finance, and markets",
       url: "https://www.businessinsider.com/",
       category: "Business News",
-      icon: "📱",
+      iconImage: "/assets/insights/Icons/BusinessInsider.png",
       color: "from-blue-600 to-blue-700",
       featured: false
     },
@@ -223,7 +218,7 @@ const InsightsPage = () => {
       description: "Research-based insights on management",
       url: "https://sloanreview.mit.edu/",
       category: "Management",
-      icon: "🎓",
+      iconImage: "/assets/insights/Icons/mitsmr.png",
       color: "from-red-600 to-red-700",
       featured: false
     },
@@ -232,7 +227,7 @@ const InsightsPage = () => {
       description: "Real-time business and market news",
       url: "https://www.cnbc.com/business/",
       category: "Markets",
-      icon: "📺",
+      iconImage: "/assets/insights/Icons/cnbc.png",
       color: "from-blue-500 to-blue-600",
       featured: false
     },
@@ -241,7 +236,7 @@ const InsightsPage = () => {
       description: "Restaurant industry news and analysis",
       url: "https://www.restaurantdive.com/",
       category: "Restaurant",
-      icon: "🍕",
+      iconImage: "/assets/insights/Icons/restaurantdive.jpg",
       color: "from-orange-500 to-orange-600",
       featured: false
     },
@@ -250,7 +245,7 @@ const InsightsPage = () => {
       description: "Food industry trends and restaurant business",
       url: "https://www.foodandwine.com/",
       category: "Food Industry",
-      icon: "🍷",
+      iconImage: "/assets/insights/Icons/foodandwine.png",
       color: "from-rose-500 to-rose-600",
       featured: false
     }
@@ -328,9 +323,18 @@ const InsightsPage = () => {
   }
 
   const [stars, setStars] = useState([])
+  const [shootingStars, setShootingStars] = useState([])
 
   useEffect(() => {
     setStars(generateStars(200))
+    setShootingStars(Array.from({ length: 12 }, (_, i) => ({
+      id: i,
+      top: Math.random() * 60,
+      left: Math.random() * 80,
+      length: 80 + Math.random() * 120,
+      duration: 3 + Math.random() * 5,
+      delay: Math.random() * 12,
+    })))
   }, [])
 
   return (
@@ -342,6 +346,21 @@ const InsightsPage = () => {
         <div className="absolute top-20 left-10 w-72 h-72 bg-emerald-600/20 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
         <div className="absolute top-1/2 left-1/2 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+
+        {/* Shooting Stars */}
+        {shootingStars.map((s) => (
+          <div
+            key={s.id}
+            className="shooting-star"
+            style={{
+              top: `${s.top}%`,
+              left: `${s.left}%`,
+              width: `${s.length}px`,
+              animationDuration: `${s.duration}s`,
+              animationDelay: `${s.delay}s`,
+            }}
+          />
+        ))}
 
         {/* Stars */}
         {stars.map((star) => (
@@ -404,7 +423,7 @@ const InsightsPage = () => {
                     setShowDropdown(true)
                   }}
                   onFocus={() => setShowDropdown(true)}
-                  className="w-full px-6 py-4 pl-14 bg-white/10 backdrop-blur-md border-2 border-white/20 rounded-2xl text-white placeholder-gray-400 focus:border-emerald-400 focus:outline-none transition-all"
+                  className="w-full px-6 py-4 pl-14 bg-white/10 backdrop-blur-md border-2 border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none transition-colors search-glow"
                 />
                 <svg className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -449,7 +468,7 @@ const InsightsPage = () => {
                         >
                           <div className="flex items-center gap-4">
                             {source.iconImage ? (
-                              <div className="w-12 h-12 relative flex-shrink-0 rounded-lg overflow-hidden bg-white">
+                              <div className={`${source.logoSize ?? 'w-12 h-12'} relative flex-shrink-0 rounded-lg overflow-hidden bg-white`}>
                                 <Image
                                   src={source.iconImage}
                                   alt={`${source.name} logo`}
@@ -549,7 +568,6 @@ const InsightsPage = () => {
                       className="w-full mt-1 px-5 py-3 rounded-xl bg-emerald-900/60 backdrop-blur-sm border border-emerald-700/40 flex items-center gap-3"
                       style={{ opacity: previewFading ? 0 : 1, transition: 'opacity 0.35s ease' }}
                     >
-                      <span className="text-xl flex-shrink-0">{assoc.icon}</span>
                       <p className="text-emerald-300 text-sm leading-snug">{assoc.text}</p>
                     </div>
                   )
@@ -614,7 +632,6 @@ const InsightsPage = () => {
                         <div className="flex flex-col items-center justify-center h-full p-6">
                           {/* Fallback Mock Content */}
                           <div className="text-center space-y-4 w-full">
-                            <div className="text-5xl mb-4">{source.icon}</div>
                             <div className="space-y-2">
                               <div className="h-3 bg-white/20 rounded w-3/4 mx-auto"></div>
                               <div className="h-3 bg-white/15 rounded w-full"></div>
@@ -668,11 +685,7 @@ const InsightsPage = () => {
                             className={`object-contain ${source.logoPadding ?? 'p-2'}`}
                           />
                         </div>
-                      ) : (
-                        <div className="text-6xl">
-                          {source.icon}
-                        </div>
-                      )}
+                      ) : null}
                       <div className="bg-white/20 backdrop-blur-sm rounded-full p-2 group-hover:bg-white/30 transition-colors">
                         <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -802,7 +815,7 @@ const InsightsPage = () => {
                   <div className="relative z-10">
                     <div className="flex items-start justify-between mb-4">
                       {source.iconImage ? (
-                        <div className="w-16 h-16 relative flex-shrink-0 rounded-lg overflow-hidden bg-white transform group-hover:scale-110 transition-transform">
+                        <div className={`${source.logoSize ?? 'w-16 h-16'} relative flex-shrink-0 rounded-lg overflow-hidden bg-white transform group-hover:scale-110 transition-transform`}>
                           <Image
                             src={source.iconImage}
                             alt={`${source.name} logo`}

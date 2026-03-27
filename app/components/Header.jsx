@@ -1,10 +1,31 @@
-import React from 'react'
+'use client'
+
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
 const Header = () => {
+  const [hidden, setHidden] = useState(false)
+
+  useEffect(() => {
+    const footer = document.getElementById('site-footer')
+    if (!footer) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setHidden(entry.isIntersecting),
+      { threshold: 0 }
+    )
+
+    observer.observe(footer)
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <header className="relative bg-emerald-900 shadow-sm z-50">
+    <header
+      className={`fixed top-0 left-0 right-0 bg-emerald-900 shadow-sm z-50 border border-white/40 transition-transform duration-300 ${
+        hidden ? '-translate-y-full' : 'translate-y-0'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between py-6">
           {/* Logo and Company Name */}
