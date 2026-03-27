@@ -27,7 +27,6 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Servia Consulting",
     description: "Restaurant consulting services to help operators build stronger systems, improve profitability, and grow with confidence.",
-    images: ['/assets/logos/servia-logo.png'],
   },
 };
 
