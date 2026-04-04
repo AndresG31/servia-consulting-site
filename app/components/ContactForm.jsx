@@ -3,6 +3,7 @@
 import React, { useRef, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import emailjs from '@emailjs/browser'
+import CustomSelect from './ui/CustomSelect'
 
 const SERVICE_ID  = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
 const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
@@ -13,6 +14,38 @@ export default function ContactForm() {
   const [status, setStatus] = useState('idle') // 'idle' | 'loading' | 'success' | 'error'
   const searchParams = useSearchParams()
   const preselectedService = searchParams.get('service') || ''
+  const [restaurantType, setRestaurantType] = useState('')
+  const [service, setService] = useState(preselectedService)
+
+  const restaurantOptions = [
+    { value: 'italian', label: 'Italian' },
+    { value: 'american', label: 'American Cuisine' },
+    { value: 'mexican', label: 'Mexican' },
+    { value: 'chinese', label: 'Chinese' },
+    { value: 'japanese', label: 'Japanese' },
+    { value: 'thai', label: 'Thai' },
+    { value: 'indian', label: 'Indian' },
+    { value: 'french', label: 'French' },
+    { value: 'mediterranean', label: 'Mediterranean' },
+    { value: 'bbq', label: 'BBQ / Steakhouse' },
+    { value: 'seafood', label: 'Seafood' },
+    { value: 'fast-food', label: 'Fast Food' },
+    { value: 'fast-casual', label: 'Fast Casual' },
+    { value: 'cafe', label: 'Café / Bakery' },
+    { value: 'pizza', label: 'Pizza' },
+    { value: 'fusion', label: 'Fusion' },
+    { value: 'vegan', label: 'Vegan / Vegetarian' },
+    { value: 'other', label: 'Other' },
+  ]
+
+  const serviceOptions = [
+    { value: 'package1', label: 'Package 1 - Foundation' },
+    { value: 'package2', label: 'Package 2 - Growth' },
+    { value: 'package3', label: 'Package 3 - Enterprise' },
+    { value: 'assessment', label: 'Business Assessment' },
+    { value: 'consulting', label: 'In-Field Consulting' },
+    { value: 'other', label: 'Other' },
+  ]
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -129,31 +162,14 @@ export default function ContactForm() {
           <label htmlFor="restaurantType" className="block text-sm font-semibold text-gray-700 mb-2">
             Restaurant Type
           </label>
-          <select
+          <CustomSelect
             id="restaurantType"
             name="restaurantType"
-            className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20 outline-none transition-all bg-white text-black"
-          >
-            <option value="">Select restaurant type</option>
-            <option value="italian">Italian</option>
-            <option value="american">American Cuisine</option>
-            <option value="mexican">Mexican</option>
-            <option value="chinese">Chinese</option>
-            <option value="japanese">Japanese</option>
-            <option value="thai">Thai</option>
-            <option value="indian">Indian</option>
-            <option value="french">French</option>
-            <option value="mediterranean">Mediterranean</option>
-            <option value="bbq">BBQ / Steakhouse</option>
-            <option value="seafood">Seafood</option>
-            <option value="fast-food">Fast Food</option>
-            <option value="fast-casual">Fast Casual</option>
-            <option value="cafe">Café / Bakery</option>
-            <option value="pizza">Pizza</option>
-            <option value="fusion">Fusion</option>
-            <option value="vegan">Vegan / Vegetarian</option>
-            <option value="other">Other</option>
-          </select>
+            value={restaurantType}
+            onChange={setRestaurantType}
+            options={restaurantOptions}
+            placeholder="Select restaurant type"
+          />
         </div>
 
         {/* Service Interest */}
@@ -161,20 +177,14 @@ export default function ContactForm() {
           <label htmlFor="service" className="block text-sm font-semibold text-gray-700 mb-2">
             Interested In
           </label>
-          <select
+          <CustomSelect
             id="service"
             name="service"
-            defaultValue={preselectedService}
-            className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20 outline-none transition-all bg-white text-black"
-          >
-            <option value="">Select a service</option>
-            <option value="package1">Package 1 - Foundation</option>
-            <option value="package2">Package 2 - Growth</option>
-            <option value="package3">Package 3 - Enterprise</option>
-            <option value="assessment">Business Assessment</option>
-            <option value="consulting">In-Field Consulting</option>
-            <option value="other">Other</option>
-          </select>
+            value={service}
+            onChange={setService}
+            options={serviceOptions}
+            placeholder="Select a service"
+          />
         </div>
 
         {/* Message */}

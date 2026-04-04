@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import Footer from '../components/Footer'
+import Footer from '../components/layout/Footer'
 
 const AboutPage = () => {
   return (

@@ -1,9 +1,10 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import Footer from '../../components/Footer'
+import emailjs from '@emailjs/browser'
+import Footer from '../../components/layout/Footer'
 import {
   auditCategories,
   getPerformanceBand,
@@ -11,11 +12,121 @@ import {
   PERFORMANCE_BAND_DEFS,
 } from '../auditData'
 
+const SERVICE_ID       = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
+const AUDIT_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_AUDIT_TEMPLATE_ID
+const PUBLIC_KEY       = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+
+function ScoreDistributionPie({ scores, totalItems }) {
+  const tiers = [
+    { label: 'Not in Place',       value: 0, color: '#ef4444', textColor: 'text-red-400' },
+    { label: 'Partially in Place', value: 1, color: '#eab308', textColor: 'text-yellow-400' },
+    { label: 'Fully in Place',     value: 2, color: '#10b981', textColor: 'text-emerald-400' },
+  ]
+  const counts = tiers.map(t => ({ ...t, count: Object.values(scores).filter(v => v === t.value).length }))
+  const total = counts.reduce((a, c) => a + c.count, 0) || 1
+
+  const cx = 70, cy = 70, outerR = 60, innerR = 36
+  const toXY = (angle, r) => ({ x: cx + r * Math.cos(angle), y: cy + r * Math.sin(angle) })
+
+  let startAngle = -Math.PI / 2
+  const slices = counts.map(t => {
+    const sweep = (t.count / total) * 2 * Math.PI
+    const endAngle = startAngle + sweep
+    const s = { ...t, startAngle, endAngle }
+    startAngle = endAngle
+    return s
+  })
+
+  const arcPath = (s) => {
+    if (s.count === 0) return ''
+    const large = s.endAngle - s.startAngle > Math.PI ? 1 : 0
+    const o1 = toXY(s.startAngle, outerR), o2 = toXY(s.endAngle, outerR)
+    const i2 = toXY(s.endAngle, innerR),  i1 = toXY(s.startAngle, innerR)
+    return `M ${o1.x} ${o1.y} A ${outerR} ${outerR} 0 ${large} 1 ${o2.x} ${o2.y} L ${i2.x} ${i2.y} A ${innerR} ${innerR} 0 ${large} 0 ${i1.x} ${i1.y} Z`
+  }
+
+  return (
+    <div>
+      {/* Pie */}
+      <div className="flex justify-center mb-5">
+        <svg width="140" height="140" viewBox="0 0 140 140">
+          {slices.map(s => s.count > 0 && (
+            <path key={s.value} d={arcPath(s)} fill={s.color} />
+          ))}
+          {/* Center label */}
+          <text x="70" y="66" textAnchor="middle" fill="white" fontSize="18" fontWeight="900">{total}</text>
+          <text x="70" y="80" textAnchor="middle" fill="#6ee7b7" fontSize="9" fontWeight="600">CRITERIA</text>
+        </svg>
+      </div>
+      {/* Legend */}
+      <div className="space-y-3">
+        {counts.map(t => {
+          const pct = Math.round((t.count / totalItems) * 100)
+          return (
+            <div key={t.value} className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ background: t.color }} />
+                <span className="text-xs text-white">{t.label}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className={`text-xs font-bold ${t.textColor}`}>{t.count}</span>
+                <span className="text-xs text-white/30">·</span>
+                <span className={`text-xs font-black ${t.textColor}`}>{pct}%</span>
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
 export default function AuditResultsPage() {
   const router = useRouter()
   const [scores, setScores] = useState(null)
   const [copiedSummary, setCopiedSummary] = useState(false)
   const [downloading, setDownloading] = useState(false)
+
+  // Modal state
+  const [modalOpen, setModalOpen] = useState(false)
+  const [modalStatus, setModalStatus] = useState('idle') // 'idle' | 'loading' | 'success' | 'error'
+  const [form, setForm] = useState({ fullName: '', businessName: '', email: '', phone: '' })
+  const modalFormRef = useRef(null)
+
+  const openModal = () => { setModalOpen(true); setModalStatus('idle'); setForm({ fullName: '', businessName: '', email: '', phone: '' }) }
+  const closeModal = () => { setModalOpen(false); setModalStatus('idle') }
+
+  const handleFormChange = (e) => setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
+
+  const handleModalSubmit = async (e) => {
+    e.preventDefault()
+    setModalStatus('loading')
+    try {
+      await Promise.all([
+        emailjs.send(
+          SERVICE_ID,
+          AUDIT_TEMPLATE_ID,
+          {
+            full_name: form.fullName,
+            business_name: form.businessName,
+            email: form.email,
+            phone: form.phone,
+            message: 'Submitted via audit results page — requesting consultant contact.',
+          },
+          PUBLIC_KEY
+        ),
+        fetch('/api/audit-contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ fullName: form.fullName, email: form.email, phone: form.phone, scores }),
+        }),
+      ])
+      setModalStatus('success')
+    } catch (err) {
+      console.error('Submission error:', err)
+      setModalStatus('error')
+    }
+  }
 
   useEffect(() => {
     const raw = localStorage.getItem('auditScores')
@@ -152,16 +263,16 @@ export default function AuditResultsPage() {
                   <div className="border-t border-emerald-800" />
                   {/* Bottom row */}
                   <div className="flex items-center justify-between gap-4 flex-wrap">
-                    <p className="text-xs text-emerald-400/70 font-medium uppercase tracking-wide">Free 30-min strategy session</p>
-                    <Link
-                      href="/contact"
+                    <p className="text-xs text-emerald-400/70 font-medium uppercase tracking-wide">Free — delivered to your inbox</p>
+                    <button
+                      onClick={openModal}
                       className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-emerald-600 text-white text-sm font-semibold hover:bg-emerald-500 transition-colors flex-shrink-0"
                     >
                       <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                       </svg>
-                      Schedule a Consultation
-                    </Link>
+                      Email Me My Results
+                    </button>
                   </div>
                 </div>
               </div>
@@ -216,56 +327,7 @@ export default function AuditResultsPage() {
             {/* Score Distribution */}
             <div className="bg-emerald-900/40 border border-emerald-800 rounded-2xl p-5">
               <p className="text-xs font-bold uppercase tracking-widest text-emerald-400 mb-4">Score Distribution</p>
-
-              {/* Stacked proportion bar */}
-              {(() => {
-                const tiers = [
-                  { label: 'Not in Place',       value: 0, bar: 'bg-red-500',     color: 'text-red-400',     dot: 'bg-red-500' },
-                  { label: 'Partially in Place', value: 1, bar: 'bg-yellow-400',  color: 'text-yellow-400',  dot: 'bg-yellow-400' },
-                  { label: 'Fully in Place',     value: 2, bar: 'bg-emerald-500', color: 'text-emerald-400', dot: 'bg-emerald-500' },
-                ]
-                const counts = tiers.map(t => ({ ...t, count: Object.values(scores).filter(v => v === t.value).length }))
-                const total = counts.reduce((a, c) => a + c.count, 0) || 1
-                return (
-                  <>
-                    {/* Segmented bar */}
-                    <div className="flex h-3 rounded-full overflow-hidden mb-5 gap-px">
-                      {counts.map(t => (
-                        <div
-                          key={t.value}
-                          className={`${t.bar} transition-all duration-700`}
-                          style={{ width: `${(t.count / total) * 100}%` }}
-                        />
-                      ))}
-                    </div>
-
-                    {/* Rows */}
-                    <div className="space-y-4">
-                      {counts.map(t => {
-                        const pct = Math.round((t.count / totalItems) * 100)
-                        return (
-                          <div key={t.value}>
-                            <div className="flex items-center justify-between mb-1.5">
-                              <div className="flex items-center gap-2">
-                                <div className={`w-2 h-2 rounded-full flex-shrink-0 ${t.dot}`} />
-                                <span className="text-xs text-white">{t.label}</span>
-                              </div>
-                              <div className="flex items-center gap-2">
-                                <span className={`text-xs font-bold ${t.color}`}>{t.count}</span>
-                                <span className="text-xs text-white/40">·</span>
-                                <span className={`text-xs font-semibold ${t.color} opacity-70`}>{pct}%</span>
-                              </div>
-                            </div>
-                            <div className="h-1.5 bg-emerald-950 rounded-full overflow-hidden">
-                              <div className={`h-full rounded-full ${t.bar} transition-all duration-700`} style={{ width: `${pct}%` }} />
-                            </div>
-                          </div>
-                        )
-                      })}
-                    </div>
-                  </>
-                )
-              })()}
+              <ScoreDistributionPie scores={scores} totalItems={totalItems} />
             </div>
 
             {/* Performance Bands */}
@@ -276,7 +338,7 @@ export default function AuditResultsPage() {
                   <div key={b.label} className={`rounded-lg px-4 py-3 border ${b.border} ${b.bg}`}>
                     <div className="flex items-center justify-between mb-1">
                       <span className={`text-sm font-bold ${b.color}`}>{b.label}</span>
-                      <span className={`text-xs font-mono ${b.color} opacity-70`}>{b.range}</span>
+                      <span className={`text-xs font-black ${b.color}`}>{b.range}</span>
                     </div>
                     <p className="text-xs text-white leading-relaxed">{b.desc}</p>
                   </div>
@@ -334,47 +396,7 @@ export default function AuditResultsPage() {
             {/* Score Distribution — mobile only (sidebar handles desktop) */}
             <div className="lg:hidden bg-emerald-900/40 rounded-2xl p-6 border border-emerald-800 mb-8">
               <p className="text-xs font-bold uppercase tracking-widest text-emerald-400 mb-4">Score Distribution</p>
-              {(() => {
-                const tiers = [
-                  { label: 'Not in Place',       value: 0, bar: 'bg-red-500',     color: 'text-red-400',     dot: 'bg-red-500' },
-                  { label: 'Partially in Place', value: 1, bar: 'bg-yellow-400',  color: 'text-yellow-400',  dot: 'bg-yellow-400' },
-                  { label: 'Fully in Place',     value: 2, bar: 'bg-emerald-500', color: 'text-emerald-400', dot: 'bg-emerald-500' },
-                ]
-                const counts = tiers.map(t => ({ ...t, count: Object.values(scores).filter(v => v === t.value).length }))
-                const total = counts.reduce((a, c) => a + c.count, 0) || 1
-                return (
-                  <>
-                    <div className="flex h-3 rounded-full overflow-hidden mb-5 gap-px">
-                      {counts.map(t => (
-                        <div key={t.value} className={`${t.bar} transition-all duration-700`} style={{ width: `${(t.count / total) * 100}%` }} />
-                      ))}
-                    </div>
-                    <div className="space-y-4">
-                      {counts.map(t => {
-                        const pct = Math.round((t.count / totalItems) * 100)
-                        return (
-                          <div key={t.value}>
-                            <div className="flex items-center justify-between mb-1.5">
-                              <div className="flex items-center gap-2">
-                                <div className={`w-2 h-2 rounded-full flex-shrink-0 ${t.dot}`} />
-                                <span className="text-xs text-white">{t.label}</span>
-                              </div>
-                              <div className="flex items-center gap-2">
-                                <span className={`text-xs font-bold ${t.color}`}>{t.count}</span>
-                                <span className="text-xs text-white/40">·</span>
-                                <span className={`text-xs font-semibold ${t.color} opacity-70`}>{pct}%</span>
-                              </div>
-                            </div>
-                            <div className="h-1.5 bg-emerald-950 rounded-full overflow-hidden">
-                              <div className={`h-full rounded-full ${t.bar} transition-all duration-700`} style={{ width: `${pct}%` }} />
-                            </div>
-                          </div>
-                        )
-                      })}
-                    </div>
-                  </>
-                )
-              })()}
+              <ScoreDistributionPie scores={scores} totalItems={totalItems} />
             </div>
 
             {/* Edit / Retake buttons */}
@@ -389,17 +411,141 @@ export default function AuditResultsPage() {
 
             {/* CTA */}
             <div className="bg-emerald-950 rounded-2xl p-8 border border-emerald-800 text-center">
-              <h3 className="text-2xl font-bold text-white mb-3">Ready to Close the Gaps?</h3>
-              <p className="text-white mb-8 max-w-xl mx-auto leading-relaxed">This audit gives you a clear map. Our consultants turn that map into an execution plan with measurable milestones, accountability systems, and hands-on support at every stage.</p>
-              <Link href="/contact" className="inline-block bg-emerald-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-emerald-700 transition-all shadow-lg">
-                Schedule a Strategy Call
-              </Link>
+              <h3 className="text-2xl font-bold text-white mb-3">Want a Copy of Your Results?</h3>
+              <p className="text-white mb-8 max-w-xl mx-auto leading-relaxed">Get your full audit report delivered straight to your inbox — free. Our consultants will also reach out to help you turn these results into an action plan.</p>
+              <button onClick={openModal} className="inline-block bg-emerald-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-emerald-700 transition-all shadow-lg">
+                Email Me My Free Report
+              </button>
             </div>
           </main>
         </div>
       </section>
 
       <Footer />
+
+      {/* Contact Modal */}
+      {modalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          {/* Backdrop */}
+          <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={closeModal} />
+
+          {/* Panel */}
+          <div className="relative bg-emerald-950 border border-emerald-700 rounded-2xl w-full max-w-md shadow-2xl">
+            {/* Top accent */}
+            <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-emerald-500 via-emerald-400 to-transparent rounded-t-2xl" />
+
+            {/* Close button */}
+            <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 text-emerald-400 hover:text-white transition-colors"
+              aria-label="Close"
+            >
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            <div className="p-8">
+              {modalStatus === 'success' ? (
+                <div className="text-center py-6">
+                  <div className="w-14 h-14 rounded-full bg-emerald-600/20 border border-emerald-600/40 flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-7 h-7 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2">Check your inbox!</h3>
+                  <p className="text-emerald-300 text-sm">Your full audit report is on its way. A consultant may also follow up to help you put it into action.</p>
+                  <button onClick={closeModal} className="mt-6 px-6 py-2.5 rounded-lg bg-emerald-600 text-white text-sm font-semibold hover:bg-emerald-500 transition-colors">
+                    Close
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <div className="mb-6">
+                    <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">Free — No Strings Attached</span>
+                    <h3 className="text-2xl font-bold text-white mt-2 mb-1">Get Your Audit Report</h3>
+                    <p className="text-emerald-300/80 text-sm">Enter your details and we'll email your full results PDF instantly. A consultant may also follow up to help you act on them.</p>
+                  </div>
+
+                  {modalStatus === 'error' && (
+                    <div className="mb-4 p-3 bg-red-900/30 border border-red-700/50 rounded-lg text-red-300 text-sm">
+                      Something went wrong. Please try again or email us directly.
+                    </div>
+                  )}
+
+                  <form ref={modalFormRef} onSubmit={handleModalSubmit} className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-semibold text-emerald-300 mb-1.5">Full Name *</label>
+                      <input
+                        type="text"
+                        name="fullName"
+                        required
+                        value={form.fullName}
+                        onChange={handleFormChange}
+                        placeholder="Jane Smith"
+                        className="w-full px-4 py-3 bg-emerald-900/50 border border-emerald-700 rounded-lg text-white placeholder-emerald-600 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all text-sm"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-semibold text-emerald-300 mb-1.5">Business Name *</label>
+                      <input
+                        type="text"
+                        name="businessName"
+                        required
+                        value={form.businessName}
+                        onChange={handleFormChange}
+                        placeholder="The Corner Bistro"
+                        className="w-full px-4 py-3 bg-emerald-900/50 border border-emerald-700 rounded-lg text-white placeholder-emerald-600 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all text-sm"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-semibold text-emerald-300 mb-1.5">Email Address *</label>
+                      <input
+                        type="email"
+                        name="email"
+                        required
+                        value={form.email}
+                        onChange={handleFormChange}
+                        placeholder="jane@yourrestaurant.com"
+                        className="w-full px-4 py-3 bg-emerald-900/50 border border-emerald-700 rounded-lg text-white placeholder-emerald-600 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all text-sm"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-semibold text-emerald-300 mb-1.5">Phone Number *</label>
+                      <input
+                        type="tel"
+                        name="phone"
+                        required
+                        value={form.phone}
+                        onChange={handleFormChange}
+                        placeholder="(123) 456-7890"
+                        className="w-full px-4 py-3 bg-emerald-900/50 border border-emerald-700 rounded-lg text-white placeholder-emerald-600 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all text-sm"
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      disabled={modalStatus === 'loading'}
+                      className="w-full bg-emerald-600 text-white px-6 py-3 rounded-lg font-semibold text-sm hover:bg-emerald-500 transition-colors flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed mt-2"
+                    >
+                      {modalStatus === 'loading' ? (
+                        <>
+                          <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
+                          </svg>
+                          Sending…
+                        </>
+                      ) : (
+                        'Get in Touch'
+                      )}
+                    </button>
+                  </form>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

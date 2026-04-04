@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react'
-import Footer from '../components/Footer'
+import Footer from '../components/layout/Footer'
 import ContactForm from '../components/ContactForm'
 
 const ContactPage = () => {

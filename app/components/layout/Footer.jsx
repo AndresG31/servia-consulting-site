@@ -1,12 +1,11 @@
 'use client'
 
-import React from 'react';
-import Image from 'next/image';
+import React from 'react'
+import Image from 'next/image'
 
 const Footer = () => {
   return (
     <footer id="site-footer" className="relative bg-emerald-900 text-white overflow-hidden section-transition section-delay-4">
-      {/* ===== Main Footer Content (kept above decorations) ===== */}
       <div className="relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
@@ -25,8 +24,6 @@ const Footer = () => {
               <p className="text-gray-400 leading-relaxed">
                 Transforming insights into strategic advantage. Your trusted partner for sustainable business growth.
               </p>
-
-              {/* Social Media Icons */}
               <div className="flex space-x-4 pt-2">
                 <a href="#" className="w-10 h-10 bg-emerald-800 hover:bg-emerald-600 rounded-lg flex items-center justify-center transition-all group">
                   <svg className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
@@ -76,7 +73,7 @@ const Footer = () => {
               </ul>
             </div>
 
-            {/* Contact Info & Location */}
+            {/* Contact Info */}
             <div className="fade-slide-up text-delay-3">
               <h4 className="text-lg font-bold text-white mb-6 flex items-center">
                 Contact Us
@@ -96,7 +93,6 @@ const Footer = () => {
                     <p className="text-gray-400 text-sm">United States</p>
                   </div>
                 </li>
-
                 <li className="flex items-start gap-3 group">
                   <div className="w-10 h-10 bg-emerald-800 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-emerald-600 transition-colors">
                     <svg className="w-5 h-5 text-emerald-400 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -105,12 +101,11 @@ const Footer = () => {
                   </div>
                   <div>
                     <p className="text-white font-semibold">Email</p>
-                    <a href="mailto:info@serviaconsulting.com" className="text-gray-400 text-sm hover:text-emerald-400 transition-colors">
+                    <a href="mailto:agutierrez@serviaconsulting.com" className="text-gray-400 text-sm hover:text-emerald-400 transition-colors">
                       agutierrez@serviaconsulting.com
                     </a>
                   </div>
                 </li>
-
                 <li className="flex items-start gap-3 group">
                   <div className="w-10 h-10 bg-emerald-800 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-emerald-600 transition-colors">
                     <svg className="w-5 h-5 text-emerald-400 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -119,7 +114,7 @@ const Footer = () => {
                   </div>
                   <div>
                     <p className="text-white font-semibold">Phone</p>
-                    <a href="tel:+19565551234" className="text-gray-400 text-sm hover:text-emerald-400 transition-colors">
+                    <a href="tel:+19565431772" className="text-gray-400 text-sm hover:text-emerald-400 transition-colors">
                       +1 (956) 543-1772
                     </a>
                   </div>
@@ -133,7 +128,6 @@ const Footer = () => {
                 Business Hours
                 <span className="ml-3 w-12 h-0.5 bg-emerald-600" />
               </h4>
-
               <div className="space-y-3">
                 {[
                   ['Monday - Friday', '9:00 AM - 6:00 PM'],
@@ -153,8 +147,6 @@ const Footer = () => {
                   </div>
                 ))}
               </div>
-
-              {/* Emergency Contact */}
               <div className="mt-6 p-4 bg-emerald-900 rounded-lg border border-emerald-600/30">
                 <p className="text-emerald-400 text-xs font-semibold mb-1">24/7 Emergency Support</p>
                 <p className="text-gray-400 text-xs">For urgent matters, contact us anytime</p>
@@ -162,7 +154,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Decorative divider */}
           <div className="relative my-8">
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-emerald-800" />
@@ -174,11 +165,8 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Bottom Section */}
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-8">
-            <p className="text-gray-400 text-sm">
-              © 2025 Servia Consulting. All rights reserved.
-            </p>
+            <p className="text-gray-400 text-sm">© 2025 Servia Consulting. All rights reserved.</p>
             <div className="flex gap-6 text-sm">
               <a href="#privacy" className="text-gray-400 hover:text-emerald-400 transition-colors">Privacy Policy</a>
               <span className="text-emerald-700">|</span>
@@ -190,26 +178,21 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* ===== Decorations behind content ===== */}
       <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-emerald-600/5 rounded-full blur-3xl z-0" />
-
-      {/* LEFT (6) */}
       <div className="absolute bottom-8 left-8 w-20 h-20 border-2 border-emerald-600/20 rounded-lg rotate-12 animate-float animate-pulse-glow anim-delay-0 pointer-events-none z-0" />
       <div className="absolute bottom-24 left-24 w-24 h-24 border-2 border-emerald-600/10 rounded-lg rotate-6 animate-float-slow animate-pulse-glow anim-delay-400 pointer-events-none z-0" />
       <div className="absolute top-1/3 left-16 w-16 h-16 border-2 border-emerald-600/15 rounded-lg -rotate-6 animate-float animate-pulse-glow anim-delay-800 pointer-events-none z-0" />
-      <div className="absolute top-10 left-1/4 w-28 h-28 border-2 border-emerald-600/5 rounded-lg rotate-3 animate-float-fast animate-pulse-glow anim-delay-1200 pointer-events-none z-0" style={{ '--rotate': '8deg' }} />
-      <div className="absolute top-20 left-32 w-14 h-14 border-2 border-emerald-600/25 rounded-lg -rotate-12 animate-float-slow animate-pulse-glow anim-delay-1600 pointer-events-none z-0" style={{ '--rotate': '12deg' }} />
-      <div className="absolute bottom-1/3 left-12 w-18 h-18 border-2 border-emerald-600/20 rounded-lg rotate-8 animate-float-fast animate-pulse-glow anim-delay-2000 pointer-events-none z-0" style={{ '--rotate': '15deg' }} />
-
-      {/* RIGHT (6) */}
+      <div className="absolute top-10 left-1/4 w-28 h-28 border-2 border-emerald-600/5 rounded-lg rotate-3 animate-float-fast animate-pulse-glow anim-delay-1200 pointer-events-none z-0" />
+      <div className="absolute top-20 left-32 w-14 h-14 border-2 border-emerald-600/25 rounded-lg -rotate-12 animate-float-slow animate-pulse-glow anim-delay-1600 pointer-events-none z-0" />
+      <div className="absolute bottom-1/3 left-12 w-18 h-18 border-2 border-emerald-600/20 rounded-lg rotate-8 animate-float-fast animate-pulse-glow anim-delay-2000 pointer-events-none z-0" />
       <div className="absolute top-1/3 right-12 w-16 h-16 border-2 border-emerald-600/20 rounded-lg -rotate-12 animate-float animate-pulse-glow anim-delay-400 pointer-events-none z-0" />
       <div className="absolute top-10 right-20 w-24 h-24 border-2 border-emerald-600/15 rounded-lg rotate-6 animate-float-slow animate-pulse-glow anim-delay-800 pointer-events-none z-0" />
       <div className="absolute bottom-16 right-16 w-20 h-20 border-2 border-emerald-600/10 rounded-lg rotate-12 animate-float animate-pulse-glow anim-delay-1200 pointer-events-none z-0" />
-      <div className="absolute bottom-8 right-1/4 w-28 h-28 border-2 border-emerald-600/5 rounded-lg -rotate-3 animate-float-fast animate-pulse-glow anim-delay-0 pointer-events-none z-0" style={{ '--rotate': '10deg' }} />
-      <div className="absolute top-24 right-32 w-14 h-14 border-2 border-emerald-600/25 rounded-lg rotate-15 animate-float-slow animate-pulse-glow anim-delay-1600 pointer-events-none z-0" style={{ '--rotate': '18deg' }} />
-      <div className="absolute bottom-1/4 right-28 w-18 h-18 border-2 border-emerald-600/20 rounded-lg -rotate-8 animate-float-fast animate-pulse-glow anim-delay-2000 pointer-events-none z-0" style={{ '--rotate': '14deg' }} />
+      <div className="absolute bottom-8 right-1/4 w-28 h-28 border-2 border-emerald-600/5 rounded-lg -rotate-3 animate-float-fast animate-pulse-glow anim-delay-0 pointer-events-none z-0" />
+      <div className="absolute top-24 right-32 w-14 h-14 border-2 border-emerald-600/25 rounded-lg rotate-15 animate-float-slow animate-pulse-glow anim-delay-1600 pointer-events-none z-0" />
+      <div className="absolute bottom-1/4 right-28 w-18 h-18 border-2 border-emerald-600/20 rounded-lg -rotate-8 animate-float-fast animate-pulse-glow anim-delay-2000 pointer-events-none z-0" />
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

@@ -1,11 +1,11 @@
 
-import HeroSection from "./components/Home/HeroSection";
-import UpperBanner from "./components/Home/UpperBanner";
-import TestimonialBanner from "./components/Home/TestimonialBanner";
-import MiddleBanner from "./components/Home/MiddleBanner";
-import ContentSection from "./components/Home/ContentSection";
-import LowerBanner from "./components/Home/LowerBanner";
-import Footer from "./components/Footer";
+import HeroSection from "./components/sections/HeroSection";
+import UpperBanner from "./components/sections/UpperBanner";
+import TestimonialBanner from "./components/sections/TestimonialBanner";
+import MiddleBanner from "./components/sections/MiddleBanner";
+import ContentSection from "./components/sections/ContentSection";
+import LowerBanner from "./components/sections/LowerBanner";
+import Footer from "./components/layout/Footer";
 
 export default function Home() {
   return (

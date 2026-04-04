@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
-import Footer from '../components/Footer'
+import Footer from '../components/layout/Footer'
 
 const InsightsPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('All')
@@ -579,6 +579,47 @@ const InsightsPage = () => {
         </div>
       </section>
 
+      {/* Newsletter/CTA Section */}
+      <section className="relative bg-transparent py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-emerald-900/10 via-transparent to-purple-900/10 pointer-events-none"></div>
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+          <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 rounded-3xl p-12">
+            <div className="text-6xl mb-6">📬</div>
+            <h2 className="text-4xl font-bold text-white mb-4">
+              Stay Ahead of the Curve
+            </h2>
+            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+              Bookmark this page to access all your favorite business news sources in one place.
+              We regularly update our curated collection.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                onClick={() => {
+                  if (typeof window !== 'undefined') {
+                    alert('Press Ctrl+D (Windows) or Cmd+D (Mac) to bookmark this page!')
+                  }
+                }}
+                className="bg-gradient-to-r from-emerald-600 to-emerald-500 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:from-emerald-500 hover:to-emerald-400 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 inline-flex items-center justify-center gap-2"
+              >
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                </svg>
+                Bookmark This Page
+              </button>
+              <a
+                href="/contact"
+                className="border-2 border-emerald-400 text-emerald-400 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-emerald-400/10 transition-all inline-flex items-center justify-center gap-2"
+              >
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                </svg>
+                Suggest a Source
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Featured Sources - Bento Grid Style */}
       {featuredSources.length > 0 && (
       <section className="relative bg-transparent py-20">
@@ -874,49 +915,6 @@ const InsightsPage = () => {
             <div className="bg-gradient-to-br from-pink-600 to-pink-700 rounded-2xl p-6 text-center hover-glow-pink">
               <div className="text-4xl font-bold text-white mb-2">Free</div>
               <div className="text-pink-100 text-sm">Access</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Newsletter/CTA Section */}
-      <section className="relative bg-transparent py-20 overflow-hidden">
-        {/* Subtle gradient overlay for depth */}
-        <div className="absolute inset-0 bg-gradient-to-b from-emerald-900/10 via-transparent to-purple-900/10 pointer-events-none"></div>
-
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
-          <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 rounded-3xl p-12">
-            <div className="text-6xl mb-6">📬</div>
-            <h2 className="text-4xl font-bold text-white mb-4">
-              Stay Ahead of the Curve
-            </h2>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              Bookmark this page to access all your favorite business news sources in one place.
-              We regularly update our curated collection.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
-                onClick={() => {
-                  if (typeof window !== 'undefined') {
-                    alert('Press Ctrl+D (Windows) or Cmd+D (Mac) to bookmark this page!')
-                  }
-                }}
-                className="bg-gradient-to-r from-emerald-600 to-emerald-500 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:from-emerald-500 hover:to-emerald-400 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 inline-flex items-center justify-center gap-2"
-              >
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
-                </svg>
-                Bookmark This Page
-              </button>
-              <a
-                href="/contact"
-                className="border-2 border-emerald-400 text-emerald-400 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-emerald-400/10 transition-all inline-flex items-center justify-center gap-2"
-              >
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                </svg>
-                Suggest a Source
-              </a>
             </div>
           </div>
         </div>

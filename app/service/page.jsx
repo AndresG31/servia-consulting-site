@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import Footer from '../components/Footer'
+import Footer from '../components/layout/Footer'
 
 const ServicePage = () => {
   return (
@@ -521,6 +521,87 @@ const ServicePage = () => {
             </div>
           </div>
 
+        </div>
+      </section>
+
+      {/* Audit Funnel Section */}
+      <section className="relative bg-emerald-950 overflow-hidden">
+        <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'linear-gradient(rgba(16,185,129,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(16,185,129,0.3) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
+        <div className="relative max-w-7xl mx-auto px-8 sm:px-12 lg:px-16 py-24">
+
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+
+            {/* Left — copy */}
+            <div>
+              <div className="w-16 h-1 bg-emerald-600 mb-8" />
+              <span className="text-xs font-bold uppercase tracking-widest text-emerald-400 border border-emerald-600 rounded-full px-4 py-1">Free Diagnostic Tool</span>
+              <h2 className="text-4xl sm:text-5xl font-bold text-white leading-tight mt-6 mb-6">
+                Not Sure Where
+                <span className="block text-emerald-400 mt-1">to Start?</span>
+              </h2>
+              <p className="text-lg text-gray-300 leading-relaxed mb-6">
+                Before choosing a service package, take our free Restaurant Audit. It evaluates your operations across every key category — from staffing and financials to guest experience and marketing — and gives you a scored breakdown of exactly where your business stands.
+              </p>
+              <p className="text-base text-emerald-300/80 leading-relaxed mb-10">
+                The results will show you which gaps are costing you the most, making it easy to match the right service to your real needs — not just a guess.
+              </p>
+
+              {/* Stats row */}
+              <div className="grid grid-cols-3 gap-6 mb-10">
+                {[
+                  { value: '5 min', label: 'To complete' },
+                  { value: '100%', label: 'Free' },
+                  { value: 'PDF', label: 'Report included' },
+                ].map(stat => (
+                  <div key={stat.label} className="border border-emerald-800 rounded-xl p-4 text-center bg-emerald-900/30">
+                    <p className="text-2xl font-black text-emerald-400 mb-1">{stat.value}</p>
+                    <p className="text-xs text-gray-400 uppercase tracking-wide">{stat.label}</p>
+                  </div>
+                ))}
+              </div>
+
+              <Link
+                href="/audit"
+                className="inline-flex items-center gap-3 bg-emerald-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-emerald-500 transition-all shadow-lg"
+              >
+                Take the Free Audit
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </Link>
+            </div>
+
+            {/* Right — what gets evaluated */}
+            <div className="bg-emerald-900/40 border border-emerald-800 rounded-2xl p-8">
+              <p className="text-xs font-bold uppercase tracking-widest text-emerald-400 mb-6">What the audit covers</p>
+              <div className="space-y-4">
+                {[
+                  { icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2', label: 'Operations & Systems', desc: 'SOPs, consistency, kitchen efficiency' },
+                  { icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z', label: 'Staffing & Leadership', desc: 'Hiring, training, retention' },
+                  { icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z', label: 'Financial Health', desc: 'Food cost, labor cost, margins' },
+                  { icon: 'M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z', label: 'Guest Experience', desc: 'Reviews, hospitality, loyalty' },
+                  { icon: 'M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z', label: 'Marketing & Visibility', desc: 'Online presence, social, promotions' },
+                  { icon: 'M13 10V3L4 14h7v7l9-11h-7z', label: 'Growth & Scalability', desc: 'Expansion readiness, partnerships' },
+                ].map(item => (
+                  <div key={item.label} className="flex items-center gap-4 p-4 rounded-xl bg-emerald-900/50 border border-emerald-800/60">
+                    <div className="w-9 h-9 rounded-lg bg-emerald-600/20 border border-emerald-600/40 flex items-center justify-center flex-shrink-0">
+                      <svg className="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d={item.icon} />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-white font-semibold text-sm">{item.label}</p>
+                      <p className="text-emerald-300/70 text-xs">{item.desc}</p>
+                    </div>
+                    <svg className="w-4 h-4 text-emerald-600 ml-auto flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+          </div>
         </div>
       </section>
 
