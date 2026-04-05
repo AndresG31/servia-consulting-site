@@ -1,6 +1,61 @@
-import React from 'react'
+'use client'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import Footer from '../components/layout/Footer'
+
+const faqs = [
+  {
+    q: 'What does a free restaurant audit include?',
+    a: 'Our free audit covers 48 diagnostic criteria across 8 key business areas — operations, financials, staffing, marketing, customer experience, and more. You receive a scored report with a performance band and prioritized action items.',
+  },
+  {
+    q: 'How long does the initial consultation take?',
+    a: 'The initial consultation typically runs 60–90 minutes. We use that time to understand your business, review your audit results if completed, and outline a tailored strategy.',
+  },
+  {
+    q: 'Do you work with businesses outside the Rio Grande Valley?',
+    a: 'Yes. While we are based in the Rio Grande Valley, we offer virtual consulting sessions and serve clients throughout Texas and nationwide.',
+  },
+  {
+    q: 'Which package is right for me?',
+    a: 'Package 1 (Foundation) is ideal if you want a clear picture of where you stand. Package 2 (Growth) is for operators ready to implement changes. Package 3 (Enterprise) is for multi-location or high-volume operations needing ongoing strategic support.',
+  },
+  {
+    q: 'Do you offer ongoing support after the engagement ends?',
+    a: 'Yes. All packages include follow-up check-ins, and we offer retainer-based ongoing advisory relationships for clients who want continuous support.',
+  },
+  {
+    q: 'How quickly can we get started?',
+    a: 'You can start the free audit immediately — no appointment needed. For paid engagements, onboarding typically begins within 3–5 business days of signing.',
+  },
+]
+
+function FaqAccordion() {
+  const [open, setOpen] = useState(null)
+  return (
+    <div className="space-y-3">
+      {faqs.map((faq, i) => (
+        <div key={i} className={`rounded-xl border transition-all duration-300 overflow-hidden ${open === i ? 'border-emerald-600 bg-emerald-900/60' : 'border-emerald-800 bg-emerald-900/30 hover:border-emerald-700'}`}>
+          <button
+            onClick={() => setOpen(open === i ? null : i)}
+            className="w-full text-left px-6 py-5 flex items-center justify-between gap-4"
+          >
+            <span className="text-white font-semibold">{faq.q}</span>
+            <svg
+              className={`w-5 h-5 text-emerald-400 flex-shrink-0 transition-transform duration-300 ${open === i ? 'rotate-180' : ''}`}
+              fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div className={`transition-all duration-300 overflow-hidden ${open === i ? 'max-h-48 pb-5' : 'max-h-0'}`}>
+            <p className="px-6 text-gray-300 leading-relaxed">{faq.a}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
 
 const ServicePage = () => {
   return (
@@ -602,6 +657,21 @@ const ServicePage = () => {
             </div>
 
           </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section id="faq" className="bg-black border-t border-white/10 py-20">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <div className="w-20 h-1 bg-emerald-600 mx-auto mb-6"></div>
+            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+              Frequently Asked
+              <span className="block text-emerald-400 mt-2">Questions</span>
+            </h2>
+            <p className="text-gray-300 text-lg">Everything you need to know before getting started.</p>
+          </div>
+          <FaqAccordion />
         </div>
       </section>
 

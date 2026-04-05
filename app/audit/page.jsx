@@ -426,7 +426,7 @@ export default function AuditPage() {
       </section>
 
       {/* Performance Bands Reference */}
-      <section className="bg-emerald-950 border-t border-emerald-800">
+      <section className="bg-black border-t border-white/10">
         <div className="max-w-7xl mx-auto px-8 sm:px-12 lg:px-16 py-16">
           <div className="w-16 h-1 bg-emerald-600 mb-6" />
           <h2 className="text-3xl font-bold text-white mb-2">Performance Bands</h2>

@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import CountUp from '../ui/CountUp'
 
 const HeroSection = () => {
   return (
@@ -14,7 +15,7 @@ const HeroSection = () => {
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
         >
-          <source src="/assets/homepage/Images/Video/HeroSection.mp4" type="video/mp4" />
+          <source src="/assets/homepage/Images/Video/HeroSection_compressed.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
@@ -63,15 +64,15 @@ const HeroSection = () => {
               {/* Stats/Trust Indicators */}
               <div className="grid grid-cols-3 gap-6 mt-16 pt-8 border-t border-gray-600 opacity-0 animate-slide-in-delayed" style={{ animationDelay: '3s' }}>
                 <div>
-                  <div className="text-3xl font-bold text-emerald-400">500+</div>
+                  <div className="text-3xl font-bold text-emerald-400"><CountUp end={500} suffix="+" /></div>
                   <div className="text-sm text-gray-300 mt-1">Clients Served</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-emerald-400">98%</div>
+                  <div className="text-3xl font-bold text-emerald-400"><CountUp end={98} suffix="%" /></div>
                   <div className="text-sm text-gray-300 mt-1">Success Rate</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-emerald-400">15+</div>
+                  <div className="text-3xl font-bold text-emerald-400"><CountUp end={15} suffix="+" /></div>
                   <div className="text-sm text-gray-300 mt-1">Years Experience</div>
                 </div>
               </div>

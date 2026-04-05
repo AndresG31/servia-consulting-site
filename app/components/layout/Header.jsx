@@ -22,25 +22,24 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 bg-emerald-900 shadow-sm z-50 border border-white/40 transition-transform duration-300 ${
+      className={`fixed top-0 left-0 right-0 bg-black shadow-sm z-50 border-b border-white/10 transition-transform duration-300 ${
         hidden ? '-translate-y-full' : 'translate-y-0'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between py-6">
-          <Link href="/" className="flex items-center space-x-3">
-            <div className="flex items-center justify-center flex-shrink-0 -mx-2">
-              <Image
-                src="/assets/logos/servia-icon.png"
-                alt="Servia Consulting"
-                width={72}
-                height={72}
-                className="object-contain brightness-0 invert"
-              />
-            </div>
+          <Link href="/" className="flex items-center gap-3">
+            <Image
+              src="/assets/logos/servia-isotipo.png"
+              alt="Servia Consulting"
+              width={52}
+              height={52}
+              className="object-contain"
+              priority
+            />
             <div>
-              <h1 className="text-2xl font-bold text-white">Servia Consulting</h1>
-              <p className="text-sm text-emerald-600 italic">"Business in Motion"</p>
+              <p className="text-white font-bold text-2xl leading-tight tracking-wide">servia</p>
+              <p className="text-emerald-400 text-xs font-medium tracking-widest uppercase leading-none">consulting</p>
             </div>
           </Link>
 
@@ -53,8 +52,8 @@ const Header = () => {
             <Link href="/contact" className="bg-emerald-600 text-white px-6 py-1.5 rounded-lg hover:bg-emerald-700 transition-colors font-medium">Contact Us</Link>
           </nav>
 
-          <button className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors">
-            <svg className="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <button className="md:hidden p-2 rounded-lg hover:bg-emerald-800 transition-colors">
+            <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>

@@ -4,6 +4,7 @@ import React, { useRef, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import emailjs from '@emailjs/browser'
 import CustomSelect from './ui/CustomSelect'
+import Toast from './ui/Toast'
 
 const SERVICE_ID  = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
 const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
@@ -55,9 +56,11 @@ export default function ContactForm() {
       await emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, PUBLIC_KEY)
       setStatus('success')
       formRef.current.reset()
+      setTimeout(() => setStatus('idle'), 4500)
     } catch (err) {
       console.error('EmailJS error:', err)
       setStatus('error')
+      setTimeout(() => setStatus('idle'), 4500)
     }
   }
 
@@ -66,21 +69,18 @@ export default function ContactForm() {
       <h2 className="text-3xl font-bold text-emerald-700 mb-6">Send Us a Message</h2>
 
       {status === 'success' && (
-        <div className="mb-6 p-4 bg-emerald-50 border border-emerald-300 rounded-lg flex items-center gap-3">
-          <svg className="w-5 h-5 text-emerald-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-          </svg>
-          <p className="text-emerald-700 font-medium">Message sent! We'll get back to you within 24 hours.</p>
-        </div>
+        <Toast
+          message="Message sent! We'll get back to you within 24 hours."
+          type="success"
+          onClose={() => setStatus('idle')}
+        />
       )}
-
       {status === 'error' && (
-        <div className="mb-6 p-4 bg-red-50 border border-red-300 rounded-lg flex items-center gap-3">
-          <svg className="w-5 h-5 text-red-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
-          <p className="text-red-600 font-medium">Something went wrong. Please try again or email us directly.</p>
-        </div>
+        <Toast
+          message="Something went wrong. Please try again or email us directly."
+          type="error"
+          onClose={() => setStatus('idle')}
+        />
       )}
 
       <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">

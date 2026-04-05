@@ -14,11 +14,11 @@ const Footer = () => {
             <div className="space-y-6 fade-slide-up text-delay-1">
               <div className="flex items-center -my-4">
                 <Image
-                  src="/assets/logos/servia-logo.png"
+                  src="/assets/logos/servia-logo-negativo.png"
                   alt="Servia Consulting"
-                  width={260}
-                  height={104}
-                  className="object-contain brightness-0 invert"
+                  width={240}
+                  height={80}
+                  className="object-contain"
                 />
               </div>
               <p className="text-gray-400 leading-relaxed">
@@ -62,6 +62,7 @@ const Footer = () => {
                   ['/insights', 'Insights'],
                   ['/audit', 'Restaurant Audit'],
                   ['/contact', 'Contact'],
+                  ['/service#faq', 'FAQ'],
                 ].map(([href, label]) => (
                   <li key={href}>
                     <a href={href} className="text-gray-400 hover:text-emerald-400 transition-colors flex items-center group">

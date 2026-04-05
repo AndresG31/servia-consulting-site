@@ -1,17 +1,23 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Header from "./components/layout/Header";
+import ScrollProgress from "./components/ui/ScrollProgress";
+import BackToTop from "./components/ui/BackToTop";
+import CookieConsent from "./components/ui/CookieConsent";
+import PageTransition from "./components/ui/PageTransition";
+import TawkTo from "./components/ui/TawkTo";
 
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const stackSans = localFont({
+  src: [
+    { path: "../public/fonts/StackSansHeadline-Light.ttf",    weight: "300", style: "normal" },
+    { path: "../public/fonts/StackSansHeadline-Regular.ttf",  weight: "400", style: "normal" },
+    { path: "../public/fonts/StackSansHeadline-Medium.ttf",   weight: "500", style: "normal" },
+    { path: "../public/fonts/StackSansHeadline-SemiBold.ttf", weight: "600", style: "normal" },
+    { path: "../public/fonts/StackSansHeadline-Bold.ttf",     weight: "700", style: "normal" },
+  ],
+  variable: "--font-dm-sans",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -41,10 +47,16 @@ export default function RootLayout({
     
       <body
         suppressHydrationWarning
-        className={`${geistSans.variable} ${geistMono.variable} antialiased pt-[104px]`}
+        className={`${stackSans.variable} antialiased pt-[92px]`}
       >
-         <Header/>
-        {children}
+         <ScrollProgress />
+        <Header/>
+        <PageTransition>
+          {children}
+        </PageTransition>
+        <BackToTop />
+        <CookieConsent />
+        <TawkTo />
       </body>
     </html>
   );

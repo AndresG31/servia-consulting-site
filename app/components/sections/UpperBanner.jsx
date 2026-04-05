@@ -3,14 +3,14 @@ import Image from 'next/image'
 
 const UpperBanner = () => {
   return (
-    <section className="relative bg-emerald-900 py-16 overflow-hidden">
+    <section className="relative bg-white py-16 overflow-hidden border-b border-gray-100">
       {/* Decorative background elements */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl -translate-y-1/2"></div>
-      <div className="absolute top-1/2 right-0 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl -translate-y-1/2"></div>
+      <div className="absolute top-1/2 left-0 w-96 h-96 bg-emerald-600/5 rounded-full blur-3xl -translate-y-1/2"></div>
+      <div className="absolute top-1/2 right-0 w-96 h-96 bg-emerald-600/5 rounded-full blur-3xl -translate-y-1/2"></div>
 
       {/* Animated corner squares */}
-      <div className="absolute top-8 left-8 w-12 h-12 border-2 border-emerald-600/40 rounded-lg rotate-12 animate-pulse"></div>
-      <div className="absolute bottom-8 right-8 w-12 h-12 border-2 border-emerald-600/40 rounded-lg -rotate-12 animate-pulse"></div>
+      <div className="absolute top-8 left-8 w-12 h-12 border-2 border-emerald-600/30 rounded-lg rotate-12 animate-pulse"></div>
+      <div className="absolute bottom-8 right-8 w-12 h-12 border-2 border-emerald-600/30 rounded-lg -rotate-12 animate-pulse"></div>
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
         <div className="grid lg:grid-cols-2 gap-8 items-center">
@@ -21,18 +21,18 @@ const UpperBanner = () => {
             <div className="w-20 h-1 bg-emerald-600"></div>
 
             {/* Heading */}
-            <h2 className="text-3xl sm:text-4xl font-bold text-white leading-tight">
+            <h2 className="text-3xl sm:text-4xl font-bold text-emerald-900 leading-tight">
               Values Rooted in
-              <span className="block text-emerald-400 mt-2">
+              <span className="block text-emerald-600 mt-2">
                 Excellence & Service
               </span>
             </h2>
 
             {/* Main message */}
-            <p className="text-lg text-gray-300 leading-relaxed">
+            <p className="text-lg text-gray-600 leading-relaxed">
               At Servia Consulting, our core values are deeply rooted in the principles of the Boy Scouts of America.
-              Founder <span className="text-white font-semibold">Andres Gutierrez</span>, an
-              <span className="text-emerald-400 font-semibold"> Eagle Scout</span>, brings the highest standards
+              Founder <span className="text-emerald-900 font-semibold">Andres Gutierrez</span>, an
+              <span className="text-emerald-600 font-semibold"> Eagle Scout</span>, brings the highest standards
               of integrity, leadership, and service to every client engagement.
             </p>
 
@@ -59,8 +59,8 @@ const UpperBanner = () => {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="font-bold text-white text-base">{value.title}</h3>
-                    <p className="text-gray-400 text-sm">{value.description}</p>
+                    <h3 className="font-bold text-emerald-900 text-base">{value.title}</h3>
+                    <p className="text-gray-500 text-sm">{value.description}</p>
                   </div>
                 </div>
               ))}
