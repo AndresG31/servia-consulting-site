@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import Footer from '../components/layout/Footer'
+import ScrollFadeIn from '../components/ui/ScrollFadeIn'
 
 const faqs = [
   {
@@ -35,21 +36,21 @@ function FaqAccordion() {
   return (
     <div className="space-y-3">
       {faqs.map((faq, i) => (
-        <div key={i} className={`rounded-xl border transition-all duration-300 overflow-hidden ${open === i ? 'border-emerald-600 bg-emerald-900/60' : 'border-emerald-800 bg-emerald-900/30 hover:border-emerald-700'}`}>
+        <div key={i} className={`rounded-xl border transition-all duration-300 overflow-hidden ${open === i ? 'border-emerald-600 bg-emerald-50' : 'border-emerald-200 bg-white hover:border-emerald-400 hover:bg-emerald-50/50'}`}>
           <button
             onClick={() => setOpen(open === i ? null : i)}
             className="w-full text-left px-6 py-5 flex items-center justify-between gap-4"
           >
-            <span className="text-white font-semibold">{faq.q}</span>
+            <span className="text-emerald-900 font-semibold">{faq.q}</span>
             <svg
-              className={`w-5 h-5 text-emerald-400 flex-shrink-0 transition-transform duration-300 ${open === i ? 'rotate-180' : ''}`}
+              className={`w-5 h-5 text-emerald-600 flex-shrink-0 transition-transform duration-300 ${open === i ? 'rotate-180' : ''}`}
               fill="none" viewBox="0 0 24 24" stroke="currentColor"
             >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
           </button>
           <div className={`transition-all duration-300 overflow-hidden ${open === i ? 'max-h-48 pb-5' : 'max-h-0'}`}>
-            <p className="px-6 text-gray-300 leading-relaxed">{faq.a}</p>
+            <p className="px-6 text-gray-700 leading-relaxed">{faq.a}</p>
           </div>
         </div>
       ))}
@@ -62,7 +63,7 @@ const ServicePage = () => {
     <div className="min-h-screen bg-emerald-950">
 
       {/* Hero Section */}
-      <section className="relative bg-emerald-950 overflow-hidden min-h-[600px]">
+      <section data-header-theme="dark" className="relative bg-emerald-950 overflow-hidden min-h-[600px] -mt-[92px]">
         {/* Full-width Video Background */}
         <div className="absolute inset-0">
           <video
@@ -84,36 +85,36 @@ const ServicePage = () => {
           <div className="grid lg:grid-cols-2 gap-0 min-h-[600px]">
 
             {/* Left Side - Headline Content with Black Background Filter */}
-            <div className="relative flex flex-col justify-center px-8 sm:px-12 lg:px-16 py-12 lg:py-16 z-10">
+            <div className="relative flex flex-col justify-center px-8 sm:px-12 lg:px-16 pt-36 pb-12 lg:pt-44 lg:pb-16 z-10">
               {/* Black background filter with 50% transparency */}
-              <div className="absolute inset-0 bg-black/50 opacity-0 animate-fade-in-delayed"></div>
+              <div className="absolute inset-0 bg-black/50 opacity-0 animate-fade-in-page"></div>
 
               {/* Content with delayed animation */}
               <div className="relative z-10">
                 {/* Emerald accent */}
-                <div className="w-20 h-1 bg-emerald-600 mb-8 opacity-0 animate-slide-in-delayed"></div>
+                <div className="w-20 h-1 bg-emerald-600 mb-8 opacity-0 animate-page-hero"></div>
 
-                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 opacity-0 animate-slide-in-delayed" style={{ animationDelay: '2.2s' }}>
+                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 opacity-0 animate-page-hero" style={{ animationDelay: '0.1s' }}>
                   Analyzing Your
                   <span className="block text-emerald-400 mt-2">
                     Business Pipeline
                   </span>
                 </h1>
 
-                <p className="text-xl sm:text-xl text-gray-100 mb-8 leading-relaxed opacity-0 animate-slide-in-delayed" style={{ animationDelay: '2.4s' }}>
+                <p className="text-xl sm:text-xl text-gray-100 mb-8 leading-relaxed opacity-0 animate-page-hero" style={{ animationDelay: '0.3s' }}>
                   Every business is unique, with its own challenges, opportunities, and vision.
                   We don't believe in one-size-fits-all solutions. Instead, we dive deep into
                   understanding your operations, analyzing every aspect of your pipeline.
                 </p>
 
-                <p className="text-lg text-gray-200 mb-10 max-w-xl opacity-0 animate-slide-in-delayed" style={{ animationDelay: '2.6s' }}>
+                <p className="text-lg text-gray-200 mb-10 max-w-xl opacity-0 animate-page-hero" style={{ animationDelay: '0.5s' }}>
                   From initial assessment to strategic planning and implementation, we tailor
                   our services to meet your specific needs—ensuring sustainable growth and
                   measurable results.
                 </p>
 
                 {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4 opacity-0 animate-slide-in-delayed" style={{ animationDelay: '2.8s' }}>
+                <div className="flex flex-col sm:flex-row gap-4 opacity-0 animate-page-hero" style={{ animationDelay: '0.7s' }}>
                   <Link href="/audit" className="bg-emerald-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-emerald-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
                     Start Your Audit
                   </Link>
@@ -134,7 +135,7 @@ const ServicePage = () => {
       </section>
 
       {/* Packages Section */}
-      <section className="relative bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-950 py-24 overflow-hidden">
+      <section data-header-theme="dark" className="relative bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-950 py-24 overflow-hidden">
         {/* Decorative background elements */}
         <div className="absolute top-1/2 left-0 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl -translate-y-1/2"></div>
         <div className="absolute top-1/2 right-0 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl -translate-y-1/2"></div>
@@ -376,7 +377,7 @@ const ServicePage = () => {
       </section>
 
       {/* Individual Services Section */}
-      <section className="relative bg-white py-24 overflow-hidden">
+      <section data-header-theme="light" className="relative bg-white py-24 overflow-hidden">
         {/* Decorative elements */}
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl"></div>
         <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl"></div>
@@ -384,18 +385,18 @@ const ServicePage = () => {
         {/* Animated corner squares */}
         <div className="absolute bottom-12 left-12 w-16 h-16 border-2 border-emerald-600/30 rounded-lg rotate-12 animate-float anim-delay-0" />
         <div className="absolute top-12 right-12 w-20 h-20 border-2 border-emerald-600/20 rounded-lg -rotate-6 animate-float-slow anim-delay-800" />
+        {/* ScrollFadeIn import handled at top of file */}
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
           {/* Section Header */}
           <div className="text-center mb-16">
             <div className="w-20 h-1 bg-emerald-600 mx-auto mb-6"></div>
             <h2 className="text-4xl sm:text-5xl font-bold text-emerald-700 mb-6">
-              Our Core
-              <span className="block text-emerald-600 mt-2">Services</span>
+              What&apos;s Inside
+              <span className="block text-emerald-600 mt-2">Our Packages</span>
             </h2>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-              Each service is designed to address specific business needs. Mix and match or choose a package
-              for a comprehensive solution.
+              Every service we deliver is built around real restaurant operations. Here&apos;s a deeper look at what each one actually involves.
             </p>
           </div>
 
@@ -403,175 +404,239 @@ const ServicePage = () => {
           <div className="space-y-8">
 
             {/* Service 1 - Business Assessment */}
-            <div className="bg-gradient-to-r from-emerald-50 to-white rounded-2xl p-8 border-2 border-emerald-600/20 hover:border-emerald-600 hover:shadow-xl transition-all group">
+            <ScrollFadeIn>
+            <Link href="/service/business-assessment" className="block relative overflow-hidden bg-gradient-to-r from-emerald-50 to-white rounded-2xl p-8 border-2 border-emerald-600/20 hover:border-emerald-600 hover:shadow-xl transition-all group">
               <div className="grid md:grid-cols-[auto,1fr] gap-8 items-start">
-                {/* Icon */}
                 <div className="w-20 h-20 bg-emerald-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0 shadow-lg">
                   <svg className="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                   </svg>
                 </div>
-
-                {/* Content */}
                 <div>
-                  <h3 className="text-3xl font-bold text-emerald-700 mb-4">Business Assessment</h3>
-                  <p className="text-gray-700 text-lg mb-6 leading-relaxed">
-                    We conduct a thorough analysis of your business operations, identifying strengths, weaknesses,
-                    opportunities, and potential roadblocks. Our assessment covers your sales pipeline, operational
-                    efficiency, customer acquisition strategies, and technology infrastructure.
-                  </p>
-
+                  <h3 className="text-3xl font-bold text-emerald-700 mb-3 group-hover:text-emerald-500 transition-colors inline-flex items-center gap-2">Business Assessment <svg className="w-5 h-5 text-emerald-400 group-hover:text-emerald-600 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg></h3>
+                  <div className="flex gap-2 flex-wrap mb-4"><span className="text-xs font-semibold bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full">Strategy</span><span className="text-xs font-semibold bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full">Diagnosis</span></div>
+                  <p className="text-gray-700 text-lg mb-6 leading-relaxed">We conduct a thorough analysis of your business operations, identifying strengths, weaknesses, opportunities, and potential roadblocks. Our assessment covers your sales pipeline, operational efficiency, customer acquisition strategies, and technology infrastructure.</p>
                   <div className="grid sm:grid-cols-2 gap-4">
-                    <div className="flex items-start gap-3">
-                      <svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span className="text-gray-800 font-medium">Pipeline Analysis</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span className="text-gray-800 font-medium">Operations Review</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span className="text-gray-800 font-medium">Technology Audit</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span className="text-gray-800 font-medium">Growth Opportunities</span>
-                    </div>
+                    {['Pipeline Analysis', 'Operations Review', 'Technology Audit', 'Growth Opportunities'].map(item => (<div key={item} className="flex items-start gap-3"><svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg><span className="text-gray-800 font-medium">{item}</span></div>))}
                   </div>
                 </div>
               </div>
-            </div>
+              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
+            </Link>
+            </ScrollFadeIn>
 
             {/* Service 2 - Plan of Action */}
-            <div className="bg-gradient-to-r from-white to-emerald-50 rounded-2xl p-8 border-2 border-emerald-600/20 hover:border-emerald-600 hover:shadow-xl transition-all group">
+            <ScrollFadeIn delay={100}>
+            <Link href="/service/plan-of-action" className="block relative overflow-hidden bg-gradient-to-r from-white to-emerald-50 rounded-2xl p-8 border-2 border-emerald-600/20 hover:border-emerald-600 hover:shadow-xl transition-all group">
               <div className="grid md:grid-cols-[auto,1fr] gap-8 items-start">
-                {/* Icon */}
                 <div className="w-20 h-20 bg-emerald-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0 shadow-lg">
                   <svg className="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
                   </svg>
                 </div>
-
-                {/* Content */}
                 <div>
-                  <h3 className="text-3xl font-bold text-emerald-700 mb-4">Custom Plan of Action</h3>
-                  <p className="text-gray-700 text-lg mb-6 leading-relaxed">
-                    Based on our assessment, we develop a tailored strategic plan designed specifically for your business.
-                    This actionable roadmap includes clear milestones, timelines, resource allocation, and measurable KPIs
-                    to track your progress toward sustainable growth.
-                  </p>
-
+                  <h3 className="text-3xl font-bold text-emerald-700 mb-3 group-hover:text-emerald-500 transition-colors inline-flex items-center gap-2">Custom Plan of Action <svg className="w-5 h-5 text-emerald-400 group-hover:text-emerald-600 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg></h3>
+                  <div className="flex gap-2 flex-wrap mb-4"><span className="text-xs font-semibold bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full">Strategy</span><span className="text-xs font-semibold bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full">Planning</span></div>
+                  <p className="text-gray-700 text-lg mb-6 leading-relaxed">Based on our assessment, we develop a tailored strategic plan designed specifically for your business. This actionable roadmap includes clear milestones, timelines, resource allocation, and measurable KPIs to track your progress toward sustainable growth.</p>
                   <div className="grid sm:grid-cols-2 gap-4">
-                    <div className="flex items-start gap-3">
-                      <svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span className="text-gray-800 font-medium">Strategic Roadmap</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span className="text-gray-800 font-medium">Clear Milestones</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span className="text-gray-800 font-medium">Measurable KPIs</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span className="text-gray-800 font-medium">Implementation Timeline</span>
-                    </div>
+                    {['Strategic Roadmap', 'Clear Milestones', 'Measurable KPIs', 'Implementation Timeline'].map(item => (<div key={item} className="flex items-start gap-3"><svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg><span className="text-gray-800 font-medium">{item}</span></div>))}
                   </div>
                 </div>
               </div>
-            </div>
+              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
+            </Link>
+            </ScrollFadeIn>
 
             {/* Service 3 - In-Field Consulting */}
-            <div className="bg-gradient-to-r from-white to-emerald-50 rounded-2xl p-8 border-2 border-emerald-600/20 hover:border-emerald-600 hover:shadow-xl transition-all group">
+            <ScrollFadeIn delay={150}>
+            <Link href="/service/in-field-consultant" className="block relative overflow-hidden bg-gradient-to-r from-white to-emerald-50 rounded-2xl p-8 border-2 border-emerald-600/20 hover:border-emerald-600 hover:shadow-xl transition-all group">
               <div className="grid md:grid-cols-[auto,1fr] gap-8 items-start">
-                {/* Icon */}
                 <div className="w-20 h-20 bg-emerald-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0 shadow-lg">
                   <svg className="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 </div>
-
-                {/* Content */}
                 <div>
-                  <h3 className="text-3xl font-bold text-emerald-700 mb-4">In-Field Consultant</h3>
-                  <p className="text-gray-700 text-lg mb-6 leading-relaxed">
-                    Our dedicated consultant works on-site at your business five days a week to ensure your strategic
-                    plan is executed flawlessly. This hands-on approach provides accountability, real-time problem-solving,
-                    and direct support to your team during the critical implementation phase.
-                  </p>
-
+                  <h3 className="text-3xl font-bold text-emerald-700 mb-3 group-hover:text-emerald-500 transition-colors inline-flex items-center gap-2">In-Field Consultant <svg className="w-5 h-5 text-emerald-400 group-hover:text-emerald-600 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg></h3>
+                  <div className="flex gap-2 flex-wrap mb-4"><span className="text-xs font-semibold bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full">Execution</span><span className="text-xs font-semibold bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full">Hands-On</span></div>
+                  <p className="text-gray-700 text-lg mb-6 leading-relaxed">Our dedicated consultant works on-site at your business three days a week to ensure your strategic plan is executed flawlessly. This hands-on approach provides accountability, real-time problem-solving, and direct support to your team during the critical implementation phase.</p>
                   <div className="grid sm:grid-cols-2 gap-4">
-                    <div className="flex items-start gap-3">
-                      <svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span className="text-gray-800 font-medium">3 Days/Week On-Site</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span className="text-gray-800 font-medium">Hands-on Implementation</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span className="text-gray-800 font-medium">Team Training</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span className="text-gray-800 font-medium">Progress Monitoring</span>
-                    </div>
-                  </div>
-
-                  {/* Additional Info */}
-                  <div className="mt-6 bg-emerald-50 border border-emerald-600/30 rounded-lg p-4">
-                    <p className="text-emerald-700 text-sm font-medium">
-                      <span className="font-bold">3-Month Minimum Contract</span> - Renewable monthly based on progress and needs.
-                      Monthly fee covers dedicated consultant time, implementation support, and ongoing optimization.
-                    </p>
+                    {['3 Days/Week On-Site', 'Hands-on Implementation', 'Team Training', 'Progress Monitoring'].map(item => (<div key={item} className="flex items-start gap-3"><svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg><span className="text-gray-800 font-medium">{item}</span></div>))}
                   </div>
                 </div>
               </div>
-            </div>
+              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
+            </Link>
+            </ScrollFadeIn>
+
+            {/* Service 4 - Restaurant Maintenance */}
+            <ScrollFadeIn>
+            <Link href="/service/restaurant-maintenance" className="block relative overflow-hidden bg-gradient-to-r from-emerald-50 to-white rounded-2xl p-8 border-2 border-emerald-600/20 hover:border-emerald-600 hover:shadow-xl transition-all group">
+              <div className="grid md:grid-cols-[auto,1fr] gap-8 items-start">
+                <div className="w-20 h-20 bg-emerald-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0 shadow-lg">
+                  <svg className="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-3xl font-bold text-emerald-700 mb-3 group-hover:text-emerald-500 transition-colors inline-flex items-center gap-2">Restaurant Maintenance <svg className="w-5 h-5 text-emerald-400 group-hover:text-emerald-600 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg></h3>
+                  <div className="flex gap-2 flex-wrap mb-4"><span className="text-xs font-semibold bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full">Operations</span><span className="text-xs font-semibold bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full">Compliance</span></div>
+                  <p className="text-gray-700 text-lg mb-6 leading-relaxed">A well-maintained kitchen is the backbone of any successful restaurant. We provide comprehensive kitchen maintenance consulting — helping you build preventive maintenance schedules, ensure equipment longevity, maintain health code compliance, and reduce costly emergency repairs that disrupt service and impact your bottom line.</p>
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    {['Equipment Audit', 'Preventive Maintenance', 'Health Code Compliance', 'Emergency Protocols'].map(item => (<div key={item} className="flex items-start gap-3"><svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg><span className="text-gray-800 font-medium">{item}</span></div>))}
+                  </div>
+                </div>
+              </div>
+              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
+            </Link>
+            </ScrollFadeIn>
+
+            {/* Service 5 - Revenue Optimization */}
+            <ScrollFadeIn>
+            <Link href="/service/revenue-optimization" className="block relative overflow-hidden bg-gradient-to-r from-white to-emerald-50 rounded-2xl p-8 border-2 border-emerald-600/20 hover:border-emerald-600 hover:shadow-xl transition-all group">
+              <div className="grid md:grid-cols-[auto,1fr] gap-8 items-start">
+                <div className="w-20 h-20 bg-emerald-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0 shadow-lg">
+                  <svg className="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-3xl font-bold text-emerald-700 mb-3 group-hover:text-emerald-500 transition-colors inline-flex items-center gap-2">Revenue Optimization Strategy <svg className="w-5 h-5 text-emerald-400 group-hover:text-emerald-600 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg></h3>
+                  <div className="flex gap-2 flex-wrap mb-4"><span className="text-xs font-semibold bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full">Profitability</span><span className="text-xs font-semibold bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full">Revenue</span></div>
+                  <p className="text-gray-700 text-lg mb-6 leading-relaxed">We identify and close the revenue gaps that are costing you money — analyzing pricing, upsell opportunities, peak hour performance, and underperforming revenue streams to build a clear plan for top-line growth.</p>
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    {['Pricing Gap Analysis', 'Upsell & Cross-sell Strategy', 'Peak Hour Optimization', 'Revenue Stream Review'].map(item => (<div key={item} className="flex items-start gap-3"><svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg><span className="text-gray-800 font-medium">{item}</span></div>))}
+                  </div>
+                </div>
+              </div>
+              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
+            </Link>
+            </ScrollFadeIn>
+
+            {/* Service 6 - Menu Engineering */}
+            <ScrollFadeIn delay={100}>
+            <Link href="/service/menu-engineering" className="block relative overflow-hidden bg-gradient-to-r from-emerald-50 to-white rounded-2xl p-8 border-2 border-emerald-600/20 hover:border-emerald-600 hover:shadow-xl transition-all group">
+              <div className="grid md:grid-cols-[auto,1fr] gap-8 items-start">
+                <div className="w-20 h-20 bg-emerald-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0 shadow-lg">
+                  <svg className="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-3xl font-bold text-emerald-700 mb-3 group-hover:text-emerald-500 transition-colors inline-flex items-center gap-2">Menu Engineering &amp; Pricing <svg className="w-5 h-5 text-emerald-400 group-hover:text-emerald-600 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg></h3>
+                  <div className="flex gap-2 flex-wrap mb-4"><span className="text-xs font-semibold bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full">Profitability</span><span className="text-xs font-semibold bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full">Menu</span></div>
+                  <p className="text-gray-700 text-lg mb-6 leading-relaxed">Your menu is one of your most powerful profit levers. We analyze item-level food cost, sales velocity, and contribution margin to restructure your menu for maximum profitability without sacrificing guest experience.</p>
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    {['Item-Level Cost Analysis', 'Profitability Matrix', 'Strategic Pricing', 'Menu Design Guidance'].map(item => (<div key={item} className="flex items-start gap-3"><svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg><span className="text-gray-800 font-medium">{item}</span></div>))}
+                  </div>
+                </div>
+              </div>
+              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
+            </Link>
+            </ScrollFadeIn>
+
+            {/* Service 7 - Staff Training */}
+            <ScrollFadeIn delay={150}>
+            <Link href="/service/staff-training" className="block relative overflow-hidden bg-gradient-to-r from-white to-emerald-50 rounded-2xl p-8 border-2 border-emerald-600/20 hover:border-emerald-600 hover:shadow-xl transition-all group">
+              <div className="grid md:grid-cols-[auto,1fr] gap-8 items-start">
+                <div className="w-20 h-20 bg-emerald-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0 shadow-lg">
+                  <svg className="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-3xl font-bold text-emerald-700 mb-3 group-hover:text-emerald-500 transition-colors inline-flex items-center gap-2">Staff Training &amp; Development <svg className="w-5 h-5 text-emerald-400 group-hover:text-emerald-600 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg></h3>
+                  <div className="flex gap-2 flex-wrap mb-4"><span className="text-xs font-semibold bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full">Staffing</span><span className="text-xs font-semibold bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full">Retention</span></div>
+                  <p className="text-gray-700 text-lg mb-6 leading-relaxed">High turnover and inconsistent service kill restaurants. We build structured training programs, define role expectations, and create a development path that improves retention, performance, and team culture.</p>
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    {['Training Programs', 'Role Expectations', 'Development Paths', 'Manager Coaching'].map(item => (<div key={item} className="flex items-start gap-3"><svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg><span className="text-gray-800 font-medium">{item}</span></div>))}
+                  </div>
+                </div>
+              </div>
+              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
+            </Link>
+            </ScrollFadeIn>
+
+            {/* Service 8 - Performance Analytics */}
+            <ScrollFadeIn>
+            <Link href="/service/performance-analytics" className="block relative overflow-hidden bg-gradient-to-r from-emerald-50 to-white rounded-2xl p-8 border-2 border-emerald-600/20 hover:border-emerald-600 hover:shadow-xl transition-all group">
+              <div className="grid md:grid-cols-[auto,1fr] gap-8 items-start">
+                <div className="w-20 h-20 bg-emerald-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0 shadow-lg">
+                  <svg className="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-3xl font-bold text-emerald-700 mb-3 group-hover:text-emerald-500 transition-colors inline-flex items-center gap-2">Performance Analytics &amp; Reporting <svg className="w-5 h-5 text-emerald-400 group-hover:text-emerald-600 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg></h3>
+                  <div className="flex gap-2 flex-wrap mb-4"><span className="text-xs font-semibold bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full">Data</span><span className="text-xs font-semibold bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full">Reporting</span></div>
+                  <p className="text-gray-700 text-lg mb-6 leading-relaxed">Most operators are flying blind. We set up the right KPIs, build simple dashboards, and establish a reporting cadence so you always know what&apos;s working, what isn&apos;t, and where to focus next.</p>
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    {['KPI Framework', 'Dashboard Setup', 'Weekly Reporting', 'Data-Driven Decisions'].map(item => (<div key={item} className="flex items-start gap-3"><svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg><span className="text-gray-800 font-medium">{item}</span></div>))}
+                  </div>
+                </div>
+              </div>
+              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
+            </Link>
+            </ScrollFadeIn>
+
+            {/* Service 9 - Implementation Support */}
+            <ScrollFadeIn delay={100}>
+            <Link href="/service/implementation-support" className="block relative overflow-hidden bg-gradient-to-r from-white to-emerald-50 rounded-2xl p-8 border-2 border-emerald-600/20 hover:border-emerald-600 hover:shadow-xl transition-all group">
+              <div className="grid md:grid-cols-[auto,1fr] gap-8 items-start">
+                <div className="w-20 h-20 bg-emerald-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0 shadow-lg">
+                  <svg className="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-3xl font-bold text-emerald-700 mb-3 group-hover:text-emerald-500 transition-colors inline-flex items-center gap-2">Implementation Support <svg className="w-5 h-5 text-emerald-400 group-hover:text-emerald-600 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg></h3>
+                  <div className="flex gap-2 flex-wrap mb-4"><span className="text-xs font-semibold bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full">Execution</span><span className="text-xs font-semibold bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full">Growth</span></div>
+                  <p className="text-gray-700 text-lg mb-6 leading-relaxed">A strategy is only as good as its execution. We stay involved through the rollout phase — helping your team adopt new processes, troubleshoot issues in real time, and ensure changes stick across your operation.</p>
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    {['Phased Rollout Planning', 'Launch Support', 'Change Management', 'Checkpoint Reviews'].map(item => (<div key={item} className="flex items-start gap-3"><svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg><span className="text-gray-800 font-medium">{item}</span></div>))}
+                  </div>
+                </div>
+              </div>
+              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
+            </Link>
+            </ScrollFadeIn>
+
+            {/* Service 10 - Monthly Reports */}
+            <ScrollFadeIn delay={150}>
+            <Link href="/service/monthly-reports" className="block relative overflow-hidden bg-gradient-to-r from-emerald-50 to-white rounded-2xl p-8 border-2 border-emerald-600/20 hover:border-emerald-600 hover:shadow-xl transition-all group">
+              <div className="grid md:grid-cols-[auto,1fr] gap-8 items-start">
+                <div className="w-20 h-20 bg-emerald-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0 shadow-lg">
+                  <svg className="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-3xl font-bold text-emerald-700 mb-3 group-hover:text-emerald-500 transition-colors inline-flex items-center gap-2">Monthly Progress Reports <svg className="w-5 h-5 text-emerald-400 group-hover:text-emerald-600 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg></h3>
+                  <div className="flex gap-2 flex-wrap mb-4"><span className="text-xs font-semibold bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full">Reporting</span><span className="text-xs font-semibold bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full">Accountability</span></div>
+                  <p className="text-gray-700 text-lg mb-6 leading-relaxed">Regular, structured reporting keeps you accountable and informed. Each month you receive a clear breakdown of key metrics, milestones hit, open action items, and our recommendations for the period ahead.</p>
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    {['Monthly KPI Review', 'Milestone Tracking', 'Action Item Follow-Up', 'Trend Analysis'].map(item => (<div key={item} className="flex items-start gap-3"><svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg><span className="text-gray-800 font-medium">{item}</span></div>))}
+                  </div>
+                </div>
+              </div>
+              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
+            </Link>
+            </ScrollFadeIn>
 
           </div>
 
-          {/* CTA Section */}
-          <div className="mt-16 text-center bg-gradient-to-r from-emerald-900/80 via-emerald-800/80 to-emerald-900/80 rounded-2xl p-12 border border-emerald-600/30">
-            <h3 className="text-3xl font-bold text-white mb-4">Ready to Transform Your Business?</h3>
-            <p className="text-gray-200 text-lg mb-8 max-w-2xl mx-auto">
-              Let's discuss which services or package best fits your needs. Schedule a free consultation
-              to get started on your growth journey.
+          {/* CTA */}
+          <div className="mt-16 text-center bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-400 rounded-2xl p-12">
+            <h3 className="text-3xl font-bold text-emerald-950 mb-4">Ready to Transform Your Business?</h3>
+            <p className="text-emerald-900 text-lg mb-8 max-w-2xl mx-auto">
+              Not sure what you need? Let&apos;s talk through it. Schedule a free consultation and we&apos;ll point you in the right direction.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="/contact" className="bg-emerald-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-emerald-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 inline-block">
-                Schedule Consultation
+              <a href="/contact" className="bg-emerald-900 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-emerald-950 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 inline-block">
+                Work With Us
               </a>
-              <a href="tel:+1234567890" className="border-2 border-emerald-400 text-emerald-400 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-emerald-400/10 transition-all inline-block">
-                Call Us Today
+              <a href="/audit" className="border-2 border-emerald-900 text-emerald-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-emerald-900/10 transition-all inline-block">
+                Take the Free Audit
               </a>
             </div>
           </div>
@@ -580,7 +645,7 @@ const ServicePage = () => {
       </section>
 
       {/* Audit Funnel Section */}
-      <section className="relative bg-emerald-950 overflow-hidden">
+      <section data-header-theme="dark" className="relative bg-emerald-950 overflow-hidden">
         <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'linear-gradient(rgba(16,185,129,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(16,185,129,0.3) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
         <div className="relative max-w-7xl mx-auto px-8 sm:px-12 lg:px-16 py-24">
 
@@ -661,15 +726,22 @@ const ServicePage = () => {
       </section>
 
       {/* FAQ Section */}
-      <section id="faq" className="bg-black border-t border-white/10 py-20">
+      <section id="faq" data-header-theme="light" className="relative bg-white border-t border-emerald-600/10 py-20">
+        {/* Grid pattern background */}
+        <div className="absolute inset-0 -z-10" style={{
+          backgroundImage: `linear-gradient(to right, rgba(5, 150, 105, 0.15) 1px, transparent 1px),
+                           linear-gradient(to bottom, rgba(5, 150, 105, 0.15) 1px, transparent 1px)`,
+          backgroundSize: '40px 40px'
+        }}></div>
+
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <div className="w-20 h-1 bg-emerald-600 mx-auto mb-6"></div>
-            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+            <h2 className="text-4xl sm:text-5xl font-bold text-emerald-900 mb-4">
               Frequently Asked
-              <span className="block text-emerald-400 mt-2">Questions</span>
+              <span className="block text-emerald-600 mt-2">Questions</span>
             </h2>
-            <p className="text-gray-300 text-lg">Everything you need to know before getting started.</p>
+            <p className="text-gray-700 text-lg">Everything you need to know before getting started.</p>
           </div>
           <FaqAccordion />
         </div>

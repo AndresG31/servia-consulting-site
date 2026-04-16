@@ -17,6 +17,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-dm-sans);
+  --font-playfair: var(--font-playfair);
 
   /* ── Remap entire emerald palette to brand colors ── */
   --color-emerald-50:  #f0fdf9;
@@ -33,11 +34,18 @@
 }
 
 /* ====== GLOBAL STYLES ====== */
+html {
+  overflow-x: hidden;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans, Arial, Helvetica, sans-serif);
-  overflow-x: hidden; /* prevent overflow from absolute decorations */
+}
+
+.font-playfair {
+  font-family: var(--font-playfair), Georgia, "Times New Roman", serif;
 }
 
 /* ====== SECTION TRANSITION ANIMATIONS ====== */
@@ -190,6 +198,30 @@ body {
   }
 }
 
+/* ====== SCROLL FADE-IN (triggered by IntersectionObserver) ====== */
+.scroll-fade-in {
+  opacity: 0;
+  transform: translateY(28px) scale(0.96);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.scroll-fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* ====== BLUR REVEAL (triggered by IntersectionObserver) ====== */
+.blur-reveal {
+  opacity: 0;
+  filter: blur(14px);
+  transform: translateY(16px) scale(0.98);
+  transition: opacity 0.9s ease-out, filter 0.9s ease-out, transform 0.9s ease-out;
+}
+.blur-reveal.is-visible {
+  opacity: 1;
+  filter: blur(0px);
+  transform: translateY(0) scale(1);
+}
+
 /* White pulsating shadow animation - both inset and outset */
 @keyframes pulse-black-shadow {
   0%, 100% {
@@ -264,24 +296,14 @@ body {
 
 /* Fade in animation for black background filter */
 @keyframes fadeInDelayed {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
-/* Slide in from left animation for text elements */
+/* Slide in from left — homepage hero (2s delay for video intro) */
 @keyframes slideInDelayed {
-  0% {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  0% { opacity: 0; transform: translateX(-30px); }
+  100% { opacity: 1; transform: translateX(0); }
 }
 
 .animate-fade-in-delayed {
@@ -291,6 +313,20 @@ body {
 .animate-slide-in-delayed {
   animation: slideInDelayed 0.8s ease-out forwards;
   animation-delay: 2s;
+}
+
+/* Slide up — inner page heroes (no long wait) */
+@keyframes slideUpEnter {
+  0% { opacity: 0; transform: translateY(32px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.animate-page-hero {
+  animation: slideUpEnter 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-fade-in-page {
+  animation: fadeInDelayed 0.8s ease-out forwards;
 }
 
 /* ====== ACCESSIBILITY ====== */
@@ -555,6 +591,33 @@ body {
   animation: toast-in 0.3s ease-out forwards;
 }
 
+/* ====== PROCESS CTA GLOW PULSE ====== */
+@keyframes processCTAGlow {
+  0%, 100% { box-shadow: 0 0 12px 2px rgba(16,185,129,0.35), 0 4px 20px rgba(16,185,129,0.2); }
+  50%       { box-shadow: 0 0 28px 6px rgba(16,185,129,0.65), 0 4px 32px rgba(16,185,129,0.4); }
+}
+.animate-process-cta-glow {
+  animation: processCTAGlow 2.4s ease-in-out infinite;
+}
+
+/* ====== STICKY PROCESS STEP ENTER ====== */
+@keyframes stepEnter {
+  0%   { opacity: 0; transform: translateY(14px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.animate-step-enter {
+  animation: stepEnter 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ====== CURSOR BLINK ====== */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
 /* ====== COOKIE CONSENT SLIDE UP ====== */
 @keyframes slide-up-cookie {
   0% { transform: translateY(100%); }
@@ -562,4 +625,22 @@ body {
 }
 .animate-slide-up-cookie {
   animation: slide-up-cookie 0.4s ease-out forwards;
+}
+
+/* ====== PROGRESS BAR SHIMMER ====== */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+/* ====== AUDIT ITEM HOVER GLOW ====== */
+@keyframes item-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(5, 150, 105, 0); }
+  50% { box-shadow: 0 0 20px 2px rgba(5, 150, 105, 0.3); }
+}
+.animate-item-glow {
+  animation: item-glow 2s ease-in-out infinite;
 }

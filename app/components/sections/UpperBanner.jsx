@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 const UpperBanner = () => {
   return (
-    <section className="relative bg-white py-16 overflow-hidden border-b border-gray-100">
+    <section data-header-theme="light" className="relative bg-white py-16 overflow-hidden border-b border-gray-100">
       {/* Decorative background elements */}
       <div className="absolute top-1/2 left-0 w-96 h-96 bg-emerald-600/5 rounded-full blur-3xl -translate-y-1/2"></div>
       <div className="absolute top-1/2 right-0 w-96 h-96 bg-emerald-600/5 rounded-full blur-3xl -translate-y-1/2"></div>

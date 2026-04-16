@@ -91,6 +91,19 @@ export const auditCategories = [
     ],
   },
   {
+    id: 'maintenance',
+    title: 'Maintenance & Preventative Care',
+    description: 'Assess how well your kitchen equipment, facilities, and systems are maintained to prevent costly downtime.',
+    items: [
+      { id: 'mnt1', label: 'A written preventative maintenance schedule exists for all major kitchen equipment' },
+      { id: 'mnt2', label: 'Equipment service logs are kept and reviewed regularly (fryers, ovens, refrigeration, HVAC)' },
+      { id: 'mnt3', label: 'Hood and exhaust systems are professionally cleaned on a documented schedule' },
+      { id: 'mnt4', label: 'Refrigeration units are checked and calibrated regularly to ensure proper temperature holding' },
+      { id: 'mnt5', label: 'A preferred vendor or service contract is in place for emergency equipment repairs' },
+      { id: 'mnt6', label: 'Deep cleaning protocols for kitchen equipment are followed on a weekly and monthly basis' },
+    ],
+  },
+  {
     id: 'compliance',
     title: 'Compliance & Safety',
     description: 'Confirm your operation is legally protected and safety-certified.',

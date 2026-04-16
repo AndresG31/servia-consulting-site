@@ -1,9 +1,11 @@
 
 import HeroSection from "./components/sections/HeroSection";
 import UpperBanner from "./components/sections/UpperBanner";
+import ClientLogos from "./components/sections/ClientLogos";
+import BigStats from "./components/sections/BigStats";
 import TestimonialBanner from "./components/sections/TestimonialBanner";
 import MiddleBanner from "./components/sections/MiddleBanner";
-import ContentSection from "./components/sections/ContentSection";
+import StickyProcess from "./components/sections/StickyProcess";
 import LowerBanner from "./components/sections/LowerBanner";
 import Footer from "./components/layout/Footer";
 
@@ -12,9 +14,11 @@ export default function Home() {
     <div className="font-sans">
       <HeroSection />
       <UpperBanner />
+      <ClientLogos />
+      <BigStats />
       <TestimonialBanner />
       <MiddleBanner />
-      <ContentSection />
+      <StickyProcess />
       <LowerBanner />
       <Footer />
     </div>

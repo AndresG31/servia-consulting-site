@@ -1,9 +1,10 @@
 import React from 'react'
 import Image from 'next/image';
+import Link from 'next/link';
 
 const ContentSection = () => {
   return (
-    <section className="relative bg-white py-20 overflow-hidden section-transition section-delay-2">
+    <section data-header-theme="light" className="relative bg-white py-20 overflow-hidden section-transition section-delay-2">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
 
@@ -65,12 +66,12 @@ const ContentSection = () => {
 
             {/* CTA Button */}
             <div className="pt-4 fade-slide-up text-delay-8">
-              <button className="bg-emerald-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-emerald-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 inline-flex items-center gap-3">
+              <Link href="/about" className="bg-emerald-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-emerald-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 inline-flex items-center gap-3">
                 Learn More About Our Process
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-              </button>
+              </Link>
             </div>
           </div>
 
@@ -123,8 +124,8 @@ const ContentSection = () => {
 
               <div className="absolute top-1/4 -left-3 bg-white rounded-lg px-4 py-2 shadow-lg border-2 border-emerald-200">
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-emerald-600">500+</div>
-                  <div className="text-xs text-gray-600 font-medium">Projects</div>
+                  <div className="text-2xl font-bold text-emerald-600">50+</div>
+                  <div className="text-xs text-gray-600 font-medium">Clients Served</div>
                 </div>
               </div>
             </div>

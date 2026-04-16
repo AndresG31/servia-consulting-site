@@ -12,7 +12,7 @@ export default function CustomSelect({ id, name, value, onChange, options, place
     return () => document.removeEventListener('mousedown', handler)
   }, [])
 
-  const selected = options.find(o => o.value === value)
+  const selected = options.find(o => !o.disabled && o.value === value)
 
   return (
     <div ref={ref} className="relative">
@@ -31,14 +31,23 @@ export default function CustomSelect({ id, name, value, onChange, options, place
       </button>
       {open && (
         <ul className="absolute z-50 w-full mt-1 bg-emerald-900 border border-emerald-700 rounded-lg shadow-xl overflow-hidden max-h-60 overflow-y-auto">
-          {options.map(o => (
-            <li
-              key={o.value}
-              onClick={() => { onChange(o.value); setOpen(false) }}
-              className={`px-4 py-2.5 cursor-pointer text-sm transition-colors ${value === o.value ? 'bg-emerald-600 text-white' : 'text-white hover:bg-emerald-700'}`}
-            >
-              {o.label}
-            </li>
+          {options.map((o, i) => (
+            o.disabled ? (
+              <li
+                key={`${o.label}-${i}`}
+                className="px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-emerald-400 select-none"
+              >
+                {o.label}
+              </li>
+            ) : (
+              <li
+                key={o.value}
+                onClick={() => { onChange(o.value); setOpen(false) }}
+                className={`px-4 py-2.5 cursor-pointer text-sm transition-colors ${value === o.value ? 'bg-emerald-600 text-white' : 'text-white hover:bg-emerald-700'}`}
+              >
+                {o.label}
+              </li>
+            )
           ))}
         </ul>
       )}

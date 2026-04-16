@@ -1,12 +1,14 @@
 import chromium from '@sparticuz/chromium-min'
 import puppeteer from 'puppeteer-core'
+import fs from 'fs'
+import path from 'path'
 import {
   auditCategories,
   getPerformanceBand,
   getCategoryBand,
 } from '../audit/auditData'
 
-export function buildHtml(scores) {
+export function buildHtml(scores, logoBase64 = null) {
   const totalItems = auditCategories.reduce((acc, cat) => acc + cat.items.length, 0)
   const answeredItems = Object.keys(scores).length
   const totalScore = Object.values(scores).reduce((acc, v) => acc + v, 0)
@@ -62,7 +64,7 @@ export function buildHtml(scores) {
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: Arial, sans-serif; padding: 40px 48px; color: #111; background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; font-size: 13px; min-height: 1123px; display: flex; flex-direction: column; }
-    .header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 3px solid #059669; }
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 3px solid #059669; }
     .header h1 { color: #065f46; font-size: 22px; font-weight: 900; margin-bottom: 3px; }
     .header .subtitle { color: #6b7280; font-size: 12px; }
     .header .date { font-size: 11px; color: #9ca3af; }
@@ -105,8 +107,11 @@ export function buildHtml(scores) {
     <div>
       <h1>Restaurant Audit Framework</h1>
       <div class="subtitle">Servia Consulting — Diagnostic Report</div>
+      <div class="date">${dateStr}</div>
     </div>
-    <div class="date">${dateStr}</div>
+    <div>
+      ${logoBase64 ? `<img src="data:image/png;base64,${logoBase64}" style="height:100px;display:block;" alt="Servia Consulting" />` : ''}
+    </div>
   </div>
   <div class="score-hero">
     <div class="score-num" style="color:${bandHex}">${overallPct}%</div>
@@ -169,7 +174,12 @@ export function buildHtml(scores) {
 }
 
 export async function generatePdf(scores) {
-  const html = buildHtml(scores)
+  let logoBase64 = null
+  try {
+    const logoPath = path.join(process.cwd(), 'public/assets/logos/servia-isotipo-ai12.png')
+    logoBase64 = fs.readFileSync(logoPath).toString('base64')
+  } catch {}
+  const html = buildHtml(scores, logoBase64)
   const isLocal = process.env.NODE_ENV === 'development'
 
   const browser = await puppeteer.launch({

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Header from "./components/layout/Header";
 import ScrollProgress from "./components/ui/ScrollProgress";
@@ -7,6 +8,12 @@ import BackToTop from "./components/ui/BackToTop";
 import CookieConsent from "./components/ui/CookieConsent";
 import PageTransition from "./components/ui/PageTransition";
 import TawkTo from "./components/ui/TawkTo";
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
+  display: "swap",
+});
 
 const stackSans = localFont({
   src: [
@@ -47,7 +54,7 @@ export default function RootLayout({
     
       <body
         suppressHydrationWarning
-        className={`${stackSans.variable} antialiased pt-[92px]`}
+        className={`${stackSans.variable} ${playfair.variable} antialiased pt-[92px]`}
       >
          <ScrollProgress />
         <Header/>

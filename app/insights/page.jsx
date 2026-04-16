@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Footer from '../components/layout/Footer'
+import ScrollFadeIn from '../components/ui/ScrollFadeIn'
 
 const InsightsPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('All')
@@ -11,6 +12,9 @@ const InsightsPage = () => {
   const [placeholderText, setPlaceholderText] = useState('')
   const [activePhraseIndex, setActivePhraseIndex] = useState(0)
   const [previewFading, setPreviewFading] = useState(false)
+  const [showSuggestModal, setShowSuggestModal] = useState(false)
+  const [suggestForm, setSuggestForm] = useState({ name: '', email: '', source: '', url: '', category: '', reason: '' })
+  const [suggestStatus, setSuggestStatus] = useState(null)
 
   const scrollToFeatured = () => {
     const target = document.getElementById('featured-sources')
@@ -355,7 +359,7 @@ const InsightsPage = () => {
   }, [])
 
   return (
-    <div className="min-h-screen bg-emerald-950 relative overflow-hidden">
+    <div className="-mt-[92px] min-h-screen bg-emerald-950 relative overflow-x-hidden">
       {/* Starfield Background - Fixed across entire page */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         {/* Animated gradient background */}
@@ -402,31 +406,47 @@ const InsightsPage = () => {
 
       {/* Hero Section with Animated Background */}
       <section className="relative overflow-visible min-h-[700px] pb-32">
-        {/* Black transparent overlay */}
-        <div className="absolute inset-0 bg-black/30 z-0" />
+        {/* Video Background */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            className="absolute inset-0 w-full h-full object-cover"
+          >
+            <source src="/assets/insights/insights-hero.mp4" type="video/mp4" />
+          </video>
+        </div>
+        {/* Dark overlay over video */}
+        <div className="absolute inset-0 bg-black/60 z-0" />
 
         {/* Content */}
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 z-10">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-16 lg:pt-44 z-10">
           <div className="text-center">
-            <div className="inline-block mb-8">
+            <div className="inline-block mb-8 opacity-0 animate-page-hero">
               <button
                 onClick={scrollToFeatured}
-                className="flex items-center gap-2 bg-emerald-600/20 border border-emerald-600/30 rounded-full px-6 py-2 backdrop-blur-sm hover:bg-emerald-600/30 transition-colors cursor-pointer"
+                className="group flex items-center gap-2 bg-emerald-600/20 border border-emerald-600/30 rounded-full px-6 py-2 backdrop-blur-sm hover:bg-emerald-600/30 transition-colors cursor-pointer"
               >
                 <span className="relative flex h-3 w-3">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
                 </span>
                 <span className="text-emerald-400 text-sm font-semibold">Live News Sources</span>
+                <svg className="w-3.5 h-3.5 text-emerald-400 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
               </button>
             </div>
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 opacity-0 animate-page-hero" style={{ animationDelay: '0.15s' }}>
               Your Business
               <span className="block mt-2 bg-gradient-to-r from-emerald-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
                 News Hub
               </span>
             </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12">
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12 opacity-0 animate-page-hero" style={{ animationDelay: '0.3s' }}>
               Discover hand-picked news sources from the world's leading business publications.
               Stay informed, stay ahead.
             </p>
@@ -559,13 +579,13 @@ const InsightsPage = () => {
                     </div>
 
                     {/* Logo — right */}
-                    <div className="w-72 sm:w-96 flex-shrink-0 relative bg-white">
+                    <div className="w-24 sm:w-40 md:w-56 lg:w-72 flex-shrink-0 relative bg-white">
                       {previewSource.iconImage ? (
                         <Image
                           src={previewSource.iconImage}
                           alt={`${previewSource.name} logo`}
                           fill
-                          className={`object-contain ${previewSource.logoPadding ?? 'p-4'}`}
+                          className={`object-contain ${previewSource.logoPadding ?? 'p-3'}`}
                         />
                       ) : (
                         <div className="absolute inset-0 flex items-center justify-center text-8xl">
@@ -599,6 +619,80 @@ const InsightsPage = () => {
         </div>
       </section>
 
+      {/* From Servia - Original Articles */}
+      <section className="relative bg-transparent py-20">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+          <div className="flex items-center gap-4 mb-12">
+            <div className="w-12 h-1 bg-emerald-500"></div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white">From Servia</h2>
+            <span className="text-sm font-semibold text-emerald-400 bg-emerald-400/10 border border-emerald-400/30 px-3 py-1 rounded-full">Original</span>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+
+            {/* Article 1 */}
+            <ScrollFadeIn>
+            <div className="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:border-emerald-500/40 hover:bg-white/8 transition-all duration-300">
+              <div className="h-2 bg-gradient-to-r from-emerald-500 to-emerald-400"></div>
+              <div className="p-7">
+                <span className="text-xs font-semibold text-emerald-400 bg-emerald-400/10 px-3 py-1 rounded-full">Operations</span>
+                <h3 className="text-xl font-bold text-white mt-4 mb-3 leading-snug group-hover:text-emerald-300 transition-colors">
+                  The 5 Numbers Every Restaurant Owner Must Know (But Most Don&apos;t Track)
+                </h3>
+                <p className="text-gray-400 text-sm leading-relaxed mb-5">
+                  Food cost, labor cost, prime cost, check average, table turn rate — if you can&apos;t recite these off the top of your head, you&apos;re flying blind. Here&apos;s what each one means and why it matters.
+                </p>
+                <div className="flex items-center justify-between pt-4 border-t border-white/10">
+                  <span className="text-xs text-gray-500">By Andres Gutierrez · 5 min read</span>
+                  <span className="text-xs text-emerald-500 font-semibold">Coming Soon</span>
+                </div>
+              </div>
+            </div>
+            </ScrollFadeIn>
+
+            {/* Article 2 */}
+            <ScrollFadeIn delay={100}>
+            <div className="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:border-emerald-500/40 hover:bg-white/8 transition-all duration-300">
+              <div className="h-2 bg-gradient-to-r from-blue-500 to-blue-400"></div>
+              <div className="p-7">
+                <span className="text-xs font-semibold text-blue-400 bg-blue-400/10 px-3 py-1 rounded-full">Staffing</span>
+                <h3 className="text-xl font-bold text-white mt-4 mb-3 leading-snug group-hover:text-blue-300 transition-colors">
+                  Why Your Best Employees Are Leaving — And How to Stop the Cycle
+                </h3>
+                <p className="text-gray-400 text-sm leading-relaxed mb-5">
+                  High turnover is expensive, demoralizing, and almost always preventable. We break down the real reasons staff leave and share the retention framework we use with our clients.
+                </p>
+                <div className="flex items-center justify-between pt-4 border-t border-white/10">
+                  <span className="text-xs text-gray-500">By Andres Gutierrez · 7 min read</span>
+                  <span className="text-xs text-blue-500 font-semibold">Coming Soon</span>
+                </div>
+              </div>
+            </div>
+            </ScrollFadeIn>
+
+            {/* Article 3 */}
+            <ScrollFadeIn delay={200}>
+            <div className="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:border-emerald-500/40 hover:bg-white/8 transition-all duration-300">
+              <div className="h-2 bg-gradient-to-r from-purple-500 to-purple-400"></div>
+              <div className="p-7">
+                <span className="text-xs font-semibold text-purple-400 bg-purple-400/10 px-3 py-1 rounded-full">Menu Strategy</span>
+                <h3 className="text-xl font-bold text-white mt-4 mb-3 leading-snug group-hover:text-purple-300 transition-colors">
+                  Menu Engineering 101: How to Make Your Menu Work Harder for You
+                </h3>
+                <p className="text-gray-400 text-sm leading-relaxed mb-5">
+                  Most menus are an afterthought. The best ones are precision tools for profitability. Learn the four quadrants of menu engineering and how to use them to increase your average check.
+                </p>
+                <div className="flex items-center justify-between pt-4 border-t border-white/10">
+                  <span className="text-xs text-gray-500">By Andres Gutierrez · 6 min read</span>
+                  <span className="text-xs text-purple-500 font-semibold">Coming Soon</span>
+                </div>
+              </div>
+            </div>
+            </ScrollFadeIn>
+
+          </div>
+        </div>
+      </section>
+
       {/* Newsletter/CTA Section */}
       <section className="relative bg-transparent py-20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-emerald-900/10 via-transparent to-purple-900/10 pointer-events-none"></div>
@@ -626,15 +720,15 @@ const InsightsPage = () => {
                 </svg>
                 Bookmark This Page
               </button>
-              <a
-                href="/contact"
+              <button
+                onClick={() => { setSuggestStatus(null); setShowSuggestModal(true) }}
                 className="border-2 border-emerald-400 text-emerald-400 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-emerald-400/10 transition-all inline-flex items-center justify-center gap-2"
               >
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                 </svg>
                 Suggest a Source
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -650,9 +744,37 @@ const InsightsPage = () => {
             <h2 className="text-3xl font-bold text-white mb-4">
               Featured Sources
             </h2>
-            <p className="text-gray-400">
+            <p className="text-gray-400 mb-6">
               Our top recommendations for essential business news
             </p>
+            <button
+              onClick={() => {
+                const target = document.getElementById('news-library')
+                if (!target) return
+                const start = window.scrollY
+                const end = target.getBoundingClientRect().top + window.scrollY - 80
+                const duration = 900
+                const startTime = performance.now()
+                const easeOutQuart = (t) => 1 - Math.pow(1 - t, 4)
+                const animate = (now) => {
+                  const elapsed = now - startTime
+                  const progress = Math.min(elapsed / duration, 1)
+                  window.scrollTo(0, start + (end - start) * easeOutQuart(progress))
+                  if (progress < 1) requestAnimationFrame(animate)
+                }
+                requestAnimationFrame(animate)
+              }}
+              className="group flex items-center gap-2 bg-emerald-600/20 border border-emerald-600/30 rounded-full px-6 py-2 backdrop-blur-sm hover:bg-emerald-600/30 transition-colors cursor-pointer mx-auto"
+            >
+              <span className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+              </span>
+              <span className="text-emerald-400 text-sm font-semibold">Live News Sources Library</span>
+              <svg className="w-3.5 h-3.5 text-emerald-400 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
           </div>
 
           {/* Bento Grid Layout */}
@@ -738,12 +860,12 @@ const InsightsPage = () => {
                   <div className="relative z-10">
                     <div className="flex items-start justify-between mb-4">
                       {source.iconImage ? (
-                        <div className="w-20 h-20 relative flex-shrink-0 rounded-xl overflow-hidden bg-white">
+                        <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 relative flex-shrink-0 rounded-xl overflow-hidden bg-white">
                           <Image
                             src={source.iconImage}
                             alt={`${source.name} logo`}
                             fill
-                            className={`object-contain ${source.logoPadding ?? 'p-2'}`}
+                            className={`object-contain ${source.logoPadding ?? 'p-1'}`}
                           />
                         </div>
                       ) : null}
@@ -777,7 +899,7 @@ const InsightsPage = () => {
       )}
 
       {/* Business News Hub Library Title */}
-      <section className="relative bg-transparent pt-16 pb-4">
+      <section id="news-library" className="relative bg-transparent pt-16 pb-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="w-16 h-1 bg-emerald-600 mx-auto mb-6" />
           <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
@@ -881,7 +1003,7 @@ const InsightsPage = () => {
                             src={source.iconImage}
                             alt={`${source.name} logo`}
                             fill
-                            className={`object-contain ${source.logoPadding ?? 'p-2'}`}
+                            className={`object-contain ${source.logoPadding ?? 'p-1'}`}
                           />
                         </div>
                       ) : (
@@ -972,6 +1094,152 @@ const InsightsPage = () => {
       <Footer />
       </div>
       {/* End Content Wrapper */}
+
+      {/* Suggest a Source Modal */}
+      {showSuggestModal && (
+        <div className="fixed inset-0 z-[300] flex items-center justify-center px-4">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setShowSuggestModal(false)} />
+          <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-lg mx-auto p-8">
+
+            {/* Close */}
+            <button onClick={() => setShowSuggestModal(false)} className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors">
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            {/* Header */}
+            <div className="mb-6">
+              <div className="w-12 h-1 bg-emerald-600 mb-4" />
+              <h2 className="text-2xl font-bold text-gray-900">Suggest a Source</h2>
+              <p className="text-gray-500 text-sm mt-1">Know a great publication or resource? Let us know and we'll review it for our library.</p>
+            </div>
+
+            {suggestStatus === 'success' ? (
+              <div className="text-center py-8">
+                <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Thank you!</h3>
+                <p className="text-gray-500 text-sm">Your suggestion has been submitted. We'll review it and may add it to our library.</p>
+                <button onClick={() => setShowSuggestModal(false)} className="mt-6 bg-emerald-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-emerald-700 transition-colors">Close</button>
+              </div>
+            ) : (
+              <form
+                onSubmit={async (e) => {
+                  e.preventDefault()
+                  try {
+                    const res = await fetch('/api/suggest-source', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify(suggestForm),
+                    })
+                    if (res.ok) {
+                      setSuggestStatus('success')
+                      setSuggestForm({ name: '', email: '', source: '', url: '', category: '', reason: '' })
+                    } else {
+                      setSuggestStatus('error')
+                    }
+                  } catch {
+                    setSuggestStatus('error')
+                  }
+                }}
+                className="space-y-4"
+              >
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+                    <input
+                      type="text"
+                      required
+                      value={suggestForm.name}
+                      onChange={e => setSuggestForm(p => ({ ...p, name: e.target.value }))}
+                      className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                      placeholder="John Smith"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Your Email</label>
+                    <input
+                      type="email"
+                      required
+                      value={suggestForm.email}
+                      onChange={e => setSuggestForm(p => ({ ...p, email: e.target.value }))}
+                      className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                      placeholder="you@example.com"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Source / Publication Name <span className="text-red-500">*</span></label>
+                  <input
+                    type="text"
+                    required
+                    value={suggestForm.source}
+                    onChange={e => setSuggestForm(p => ({ ...p, source: e.target.value }))}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                    placeholder="e.g. Nation's Restaurant News"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Website URL</label>
+                  <input
+                    type="url"
+                    value={suggestForm.url}
+                    onChange={e => setSuggestForm(p => ({ ...p, url: e.target.value }))}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                    placeholder="https://..."
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                  <select
+                    value={suggestForm.category}
+                    onChange={e => setSuggestForm(p => ({ ...p, category: e.target.value }))}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent bg-white"
+                  >
+                    <option value="">Select a category...</option>
+                    <option>Restaurant Industry</option>
+                    <option>Business Strategy</option>
+                    <option>Finance</option>
+                    <option>Marketing</option>
+                    <option>Operations</option>
+                    <option>Technology</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Why do you recommend it?</label>
+                  <textarea
+                    rows={3}
+                    value={suggestForm.reason}
+                    onChange={e => setSuggestForm(p => ({ ...p, reason: e.target.value }))}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent resize-none"
+                    placeholder="Briefly describe why this source is valuable..."
+                  />
+                </div>
+
+                {suggestStatus === 'error' && (
+                  <p className="text-red-500 text-sm">Something went wrong. Please try again.</p>
+                )}
+
+                <button
+                  type="submit"
+                  className="w-full bg-emerald-600 text-white py-3 rounded-lg font-semibold hover:bg-emerald-700 transition-colors"
+                >
+                  Submit Suggestion
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   )
 }

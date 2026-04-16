@@ -4,28 +4,34 @@ import Link from 'next/link'
 
 const testimonials = [
   {
-    quote: "Servia Consulting transformed our entire business strategy. Their insights were invaluable and the results exceeded our expectations.",
-    name: "Michael Rodriguez",
-    title: "CEO, TechVision Inc.",
+    quote: "Within 3 months of working with Servia, our food cost dropped from 38% to 29% and we finally understood where every dollar was going. The menu engineering work alone paid for the whole engagement.",
+    name: "Maria Santos",
+    title: "Owner, La Casa Restaurant",
     initial: "M"
   },
   {
-    quote: "Working with Servia was a game-changer. They understood our challenges and delivered solutions that drove real, measurable growth.",
-    name: "Jennifer Chen",
-    title: "COO, Global Dynamics",
+    quote: "We'd tried to fix our staffing problems for years. Servia built us a real training program and our turnover dropped by more than half. My team actually feels like a team now.",
+    name: "James Harrington",
+    title: "General Manager, The Harbor Grill",
     initial: "J"
   },
   {
-    quote: "The team's strategic approach helped us navigate complex market conditions and emerge stronger than ever. Highly recommend!",
-    name: "David Thompson",
-    title: "Founder, Innovate Labs",
+    quote: "I didn't know what I didn't know. The business assessment surfaced three revenue leaks I'd been ignoring for years. We recovered over $40k in the first quarter.",
+    name: "Rachel Kim",
+    title: "Owner, Spice Garden",
+    initial: "R"
+  },
+  {
+    quote: "Andres has been in the trenches — he gets how restaurants actually work. The plan he built wasn't theory, it was actionable from day one. We hit our growth target ahead of schedule.",
+    name: "David Okonkwo",
+    title: "Owner, Uptown Bistro",
     initial: "D"
   },
   {
-    quote: "Professional, insightful, and results-driven. Servia Consulting delivered beyond what we thought was possible.",
-    name: "Sarah Williams",
-    title: "VP Operations, Sterling Group",
-    initial: "S"
+    quote: "Before Servia, I was making every decision by gut. Now I have a dashboard, a maintenance schedule, and a team that knows exactly what to do. My stress level is half of what it was.",
+    name: "Carmen Reyes",
+    title: "Owner, Mesa Verde Kitchen",
+    initial: "C"
   }
 ]
 
@@ -53,7 +59,7 @@ const TestimonialBanner = () => {
   const t = testimonials[current]
 
   return (
-    <section className="relative bg-gradient-to-br from-emerald-600 via-emerald-500 to-emerald-600 py-20 overflow-hidden section-transition section-delay-1">
+    <section data-header-theme="dark" className="relative bg-gradient-to-br from-emerald-600 via-emerald-500 to-emerald-600 py-20 overflow-hidden section-transition section-delay-1">
       {/* Decorative Background Elements */}
       <div className="absolute top-0 left-0 w-72 h-72 bg-emerald-400/20 rounded-full blur-3xl z-0"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-emerald-700/20 rounded-full blur-3xl z-0"></div>

@@ -2,13 +2,8 @@
 
 import React, { useRef, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
-import emailjs from '@emailjs/browser'
 import CustomSelect from './ui/CustomSelect'
 import Toast from './ui/Toast'
-
-const SERVICE_ID  = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
-const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
-const PUBLIC_KEY  = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
 
 export default function ContactForm() {
   const formRef = useRef(null)
@@ -40,11 +35,22 @@ export default function ContactForm() {
   ]
 
   const serviceOptions = [
-    { value: 'package1', label: 'Package 1 - Foundation' },
-    { value: 'package2', label: 'Package 2 - Growth' },
-    { value: 'package3', label: 'Package 3 - Enterprise' },
-    { value: 'assessment', label: 'Business Assessment' },
-    { value: 'consulting', label: 'In-Field Consulting' },
+    { value: '', label: '— Packages —', disabled: true },
+    { value: 'package1', label: 'Package 1 – Foundation' },
+    { value: 'package2', label: 'Package 2 – Growth' },
+    { value: 'package3', label: 'Package 3 – Enterprise' },
+    { value: '', label: '— À La Carte —', disabled: true },
+    { value: 'business-assessment', label: 'Business Assessment' },
+    { value: 'plan-of-action', label: 'Custom Plan of Action' },
+    { value: 'restaurant-maintenance', label: 'Restaurant Maintenance' },
+    { value: 'revenue-optimization', label: 'Revenue Optimization Strategy' },
+    { value: 'menu-engineering', label: 'Menu Engineering & Pricing' },
+    { value: 'staff-training', label: 'Staff Training & Development' },
+    { value: 'performance-analytics', label: 'Performance Analytics & Reporting' },
+    { value: 'in-field-consultant', label: 'In-Field Consultant' },
+    { value: 'implementation-support', label: 'Implementation Support' },
+    { value: 'monthly-reports', label: 'Monthly Progress Reports' },
+    { value: '', label: '———', disabled: true },
     { value: 'other', label: 'Other' },
   ]
 
@@ -52,13 +58,27 @@ export default function ContactForm() {
     e.preventDefault()
     setStatus('loading')
 
+    const data = Object.fromEntries(new FormData(formRef.current))
+    data.restaurantType = restaurantType
+    data.service = service
+
     try {
-      await emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, PUBLIC_KEY)
-      setStatus('success')
-      formRef.current.reset()
-      setTimeout(() => setStatus('idle'), 4500)
-    } catch (err) {
-      console.error('EmailJS error:', err)
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+      if (res.ok) {
+        setStatus('success')
+        formRef.current.reset()
+        setRestaurantType('')
+        setService('')
+        setTimeout(() => setStatus('idle'), 4500)
+      } else {
+        setStatus('error')
+        setTimeout(() => setStatus('idle'), 4500)
+      }
+    } catch {
       setStatus('error')
       setTimeout(() => setStatus('idle'), 4500)
     }

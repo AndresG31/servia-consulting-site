@@ -7,23 +7,23 @@ const ContactPage = () => {
     <div className="min-h-screen bg-emerald-950">
 
       {/* Hero Section */}
-      <section className="relative bg-emerald-950 overflow-hidden min-h-[400px]">
-        {/* Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-950"></div>
+      <section data-header-theme="dark" className="relative bg-emerald-950 overflow-hidden min-h-[400px] -mt-[92px]">
+        {/* Crystal clear frosted glass background */}
+        <div className="absolute inset-0 bg-white/5 backdrop-blur-md"></div>
 
         {/* Decorative elements */}
         <div className="absolute top-1/2 left-0 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl -translate-y-1/2"></div>
         <div className="absolute top-1/2 right-0 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl -translate-y-1/2"></div>
 
         {/* Content */}
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 z-10">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-20 lg:pt-44 z-10">
           <div className="text-center">
-            <div className="w-20 h-1 bg-emerald-600 mx-auto mb-8"></div>
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
+            <div className="w-20 h-1 bg-emerald-600 mx-auto mb-8 opacity-0 animate-page-hero"></div>
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 opacity-0 animate-page-hero" style={{ animationDelay: '0.15s' }}>
               Get in
               <span className="block text-emerald-400 mt-2">Touch</span>
             </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto opacity-0 animate-page-hero" style={{ animationDelay: '0.3s' }}>
               Ready to transform your business? Let's start the conversation. Our team is here to answer
               your questions and help you find the perfect solution.
             </p>
@@ -32,7 +32,14 @@ const ContactPage = () => {
       </section>
 
       {/* Contact Form & Info Section */}
-      <section className="relative bg-white py-20">
+      <section data-header-theme="light" className="relative bg-white py-20">
+        {/* Grid pattern background */}
+        <div className="absolute inset-0 -z-10" style={{
+          backgroundImage: `linear-gradient(to right, rgba(5, 150, 105, 0.15) 1px, transparent 1px),
+                           linear-gradient(to bottom, rgba(5, 150, 105, 0.15) 1px, transparent 1px)`,
+          backgroundSize: '40px 40px'
+        }}></div>
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12">
 
@@ -89,7 +96,7 @@ const ContactPage = () => {
                     <div>
                       <h3 className="font-bold text-white text-lg mb-1">Location</h3>
                       <p className="text-gray-300">
-                        Rio Grande Valley, Texas<br />
+                        San Antonio, Texas<br />
                         Serving businesses nationwide
                       </p>
                     </div>
@@ -137,23 +144,23 @@ const ContactPage = () => {
       </section>
 
       {/* Google Maps Section */}
-      <section className="relative bg-gray-100 py-20">
+      <section data-header-theme="light" className="relative bg-gray-100 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <div className="w-20 h-1 bg-emerald-600 mx-auto mb-6"></div>
             <h2 className="text-4xl sm:text-5xl font-bold text-emerald-700 mb-4">
-              Visit Us in the
-              <span className="block text-emerald-600 mt-2">Rio Grande Valley</span>
+              Visit Us in
+              <span className="block text-emerald-600 mt-2">San Antonio</span>
             </h2>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-              Located in the heart of the Rio Grande Valley, serving businesses across Texas and beyond.
+              Located in the heart of San Antonio, serving businesses across Texas and beyond.
             </p>
           </div>
 
           {/* Google Maps Embed */}
           <div className="rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d456394.0357708937!2d-98.36243834374999!3d26.19603!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x866f7f4b1f5b7b4d%3A0x7b1c3b4e5b6b7b4d!2sRio%20Grande%20Valley%2C%20TX!5e0!3m2!1sen!2sus!4v1234567890"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d224344.55019498!2d-98.69682!3d29.4241!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x865c58af04d00ebd%3A0xef44c7e0abe90dcc!2sSan%20Antonio%2C%20TX!5e0!3m2!1sen!2sus!4v1234567890"
               width="100%"
               height="500"
               style={{ border: 0 }}
