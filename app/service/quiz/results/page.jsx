@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, Suspense } from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import Footer from '../../../components/layout/Footer'
@@ -30,7 +30,7 @@ const pkgBadge = {
   purple:  'text-purple-400',
 }
 
-export default function QuizResultsPage() {
+function QuizResultsContent() {
   const searchParams = useSearchParams()
   const [results, setResults] = useState([])
   const [loading, setLoading] = useState(true)
@@ -282,5 +282,17 @@ export default function QuizResultsPage() {
 
       <Footer />
     </div>
+  )
+}
+
+export default function QuizResultsPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-emerald-950 flex items-center justify-center">
+        <div className="text-white text-xl">Loading your results...</div>
+      </div>
+    }>
+      <QuizResultsContent />
+    </Suspense>
   )
 }
