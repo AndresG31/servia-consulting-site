@@ -2,12 +2,15 @@
 
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import Footer from '../components/layout/Footer'
 import ScrollFadeIn from '../components/ui/ScrollFadeIn'
+import { getFeaturedPosts } from '../lib/sanity'
 
 const InsightsPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [searchTerm, setSearchTerm] = useState('')
+  const [sanityPosts, setSanityPosts] = useState([])
   const [showDropdown, setShowDropdown] = useState(false)
   const [placeholderText, setPlaceholderText] = useState('')
   const [activePhraseIndex, setActivePhraseIndex] = useState(0)
@@ -96,6 +99,21 @@ const InsightsPage = () => {
     timeout = setTimeout(type, 800)
     return () => clearTimeout(timeout)
   // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  // Fetch Sanity blog posts
+  useEffect(() => {
+    async function fetchSanityPosts() {
+      try {
+        const posts = await getFeaturedPosts(3)
+        if (posts && posts.length > 0) {
+          setSanityPosts(posts)
+        }
+      } catch (error) {
+        console.warn('Sanity not configured yet:', error.message)
+      }
+    }
+    fetchSanityPosts()
   }, [])
 
   // Curated business news sources
@@ -628,67 +646,103 @@ const InsightsPage = () => {
             <span className="text-sm font-semibold text-emerald-400 bg-emerald-400/10 border border-emerald-400/30 px-3 py-1 rounded-full">Original</span>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
+            {sanityPosts.length > 0 ? (
+              sanityPosts.map((post, index) => {
+                const colors = [
+                  { gradient: 'from-emerald-500 to-emerald-400', badge: 'text-emerald-400 bg-emerald-400/10', hover: 'group-hover:text-emerald-300' },
+                  { gradient: 'from-blue-500 to-blue-400', badge: 'text-blue-400 bg-blue-400/10', hover: 'group-hover:text-blue-300' },
+                  { gradient: 'from-purple-500 to-purple-400', badge: 'text-purple-400 bg-purple-400/10', hover: 'group-hover:text-purple-300' },
+                ]
+                const colorScheme = colors[index % 3]
 
-            {/* Article 1 */}
-            <ScrollFadeIn>
-            <div className="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:border-emerald-500/40 hover:bg-white/8 transition-all duration-300">
-              <div className="h-2 bg-gradient-to-r from-emerald-500 to-emerald-400"></div>
-              <div className="p-7">
-                <span className="text-xs font-semibold text-emerald-400 bg-emerald-400/10 px-3 py-1 rounded-full">Operations</span>
-                <h3 className="text-xl font-bold text-white mt-4 mb-3 leading-snug group-hover:text-emerald-300 transition-colors">
-                  The 5 Numbers Every Restaurant Owner Must Know (But Most Don&apos;t Track)
-                </h3>
-                <p className="text-gray-400 text-sm leading-relaxed mb-5">
-                  Food cost, labor cost, prime cost, check average, table turn rate — if you can&apos;t recite these off the top of your head, you&apos;re flying blind. Here&apos;s what each one means and why it matters.
-                </p>
-                <div className="flex items-center justify-between pt-4 border-t border-white/10">
-                  <span className="text-xs text-gray-500">By Andres Gutierrez · 5 min read</span>
-                  <span className="text-xs text-emerald-500 font-semibold">Coming Soon</span>
-                </div>
-              </div>
-            </div>
-            </ScrollFadeIn>
-
-            {/* Article 2 */}
-            <ScrollFadeIn delay={100}>
-            <div className="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:border-emerald-500/40 hover:bg-white/8 transition-all duration-300">
-              <div className="h-2 bg-gradient-to-r from-blue-500 to-blue-400"></div>
-              <div className="p-7">
-                <span className="text-xs font-semibold text-blue-400 bg-blue-400/10 px-3 py-1 rounded-full">Staffing</span>
-                <h3 className="text-xl font-bold text-white mt-4 mb-3 leading-snug group-hover:text-blue-300 transition-colors">
-                  Why Your Best Employees Are Leaving — And How to Stop the Cycle
-                </h3>
-                <p className="text-gray-400 text-sm leading-relaxed mb-5">
-                  High turnover is expensive, demoralizing, and almost always preventable. We break down the real reasons staff leave and share the retention framework we use with our clients.
-                </p>
-                <div className="flex items-center justify-between pt-4 border-t border-white/10">
-                  <span className="text-xs text-gray-500">By Andres Gutierrez · 7 min read</span>
-                  <span className="text-xs text-blue-500 font-semibold">Coming Soon</span>
-                </div>
-              </div>
-            </div>
-            </ScrollFadeIn>
-
-            {/* Article 3 */}
-            <ScrollFadeIn delay={200}>
-            <div className="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:border-emerald-500/40 hover:bg-white/8 transition-all duration-300">
-              <div className="h-2 bg-gradient-to-r from-purple-500 to-purple-400"></div>
-              <div className="p-7">
-                <span className="text-xs font-semibold text-purple-400 bg-purple-400/10 px-3 py-1 rounded-full">Menu Strategy</span>
-                <h3 className="text-xl font-bold text-white mt-4 mb-3 leading-snug group-hover:text-purple-300 transition-colors">
-                  Menu Engineering 101: How to Make Your Menu Work Harder for You
-                </h3>
-                <p className="text-gray-400 text-sm leading-relaxed mb-5">
-                  Most menus are an afterthought. The best ones are precision tools for profitability. Learn the four quadrants of menu engineering and how to use them to increase your average check.
-                </p>
-                <div className="flex items-center justify-between pt-4 border-t border-white/10">
-                  <span className="text-xs text-gray-500">By Andres Gutierrez · 6 min read</span>
-                  <span className="text-xs text-purple-500 font-semibold">Coming Soon</span>
-                </div>
-              </div>
-            </div>
-            </ScrollFadeIn>
-
+                return (
+                  <ScrollFadeIn key={post._id} delay={index * 100}>
+                    <Link href={post.slug ? `/blog/${post.slug.current}` : '#'}>
+                      <div className="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:border-emerald-500/40 hover:bg-white/8 transition-all duration-300 cursor-pointer h-full">
+                        <div className={`h-2 bg-gradient-to-r ${colorScheme.gradient}`}></div>
+                        <div className="p-7">
+                          <span className={`text-xs font-semibold ${colorScheme.badge} px-3 py-1 rounded-full`}>
+                            {post.category || 'Article'}
+                          </span>
+                          <h3 className={`text-xl font-bold text-white mt-4 mb-3 leading-snug ${colorScheme.hover} transition-colors`}>
+                            {post.title}
+                          </h3>
+                          <p className="text-gray-400 text-sm leading-relaxed mb-5">
+                            {post.excerpt}
+                          </p>
+                          <div className="flex items-center justify-between pt-4 border-t border-white/10">
+                            <span className="text-xs text-gray-500">
+                              By {post.author || 'Andres Gutierrez'} · {post.readTime || '5 min read'}
+                            </span>
+                            {post.slug && (
+                              <span className="text-xs text-emerald-500 font-semibold">Read Now →</span>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  </ScrollFadeIn>
+                )
+              })
+            ) : (
+              // Fallback articles if Sanity isn't configured
+              <>
+                <ScrollFadeIn>
+                  <div className="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:border-emerald-500/40 hover:bg-white/8 transition-all duration-300">
+                    <div className="h-2 bg-gradient-to-r from-emerald-500 to-emerald-400"></div>
+                    <div className="p-7">
+                      <span className="text-xs font-semibold text-emerald-400 bg-emerald-400/10 px-3 py-1 rounded-full">Operations</span>
+                      <h3 className="text-xl font-bold text-white mt-4 mb-3 leading-snug group-hover:text-emerald-300 transition-colors">
+                        The Essential Guide to Restaurant Operations Excellence
+                      </h3>
+                      <p className="text-gray-400 text-sm leading-relaxed mb-5">
+                        Discover proven strategies to streamline your restaurant operations, reduce costs, and improve customer satisfaction.
+                      </p>
+                      <div className="flex items-center justify-between pt-4 border-t border-white/10">
+                        <span className="text-xs text-gray-500">By Andres Gutierrez · 5 min read</span>
+                        <span className="text-xs text-emerald-500 font-semibold">Coming Soon</span>
+                      </div>
+                    </div>
+                  </div>
+                </ScrollFadeIn>
+                <ScrollFadeIn delay={100}>
+                  <div className="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:border-emerald-500/40 hover:bg-white/8 transition-all duration-300">
+                    <div className="h-2 bg-gradient-to-r from-blue-500 to-blue-400"></div>
+                    <div className="p-7">
+                      <span className="text-xs font-semibold text-blue-400 bg-blue-400/10 px-3 py-1 rounded-full">Business Strategy</span>
+                      <h3 className="text-xl font-bold text-white mt-4 mb-3 leading-snug group-hover:text-blue-300 transition-colors">
+                        5 Key Metrics Every Restaurant Owner Should Track
+                      </h3>
+                      <p className="text-gray-400 text-sm leading-relaxed mb-5">
+                        Learn which performance indicators truly matter for sustainable growth and profitability in the restaurant industry.
+                      </p>
+                      <div className="flex items-center justify-between pt-4 border-t border-white/10">
+                        <span className="text-xs text-gray-500">By Andres Gutierrez · 7 min read</span>
+                        <span className="text-xs text-blue-500 font-semibold">Coming Soon</span>
+                      </div>
+                    </div>
+                  </div>
+                </ScrollFadeIn>
+                <ScrollFadeIn delay={200}>
+                  <div className="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:border-emerald-500/40 hover:bg-white/8 transition-all duration-300">
+                    <div className="h-2 bg-gradient-to-r from-purple-500 to-purple-400"></div>
+                    <div className="p-7">
+                      <span className="text-xs font-semibold text-purple-400 bg-purple-400/10 px-3 py-1 rounded-full">Team Development</span>
+                      <h3 className="text-xl font-bold text-white mt-4 mb-3 leading-snug group-hover:text-purple-300 transition-colors">
+                        Building a High-Performance Restaurant Team
+                      </h3>
+                      <p className="text-gray-400 text-sm leading-relaxed mb-5">
+                        The secrets to recruiting, training, and retaining exceptional staff in the competitive hospitality industry.
+                      </p>
+                      <div className="flex items-center justify-between pt-4 border-t border-white/10">
+                        <span className="text-xs text-gray-500">By Andres Gutierrez · 6 min read</span>
+                        <span className="text-xs text-purple-500 font-semibold">Coming Soon</span>
+                      </div>
+                    </div>
+                  </div>
+                </ScrollFadeIn>
+              </>
+            )}
           </div>
         </div>
       </section>

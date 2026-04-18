@@ -246,7 +246,7 @@ export default function AuditResultsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gray-100">
 
       {/* Hard Truth Hero */}
       <section data-header-theme="dark" className="relative bg-black min-h-screen flex items-center justify-center overflow-hidden -mt-[92px]">
@@ -427,12 +427,12 @@ export default function AuditResultsPage() {
                 {PERFORMANCE_BAND_DEFS.map(b => {
                   // Determine frosted glass background based on band
                   const glassStyle = b.label === 'Critical'
-                    ? { backgroundColor: 'rgba(239, 68, 68, 0.15)', backdropFilter: 'blur(12px)', border: '2px solid rgba(239, 68, 68, 0.4)' }
+                    ? { backgroundColor: 'rgba(239, 68, 68, 0.25)', backdropFilter: 'blur(12px)', border: '2px solid rgba(239, 68, 68, 0.5)' }
                     : b.label === 'Developing'
-                    ? { backgroundColor: 'rgba(234, 179, 8, 0.15)', backdropFilter: 'blur(12px)', border: '2px solid rgba(234, 179, 8, 0.4)' }
+                    ? { backgroundColor: 'rgba(234, 179, 8, 0.25)', backdropFilter: 'blur(12px)', border: '2px solid rgba(234, 179, 8, 0.5)' }
                     : b.label === 'Established'
-                    ? { backgroundColor: 'rgba(59, 130, 246, 0.15)', backdropFilter: 'blur(12px)', border: '2px solid rgba(59, 130, 246, 0.4)' }
-                    : { backgroundColor: 'rgba(16, 185, 129, 0.15)', backdropFilter: 'blur(12px)', border: '2px solid rgba(16, 185, 129, 0.4)' }
+                    ? { backgroundColor: 'rgba(59, 130, 246, 0.25)', backdropFilter: 'blur(12px)', border: '2px solid rgba(59, 130, 246, 0.5)' }
+                    : { backgroundColor: 'rgba(16, 185, 129, 0.25)', backdropFilter: 'blur(12px)', border: '2px solid rgba(16, 185, 129, 0.5)' }
 
                   return (
                     <div key={b.label} className="rounded-lg px-4 py-3" style={glassStyle}>

@@ -4,6 +4,7 @@ import UpperBanner from "./components/sections/UpperBanner";
 import ClientLogos from "./components/sections/ClientLogos";
 import BigStats from "./components/sections/BigStats";
 import TestimonialBanner from "./components/sections/TestimonialBanner";
+import TeamPreview from "./components/sections/TeamPreview";
 import MiddleBanner from "./components/sections/MiddleBanner";
 import StickyProcess from "./components/sections/StickyProcess";
 import LowerBanner from "./components/sections/LowerBanner";
@@ -17,6 +18,7 @@ export default function Home() {
       <ClientLogos />
       <BigStats />
       <TestimonialBanner />
+      <TeamPreview />
       <MiddleBanner />
       <StickyProcess />
       <LowerBanner />

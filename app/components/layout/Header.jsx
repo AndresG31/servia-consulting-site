@@ -89,10 +89,10 @@ const Header = () => {
             ))}
             <Link
               href="/contact"
-              className={`ml-2 px-5 py-1.5 rounded-full font-medium transition-all duration-300 shadow-md hover:shadow-lg border ${
+              className={`ml-2 px-5 py-1.5 rounded-full font-semibold transition-all duration-300 shadow-md hover:shadow-lg border ${
                 theme === 'light'
                   ? 'bg-emerald-600 text-white hover:bg-emerald-500 border-emerald-700 hover:border-emerald-600'
-                  : 'bg-white text-emerald-900 hover:bg-white/90 border-white/60 hover:border-white font-semibold'
+                  : 'bg-white text-emerald-900 hover:bg-white/90 border-white/60 hover:border-white'
               }`}
             >
               Work With Us

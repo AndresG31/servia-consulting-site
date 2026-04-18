@@ -85,7 +85,7 @@ const ServicePage = () => {
           <div className="grid lg:grid-cols-2 gap-0 min-h-[600px]">
 
             {/* Left Side - Headline Content with Black Background Filter */}
-            <div className="relative flex flex-col justify-center px-8 sm:px-12 lg:px-16 pt-36 pb-12 lg:pt-44 lg:pb-16 z-10">
+            <div className="relative flex flex-col justify-start px-8 sm:px-12 lg:px-16 pt-32 pb-12 lg:pt-36 lg:pb-16 z-10">
               {/* Black background filter with 50% transparency */}
               <div className="absolute inset-0 bg-black/50 opacity-0 animate-fade-in-page"></div>
 
@@ -213,8 +213,8 @@ const ServicePage = () => {
                   </div>
                 </div>
 
-                <Link href="/contact?service=package1" className="w-full bg-emerald-600 text-white group-hover:bg-white group-hover:text-emerald-600 py-4 rounded-xl font-bold text-lg transition-all hover:shadow-lg flex items-center justify-center gap-2">
-                  Get Started
+                <Link href="/service/package/foundation" className="w-full bg-emerald-600 text-white group-hover:bg-white group-hover:text-emerald-600 py-4 rounded-xl font-bold text-lg transition-all hover:shadow-lg flex items-center justify-center gap-2">
+                  Learn More
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
@@ -280,8 +280,8 @@ const ServicePage = () => {
                   </div>
                 </div>
 
-                <Link href="/contact?service=package2" className="w-full bg-emerald-500 text-white group-hover:bg-white group-hover:text-emerald-600 py-4 rounded-xl font-bold text-lg transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
-                  Get Started
+                <Link href="/service/package/growth" className="w-full bg-emerald-500 text-white group-hover:bg-white group-hover:text-emerald-600 py-4 rounded-xl font-bold text-lg transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
+                  Learn More
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
@@ -353,8 +353,8 @@ const ServicePage = () => {
                   </div>
                 </div>
 
-                <Link href="/contact?service=package3" className="w-full bg-emerald-600 text-white group-hover:bg-white group-hover:text-emerald-600 py-4 rounded-xl font-bold text-lg transition-all hover:shadow-lg flex items-center justify-center gap-2">
-                  Get Started
+                <Link href="/service/package/enterprise" className="w-full bg-emerald-600 text-white group-hover:bg-white group-hover:text-emerald-600 py-4 rounded-xl font-bold text-lg transition-all hover:shadow-lg flex items-center justify-center gap-2">
+                  Learn More
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>

@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import Footer from '../../components/layout/Footer'
 import { services, QUIZ_SCORING } from '../serviceData'
 
@@ -68,13 +69,12 @@ const pkgBadge = {
 }
 
 export default function QuizPage() {
-  const [step, setStep] = useState(0) // 0,1,2 = questions; 3 = results
+  const router = useRouter()
+  const [step, setStep] = useState(0) // 0,1,2 = questions
   const [answers, setAnswers] = useState({})
   const [selected, setSelected] = useState([])
 
   const question = questions[step]
-  const isResults = step === questions.length
-  const results = isResults ? computeResults(answers) : []
 
   const handleSelect = (value) => {
     if (question.multiSelect) {
@@ -89,15 +89,16 @@ export default function QuizPage() {
   const handleNext = () => {
     if (selected.length === 0) return
     const newAnswers = { ...answers, [question.id]: selected }
-    setAnswers(newAnswers)
-    setSelected([])
-    setStep(s => s + 1)
-  }
 
-  const handleRestart = () => {
-    setStep(0)
-    setAnswers({})
-    setSelected([])
+    // If this is the last question, navigate to results page
+    if (step === questions.length - 1) {
+      const answersParam = encodeURIComponent(JSON.stringify(newAnswers))
+      router.push(`/service/quiz/results?answers=${answersParam}`)
+    } else {
+      setAnswers(newAnswers)
+      setSelected([])
+      setStep(s => s + 1)
+    }
   }
 
   return (
@@ -131,139 +132,65 @@ export default function QuizPage() {
       {/* Quiz body */}
       <section className="bg-white py-16 min-h-[500px]">
         <div className="max-w-2xl mx-auto px-4 sm:px-8">
+          {/* Progress */}
+          <div className="flex items-center gap-3 mb-10">
+            {questions.map((_, i) => (
+              <React.Fragment key={i}>
+                <div className={`h-2 flex-1 rounded-full transition-all duration-500 ${i <= step ? 'bg-emerald-600' : 'bg-gray-200'}`} />
+              </React.Fragment>
+            ))}
+          </div>
+          <p className="text-xs font-bold uppercase tracking-widest text-emerald-600 mb-3">
+            Question {step + 1} of {questions.length}
+          </p>
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">{question.label}</h2>
+          <p className="text-gray-500 mb-8">{question.subtitle}</p>
 
-          {!isResults ? (
-            <>
-              {/* Progress */}
-              <div className="flex items-center gap-3 mb-10">
-                {questions.map((_, i) => (
-                  <React.Fragment key={i}>
-                    <div className={`h-2 flex-1 rounded-full transition-all duration-500 ${i <= step ? 'bg-emerald-600' : 'bg-gray-200'}`} />
-                  </React.Fragment>
-                ))}
-              </div>
-              <p className="text-xs font-bold uppercase tracking-widest text-emerald-600 mb-3">
-                Question {step + 1} of {questions.length}
-              </p>
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">{question.label}</h2>
-              <p className="text-gray-500 mb-8">{question.subtitle}</p>
-
-              <div className="space-y-3">
-                {question.options.map(opt => (
-                  <button
-                    key={opt.value}
-                    onClick={() => handleSelect(opt.value)}
-                    className={`w-full flex items-center gap-4 p-4 rounded-xl border-2 text-left transition-all ${
-                      selected.includes(opt.value)
-                        ? 'border-emerald-600 bg-emerald-50 shadow-md'
-                        : 'border-gray-200 bg-gray-50 hover:border-emerald-400 hover:bg-emerald-50/50'
-                    }`}
-                  >
-                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors ${selected.includes(opt.value) ? 'bg-emerald-600' : 'bg-white border border-gray-200'}`}>
-                      <svg className={`w-5 h-5 ${selected.includes(opt.value) ? 'text-white' : 'text-emerald-600'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d={opt.icon} />
-                      </svg>
-                    </div>
-                    <span className={`font-medium ${selected.includes(opt.value) ? 'text-emerald-700' : 'text-gray-700'}`}>{opt.label}</span>
-                    {selected.includes(opt.value) && (
-                      <svg className="w-5 h-5 text-emerald-600 ml-auto flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                      </svg>
-                    )}
-                  </button>
-                ))}
-              </div>
-
-              <div className="flex items-center justify-between mt-8">
-                {step > 0 ? (
-                  <button
-                    onClick={() => { setStep(s => s - 1); setSelected(answers[questions[step - 1].id] || []) }}
-                    className="text-gray-500 hover:text-gray-700 font-medium text-sm flex items-center gap-1 transition-colors"
-                  >
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
-                    Back
-                  </button>
-                ) : <div />}
-                <button
-                  onClick={handleNext}
-                  disabled={selected.length === 0}
-                  className="bg-emerald-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-emerald-500 transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2"
-                >
-                  {step === questions.length - 1 ? 'See My Results' : 'Next'}
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
-                </button>
-              </div>
-            </>
-          ) : (
-            /* Results */
-            <>
-              <div className="text-center mb-10">
-                <div className="w-14 h-14 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-7 h-7 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          <div className="space-y-3">
+            {question.options.map(opt => (
+              <button
+                key={opt.value}
+                onClick={() => handleSelect(opt.value)}
+                className={`w-full flex items-center gap-4 p-4 rounded-xl border-2 text-left transition-all ${
+                  selected.includes(opt.value)
+                    ? 'border-emerald-600 bg-emerald-50 shadow-md'
+                    : 'border-gray-200 bg-gray-50 hover:border-emerald-400 hover:bg-emerald-50/50'
+                }`}
+              >
+                <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors ${selected.includes(opt.value) ? 'bg-emerald-600' : 'bg-white border border-gray-200'}`}>
+                  <svg className={`w-5 h-5 ${selected.includes(opt.value) ? 'text-white' : 'text-emerald-600'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d={opt.icon} />
                   </svg>
                 </div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-2">Your Top Matches</h2>
-                <p className="text-gray-500">Based on your answers, these services are the best fit for where you are right now.</p>
-              </div>
+                <span className={`font-medium ${selected.includes(opt.value) ? 'text-emerald-700' : 'text-gray-700'}`}>{opt.label}</span>
+                {selected.includes(opt.value) && (
+                  <svg className="w-5 h-5 text-emerald-600 ml-auto flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                  </svg>
+                )}
+              </button>
+            ))}
+          </div>
 
-              <div className="space-y-4 mb-10">
-                {results.map((svc, i) => (
-                  <div key={svc.slug} className="border-2 border-emerald-200 rounded-2xl p-6 bg-emerald-50 hover:border-emerald-400 transition-all">
-                    <div className="flex items-start gap-4">
-                      <div className="w-8 h-8 bg-emerald-600 rounded-full flex items-center justify-center text-white font-black text-sm flex-shrink-0">
-                        {i + 1}
-                      </div>
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-1">
-                          <h3 className="text-xl font-bold text-emerald-700">{svc.label}</h3>
-                          <span className={`text-xs font-bold uppercase tracking-widest ${pkgBadge[svc.pkgColor]}`}>{svc.pkg}</span>
-                        </div>
-                        <p className="text-gray-600 mb-1">{svc.tagline}</p>
-                        <p className="text-sm text-gray-500 mb-4">{svc.shortDesc}</p>
-                        <div className="flex flex-wrap gap-3">
-                          <Link
-                            href={`/contact?service=${svc.contactParam}`}
-                            className="bg-emerald-600 text-white px-5 py-2 rounded-lg font-semibold text-sm hover:bg-emerald-500 transition-all"
-                          >
-                            Inquire About This Service
-                          </Link>
-                          <Link
-                            href={`/service/${svc.slug}`}
-                            className="border border-emerald-600 text-emerald-600 px-5 py-2 rounded-lg font-semibold text-sm hover:bg-emerald-100 transition-all"
-                          >
-                            Learn More
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Audit nudge */}
-              <div className="bg-emerald-950 rounded-2xl p-6 border border-emerald-800 text-center mb-6">
-                <p className="text-xs font-bold uppercase tracking-widest text-emerald-400 mb-2">Want the full picture?</p>
-                <h3 className="text-white font-bold text-lg mb-2">Take the Free Restaurant Audit</h3>
-                <p className="text-emerald-300/70 text-sm leading-relaxed mb-4">
-                  Our audit scores your operation across 9 categories — financials, staffing, menu, maintenance, and more — and gives you a detailed breakdown of exactly where to focus.
-                </p>
-                <Link
-                  href="/audit"
-                  className="inline-flex items-center gap-2 bg-emerald-600 text-white px-6 py-3 rounded-lg font-semibold text-sm hover:bg-emerald-500 transition-all"
-                >
-                  Take the Free Audit
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
-                </Link>
-              </div>
-
-              <div className="text-center">
-                <button onClick={handleRestart} className="text-gray-400 hover:text-gray-600 text-sm underline transition-colors">
-                  Retake the quiz
-                </button>
-              </div>
-            </>
-          )}
+          <div className="flex items-center justify-between mt-8">
+            {step > 0 ? (
+              <button
+                onClick={() => { setStep(s => s - 1); setSelected(answers[questions[step - 1].id] || []) }}
+                className="text-gray-500 hover:text-gray-700 font-medium text-sm flex items-center gap-1 transition-colors"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+                Back
+              </button>
+            ) : <div />}
+            <button
+              onClick={handleNext}
+              disabled={selected.length === 0}
+              className="bg-emerald-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-emerald-500 transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2"
+            >
+              {step === questions.length - 1 ? 'See My Results' : 'Next'}
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+            </button>
+          </div>
         </div>
       </section>
 

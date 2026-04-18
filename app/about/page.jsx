@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import Footer from '../components/layout/Footer'
+import MeetTheTeam from '../components/sections/MeetTheTeam'
 
 const AboutPage = () => {
   return (
@@ -165,7 +166,7 @@ const AboutPage = () => {
               <div className="flex flex-wrap items-center gap-3 mb-1">
                 <h3 className="text-3xl font-bold text-emerald-900">Andres Gutierrez</h3>
                 <a
-                  href="https://www.linkedin.com/company/109907500"
+                  href="https://www.linkedin.com/in/contactandresgutierrez/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-xs font-semibold text-white bg-[#0077B5] px-3 py-1.5 rounded-full hover:bg-[#005e8e] transition-colors"
@@ -501,7 +502,14 @@ const AboutPage = () => {
       </section>
 
       {/* Values in Action */}
-      <section data-header-theme="dark" className="relative bg-emerald-900 py-20 overflow-hidden">
+      <section data-header-theme="light" className="relative bg-white py-20 overflow-hidden">
+        {/* Grid pattern background */}
+        <div className="absolute inset-0 -z-10" style={{
+          backgroundImage: `linear-gradient(to right, rgba(5, 150, 105, 0.15) 1px, transparent 1px),
+                           linear-gradient(to bottom, rgba(5, 150, 105, 0.15) 1px, transparent 1px)`,
+          backgroundSize: '40px 40px'
+        }}></div>
+
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-20 left-10 w-20 h-20 border-2 border-emerald-600 rounded-lg rotate-12"></div>
           <div className="absolute bottom-20 right-10 w-24 h-24 border-2 border-emerald-600 rounded-lg -rotate-12"></div>
@@ -514,14 +522,14 @@ const AboutPage = () => {
             <div className="flex justify-center">
               <div className="w-20 h-1 bg-emerald-600"></div>
             </div>
-            <h2 className="text-4xl sm:text-5xl font-bold text-white leading-tight">
+            <h2 className="text-4xl sm:text-5xl font-bold text-emerald-900 leading-tight">
               Our Core
-              <span className="block text-emerald-400 mt-2">Values</span>
+              <span className="block text-emerald-600 mt-2">Values</span>
             </h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-gradient-to-br from-emerald-800 to-emerald-900 p-8 rounded-2xl border border-emerald-600/30 hover:border-emerald-400 hover:from-emerald-600 hover:to-emerald-700 transition-all group hover:scale-105 transform duration-300 hover:shadow-2xl hover:shadow-emerald-500/50">
+            <div className="bg-gradient-to-br from-emerald-700 to-emerald-800 p-8 rounded-2xl border-2 border-emerald-600/30 hover:border-emerald-600 hover:from-emerald-600 hover:to-emerald-700 transition-all group hover:scale-105 transform duration-300 shadow-lg hover:shadow-2xl hover:shadow-emerald-600/50">
               <div className="w-16 h-16 bg-emerald-600/20 rounded-full flex items-center justify-center mb-6 group-hover:bg-white/20 transition-colors">
                 <svg className="w-8 h-8 text-emerald-400 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -533,7 +541,7 @@ const AboutPage = () => {
               </p>
             </div>
 
-            <div className="bg-gradient-to-br from-emerald-800 to-emerald-900 p-8 rounded-2xl border border-emerald-600/30 hover:border-emerald-400 hover:from-emerald-600 hover:to-emerald-700 transition-all group hover:scale-105 transform duration-300 hover:shadow-2xl hover:shadow-emerald-500/50">
+            <div className="bg-gradient-to-br from-emerald-700 to-emerald-800 p-8 rounded-2xl border-2 border-emerald-600/30 hover:border-emerald-600 hover:from-emerald-600 hover:to-emerald-700 transition-all group hover:scale-105 transform duration-300 shadow-lg hover:shadow-2xl hover:shadow-emerald-600/50">
               <div className="w-16 h-16 bg-emerald-600/20 rounded-full flex items-center justify-center mb-6 group-hover:bg-white/20 transition-colors">
                 <svg className="w-8 h-8 text-emerald-400 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
@@ -545,7 +553,7 @@ const AboutPage = () => {
               </p>
             </div>
 
-            <div className="bg-gradient-to-br from-emerald-800 to-emerald-900 p-8 rounded-2xl border border-emerald-600/30 hover:border-emerald-400 hover:from-emerald-600 hover:to-emerald-700 transition-all group hover:scale-105 transform duration-300 hover:shadow-2xl hover:shadow-emerald-500/50">
+            <div className="bg-gradient-to-br from-emerald-700 to-emerald-800 p-8 rounded-2xl border-2 border-emerald-600/30 hover:border-emerald-600 hover:from-emerald-600 hover:to-emerald-700 transition-all group hover:scale-105 transform duration-300 shadow-lg hover:shadow-2xl hover:shadow-emerald-600/50">
               <div className="w-16 h-16 bg-emerald-600/20 rounded-full flex items-center justify-center mb-6 group-hover:bg-white/20 transition-colors">
                 <svg className="w-8 h-8 text-emerald-400 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -559,6 +567,9 @@ const AboutPage = () => {
           </div>
         </div>
       </section>
+
+      {/* Meet the Team */}
+      <MeetTheTeam />
 
       {/* Call to Action */}
       <section data-header-theme="light" className="relative bg-gradient-to-b from-white to-gray-50 py-20">
