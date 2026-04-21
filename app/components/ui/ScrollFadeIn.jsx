@@ -7,6 +7,14 @@ export default function ScrollFadeIn({ children, className = '', delay = 0 }) {
   useEffect(() => {
     const el = ref.current
     if (!el) return
+
+    // Already in or above viewport (e.g. back navigation restores scroll position)
+    const rect = el.getBoundingClientRect()
+    if (rect.top < window.innerHeight) {
+      el.classList.add('is-visible')
+      return
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {

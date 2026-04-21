@@ -5,7 +5,7 @@ export const teamMembers = [
     name: 'Andres Gutierrez',
     title: 'Founder & Lead Consultant',
     bio: 'With over 5 years of experience in restaurant operations and a background rooted in service excellence, Andres founded Servia Consulting to help restaurant owners transform their operations and achieve sustainable growth.',
-    image: '/assets/aboutus/andres-founder.jpg',
+    image: '/assets/aboutus/andres-headshot.jpg',
     linkedin: 'https://www.linkedin.com/in/contactandresgutierrez/',
     email: 'agutierrez@serviaconsulting.com',
     expertise: [
@@ -39,38 +39,38 @@ export const teamMembers = [
   },
   {
     id: 2,
-    slug: 'maintenance-expert',
-    name: 'Maintenance Expert',
-    title: 'Facilities & Equipment Specialist',
-    bio: 'Expert in restaurant maintenance systems, preventive care protocols, and equipment optimization to minimize downtime and extend asset life. Develops comprehensive maintenance schedules that keep operations running smoothly.',
-    image: '/assets/team/member-2.jpg',
+    slug: 'juan-sanchez',
+    name: 'Juan Sanchez',
+    title: 'Facilities & Maintenance Specialist',
+    bio: 'With 8+ years in preventative maintenance, plumbing, electrical, and construction project management, Juan keeps restaurant facilities running safely and efficiently — minimizing costly downtime before it starts.',
+    image: '/assets/team/juan-sanchez.jpg',
     linkedin: '#',
     email: 'maintenance@serviaconsulting.com',
     expertise: [
       'Preventive Maintenance Programs',
-      'Equipment Lifecycle Management',
-      'HVAC & Refrigeration Systems',
-      'Kitchen Equipment Optimization',
+      'Plumbing Systems',
+      'Electrical Systems',
+      'Roofing & Construction Project Management',
       'Facility Safety Compliance',
-      'Vendor Management',
+      'Equipment Lifecycle Management',
     ],
     servicesSlugs: [
       'restaurant-maintenance',
       'operational-systems',
     ],
-    detailedBio: `Our Maintenance Expert brings decades of experience in commercial kitchen and restaurant facility management. With a deep understanding of how equipment failures impact operations and profitability, they specialize in creating proactive maintenance programs that prevent costly downtime.
+    detailedBio: `Juan Sanchez brings over 8 years of hands-on experience in preventative maintenance, plumbing, electrical systems, and construction project management. Having served as a project manager for roofing and construction companies, he understands how to coordinate complex facility work efficiently — keeping disruptions to your restaurant operations minimal.
 
-    Their systematic approach to facilities management has helped hundreds of restaurants extend equipment life, reduce emergency repair costs, and maintain consistent operational efficiency. By implementing preventive maintenance schedules and training staff on proper equipment care, they transform reactive maintenance cultures into proactive ones.
+    His proactive approach to maintenance means identifying and resolving issues before they become expensive emergencies. From routine inspections to full facility overhauls, Juan develops customized maintenance schedules that fit each restaurant's unique layout, equipment, and operational rhythm.
 
-    Their expertise spans all aspects of restaurant facilities—from HVAC and refrigeration to cooking equipment, plumbing, and electrical systems. They work closely with restaurant owners to develop customized maintenance plans that fit their specific equipment mix and operational needs.
+    Juan's expertise spans every layer of a facility — plumbing, electrical, structural, and equipment systems — giving restaurant owners a single trusted resource for all their maintenance needs. His bilingual fluency in English and Spanish makes him an effective communicator with diverse teams and vendors alike.
 
-    Beyond just fixing problems, they focus on building internal capabilities, training your team to identify issues early and maintain equipment properly between professional service visits.`,
+    Whether you're managing a single location or multiple properties, Juan brings the systems thinking and field experience needed to protect your investment and keep your kitchen running at full capacity.`,
     certifications: [
-      'Commercial Refrigeration Technician',
-      'HVAC Certification',
-      'Food Service Equipment Specialist',
+      'Preventive Maintenance Technician',
+      'Construction Project Management',
+      'Facility Safety Compliance',
     ],
-    languages: ['English'],
+    languages: ['English', 'Spanish'],
   },
   {
     id: 3,
@@ -78,7 +78,7 @@ export const teamMembers = [
     name: 'Operations Specialist',
     title: 'Restaurant Operations Consultant',
     bio: 'Streamlining restaurant operations and implementing efficient systems that drive profitability and improve team performance through process optimization and workflow design.',
-    image: '/assets/team/member-3.jpg',
+    image: null,
     linkedin: '#',
     email: 'operations@serviaconsulting.com',
     expertise: [
@@ -115,7 +115,7 @@ export const teamMembers = [
     name: 'Financial Analyst',
     title: 'Restaurant Finance Expert',
     bio: 'Expert in restaurant financial management, cost control, and developing strategies to maximize revenue and minimize waste through data-driven insights and strategic planning.',
-    image: '/assets/team/member-4.jpg',
+    image: null,
     linkedin: '#',
     email: 'finance@serviaconsulting.com',
     expertise: [
@@ -152,7 +152,7 @@ export const teamMembers = [
     name: 'Training Coordinator',
     title: 'Staff Development Lead',
     bio: 'Passionate about building high-performance teams through comprehensive training programs and leadership development that create lasting culture change and employee engagement.',
-    image: '/assets/team/member-5.jpg',
+    image: null,
     linkedin: '#',
     email: 'training@serviaconsulting.com',
     expertise: [

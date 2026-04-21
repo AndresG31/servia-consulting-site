@@ -11,6 +11,13 @@ export default function TawkTo() {
   useEffect(() => {
     if (pathname?.startsWith('/studio')) return
 
+    const originalError = console.error
+    console.error = (...args) => {
+      const msg = args[0]?.toString?.() || ''
+      if (msg.includes('Tawk') || msg.includes('tawk')) return
+      originalError.apply(console, args)
+    }
+
     const s = document.createElement('script')
     s.async = true
     s.src = `https://embed.tawk.to/${TAWK_PROPERTY_ID}/${TAWK_WIDGET_ID}`
@@ -19,6 +26,7 @@ export default function TawkTo() {
     document.head.appendChild(s)
 
     return () => {
+      console.error = originalError
       if (document.head.contains(s)) document.head.removeChild(s)
     }
   }, [pathname])

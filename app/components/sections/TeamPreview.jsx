@@ -10,25 +10,25 @@ const teamMembers = [
     id: 1,
     name: 'Andres Gutierrez',
     title: 'Founder & Lead Consultant',
-    image: '/assets/aboutus/andres-founder.jpg',
+    image: '/assets/aboutus/andres-headshot.jpg',
   },
   {
     id: 2,
-    name: 'Team Member 2',
-    title: 'Operations Specialist',
-    image: '/assets/team/member-2.jpg', // You'll need to add these images
+    name: 'Juan Sanchez',
+    title: 'Facilities & Maintenance Specialist',
+    image: '/assets/team/juan-sanchez.jpg',
   },
   {
     id: 3,
     name: 'Team Member 3',
     title: 'Financial Analyst',
-    image: '/assets/team/member-3.jpg',
+    image: null,
   },
   {
     id: 4,
     name: 'Team Member 4',
     title: 'Training Coordinator',
-    image: '/assets/team/member-4.jpg',
+    image: null,
   },
 ]
 
@@ -69,13 +69,14 @@ const TeamPreview = () => {
                     {member.name.split(' ').map(n => n[0]).join('')}
                   </div>
                 </div>
-                {/* Uncomment when you add actual images */}
-                {/* <Image
-                  src={member.image}
-                  alt={member.name}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                /> */}
+                {member.image && (
+                  <Image
+                    src={member.image}
+                    alt={member.name}
+                    fill
+                    className="object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                  />
+                )}
               </div>
 
               {/* Name & Title */}

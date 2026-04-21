@@ -35,7 +35,7 @@ export default function TeamMemberPage() {
   return (
     <div className="min-h-screen bg-emerald-950">
       {/* Hero Section */}
-      <section data-header-theme="dark" className="relative bg-emerald-950 overflow-hidden min-h-[500px] -mt-[92px]">
+      <section data-header-theme="dark" className="relative bg-emerald-950 overflow-hidden min-h-[640px] -mt-[92px]">
         {/* Grid pattern background */}
         <div className="absolute inset-0 opacity-5" style={{
           backgroundImage: 'linear-gradient(rgba(16,185,129,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(16,185,129,0.3) 1px, transparent 1px)',
@@ -48,15 +48,22 @@ export default function TeamMemberPage() {
 
         {/* Content */}
         <div className="relative max-w-5xl mx-auto px-8 sm:px-12 lg:px-16 pt-36 pb-16 lg:pt-44 lg:pb-24">
-          <div className="flex flex-col md:flex-row gap-8 items-start">
+          <div className="flex flex-col md:flex-row gap-10 items-end">
             {/* Photo */}
-            <div className="flex-shrink-0">
-              <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-2xl overflow-hidden border-4 border-emerald-400/40 shadow-2xl mx-auto md:mx-0 opacity-0 animate-page-hero">
+            <div className="flex-shrink-0 mx-auto md:mx-0 opacity-0 animate-page-hero">
+              <div className="relative w-72 h-[420px] md:w-80 md:h-[500px] rounded-2xl overflow-hidden border-4 border-emerald-400/40 shadow-2xl">
                 <div className="absolute inset-0 bg-gradient-to-br from-emerald-600 to-emerald-500 flex items-center justify-center">
                   <div className="text-white text-5xl font-bold">
                     {member.name.split(' ').map(n => n[0]).join('')}
                   </div>
                 </div>
+                {member.image && (
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="absolute inset-0 w-full h-full object-cover object-top"
+                  />
+                )}
               </div>
             </div>
 

@@ -696,18 +696,18 @@ const InsightsPage = () => {
             Let Servia Consulting help you transform business insights into growth strategies.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
+            <Link
               href="/contact"
               className="bg-emerald-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-emerald-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 inline-block text-center"
             >
               Schedule Consultation
-            </a>
-            <a
+            </Link>
+            <Link
               href="/service"
               className="border-2 border-emerald-400 text-emerald-400 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-emerald-400/10 transition-all inline-block text-center"
             >
               View Our Services
-            </a>
+            </Link>
           </div>
         </div>
       </section>

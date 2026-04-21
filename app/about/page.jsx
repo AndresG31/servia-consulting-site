@@ -139,7 +139,7 @@ const AboutPage = () => {
                 <div className="relative bg-white rounded-lg overflow-hidden shadow-xl">
                   <div className="aspect-[3/4] relative">
                     <Image
-                      src="/assets/aboutus/founder-skiing.png"
+                      src="/assets/aboutus/andres-headshot.jpg"
                       alt="Andres Gutierrez - Founder"
                       fill
                       className="object-cover"

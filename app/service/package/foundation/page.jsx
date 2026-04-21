@@ -181,7 +181,7 @@ const FoundationPackagePage = () => {
                       ))}
                     </div>
                     <Link
-                      href="/service/financial-review"
+                      href="/service/pipeline-analysis"
                       className="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:text-emerald-700 transition-colors group"
                     >
                       Learn More About This Service
@@ -219,7 +219,7 @@ const FoundationPackagePage = () => {
                       ))}
                     </div>
                     <Link
-                      href="/service/plan-of-action"
+                      href="/service/strategic-recommendations"
                       className="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:text-emerald-700 transition-colors group"
                     >
                       Learn More About This Service

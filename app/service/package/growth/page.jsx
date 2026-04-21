@@ -120,7 +120,7 @@ const GrowthPackagePage = () => {
                       ))}
                     </div>
                     <Link
-                      href="/service/financial-review"
+                      href="/service/revenue-optimization"
                       className="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:text-emerald-700 transition-colors group"
                     >
                       Learn More About This Service
@@ -234,7 +234,7 @@ const GrowthPackagePage = () => {
                       ))}
                     </div>
                     <Link
-                      href="/service/financial-review"
+                      href="/service/performance-analytics"
                       className="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:text-emerald-700 transition-colors group"
                     >
                       Learn More About This Service

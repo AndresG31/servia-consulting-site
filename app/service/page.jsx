@@ -7,7 +7,7 @@ import ScrollFadeIn from '../components/ui/ScrollFadeIn'
 const faqs = [
   {
     q: 'What does a free restaurant audit include?',
-    a: 'Our free audit covers 48 diagnostic criteria across 8 key business areas — operations, financials, staffing, marketing, customer experience, and more. You receive a scored report with a performance band and prioritized action items.',
+    a: 'Our free audit covers 54 diagnostic criteria across 9 key business areas — operations, financials, staffing, menu quality, marketing, technology, maintenance, compliance, and customer experience. You receive a scored report with a performance band and prioritized action items.',
   },
   {
     q: 'How long does the initial consultation take?',
@@ -190,30 +190,28 @@ const ServicePage = () => {
 
                 {/* Features */}
                 <div className="space-y-3 mb-8 text-left w-full">
-                  <div className="flex items-start gap-3">
-                    <svg className="w-5 h-5 text-emerald-400 group-hover:text-white flex-shrink-0 mt-0.5 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-gray-200 group-hover:text-white transition-colors">Complete Business Assessment</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <svg className="w-5 h-5 text-emerald-400 group-hover:text-white flex-shrink-0 mt-0.5 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-gray-200 group-hover:text-white transition-colors">Custom Plan of Action</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <svg className="w-5 h-5 text-emerald-400 group-hover:text-white flex-shrink-0 mt-0.5 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-gray-200 group-hover:text-white transition-colors">Pipeline Analysis</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <svg className="w-5 h-5 text-emerald-400 group-hover:text-white flex-shrink-0 mt-0.5 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-gray-200 group-hover:text-white transition-colors">Strategic Recommendations</span>
-                  </div>
+                  {[
+                    { label: 'Complete Business Assessment', slug: 'business-assessment' },
+                    { label: 'Custom Plan of Action', slug: 'plan-of-action' },
+                    { label: 'Pipeline Analysis', slug: null },
+                    { label: 'Strategic Recommendations', slug: null },
+                  ].map(item => (
+                    <div key={item.label} className="flex items-center gap-3">
+                      <svg className="w-5 h-5 text-emerald-400 group-hover:text-white flex-shrink-0 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      {item.slug ? (
+                        <Link href={`/service/${item.slug}`} className="flex items-center gap-1 text-gray-200 group-hover:text-white transition-colors hover:text-emerald-300 group-hover:hover:text-emerald-200">
+                          {item.label}
+                          <svg className="w-3 h-3 opacity-60 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </Link>
+                      ) : (
+                        <span className="text-gray-200 group-hover:text-white transition-colors">{item.label}</span>
+                      )}
+                    </div>
+                  ))}
                 </div>
 
                 <Link href="/service/package/foundation" className="w-full bg-emerald-600 text-white group-hover:bg-white group-hover:text-emerald-600 py-4 rounded-xl font-bold text-lg transition-all hover:shadow-lg flex items-center justify-center gap-2">
@@ -253,36 +251,29 @@ const ServicePage = () => {
 
                 {/* Features */}
                 <div className="space-y-3 mb-8 text-left w-full">
-                  <div className="flex items-start gap-3">
-                    <svg className="w-5 h-5 text-emerald-300 group-hover:text-white flex-shrink-0 mt-0.5 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-gray-100 group-hover:text-white font-medium transition-colors">Everything in Foundation</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <svg className="w-5 h-5 text-emerald-300 group-hover:text-white flex-shrink-0 mt-0.5 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-gray-100 group-hover:text-white transition-colors">Revenue Optimization Strategy</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <svg className="w-5 h-5 text-emerald-300 group-hover:text-white flex-shrink-0 mt-0.5 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-gray-100 group-hover:text-white transition-colors">Menu Engineering & Pricing Strategy</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <svg className="w-5 h-5 text-emerald-300 group-hover:text-white flex-shrink-0 mt-0.5 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-gray-100 group-hover:text-white transition-colors">Staff Training & Development Plan</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <svg className="w-5 h-5 text-emerald-300 group-hover:text-white flex-shrink-0 mt-0.5 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-gray-100 group-hover:text-white transition-colors">Performance Analytics & Reporting Strategy</span>
-                  </div>
+                  {[
+                    { label: 'Everything in Foundation', slug: null },
+                    { label: 'Revenue Optimization Strategy', slug: 'revenue-optimization' },
+                    { label: 'Menu Engineering & Pricing Strategy', slug: 'menu-engineering' },
+                    { label: 'Staff Training & Development Plan', slug: 'staff-training' },
+                    { label: 'Performance Analytics & Reporting', slug: 'performance-analytics' },
+                  ].map(item => (
+                    <div key={item.label} className="flex items-center gap-3">
+                      <svg className="w-5 h-5 text-emerald-300 group-hover:text-white flex-shrink-0 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      {item.slug ? (
+                        <Link href={`/service/${item.slug}`} className="flex items-center gap-1 text-gray-100 group-hover:text-white transition-colors hover:text-emerald-300 group-hover:hover:text-emerald-200">
+                          {item.label}
+                          <svg className="w-3 h-3 opacity-60 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </Link>
+                      ) : (
+                        <span className="text-gray-100 group-hover:text-white font-medium transition-colors">{item.label}</span>
+                      )}
+                    </div>
+                  ))}
                 </div>
 
                 <Link href="/service/package/growth" className="w-full bg-emerald-500 text-white group-hover:bg-white group-hover:text-emerald-600 py-4 rounded-xl font-bold text-lg transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
@@ -322,42 +313,30 @@ const ServicePage = () => {
 
                 {/* Features */}
                 <div className="space-y-3 mb-8 text-left w-full">
-                  <div className="flex items-start gap-3">
-                    <svg className="w-5 h-5 text-emerald-400 group-hover:text-white flex-shrink-0 mt-0.5 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-gray-200 group-hover:text-white font-medium transition-colors">Everything in Foundation & Growth</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <svg className="w-5 h-5 text-emerald-400 group-hover:text-white flex-shrink-0 mt-0.5 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-gray-200 group-hover:text-white transition-colors">In-Field Consultant</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <svg className="w-5 h-5 text-emerald-400 group-hover:text-white flex-shrink-0 mt-0.5 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-gray-200 group-hover:text-white transition-colors">3 Days/Week On-Site Support</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <svg className="w-5 h-5 text-emerald-400 group-hover:text-white flex-shrink-0 mt-0.5 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-gray-200 group-hover:text-white transition-colors">3-Month Contract (Renewable)</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <svg className="w-5 h-5 text-emerald-400 group-hover:text-white flex-shrink-0 mt-0.5 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-gray-200 group-hover:text-white transition-colors">Implementation Support</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <svg className="w-5 h-5 text-emerald-400 group-hover:text-white flex-shrink-0 mt-0.5 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-gray-200 group-hover:text-white transition-colors">Monthly Progress Reports</span>
-                  </div>
+                  {[
+                    { label: 'Everything in Foundation & Growth', slug: null },
+                    { label: 'In-Field Consultant', slug: 'in-field-consultant' },
+                    { label: '3 Days/Week On-Site Support', slug: null },
+                    { label: '3-Month Contract (Renewable)', slug: null },
+                    { label: 'Implementation Support', slug: 'implementation-support' },
+                    { label: 'Monthly Progress Reports', slug: 'monthly-reports' },
+                  ].map(item => (
+                    <div key={item.label} className="flex items-center gap-3">
+                      <svg className="w-5 h-5 text-emerald-400 group-hover:text-white flex-shrink-0 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      {item.slug ? (
+                        <Link href={`/service/${item.slug}`} className="flex items-center gap-1 text-gray-200 group-hover:text-white transition-colors hover:text-emerald-300 group-hover:hover:text-emerald-200">
+                          {item.label}
+                          <svg className="w-3 h-3 opacity-60 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </Link>
+                      ) : (
+                        <span className="text-gray-200 group-hover:text-white font-medium transition-colors">{item.label}</span>
+                      )}
+                    </div>
+                  ))}
                 </div>
 
                 <Link href="/service/package/enterprise" className="w-full bg-emerald-600 text-white group-hover:bg-white group-hover:text-emerald-600 py-4 rounded-xl font-bold text-lg transition-all hover:shadow-lg flex items-center justify-center gap-2">
@@ -376,13 +355,15 @@ const ServicePage = () => {
           <div className="text-center mt-12">
             <p className="text-gray-400 text-lg">
               Not sure which package is right for you?{' '}
-              <a href="/contact" className="text-emerald-400 hover:text-emerald-300 font-semibold underline">
-                Contact us for a free consultation
-              </a>
+              <Link href="/service/quiz" className="text-emerald-400 hover:text-emerald-300 font-semibold underline">
+                Take the 30-second quiz
+              </Link>
             </p>
           </div>
         </div>
       </section>
+
+
 
       {/* Individual Services Section */}
       <section data-header-theme="light" className="relative bg-white py-24 overflow-hidden">
@@ -631,6 +612,72 @@ const ServicePage = () => {
             </Link>
             </ScrollFadeIn>
 
+            {/* Service 11 - Financial Review */}
+            <ScrollFadeIn delay={200}>
+            <Link href="/service/financial-review" className="block relative overflow-hidden bg-gradient-to-r from-white to-emerald-50 rounded-2xl p-8 border-2 border-emerald-600/20 hover:border-emerald-600 hover:shadow-xl transition-all group">
+              <div className="grid md:grid-cols-[auto,1fr] gap-8 items-start">
+                <div className="w-20 h-20 bg-emerald-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0 shadow-lg">
+                  <svg className="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-3xl font-bold text-emerald-700 mb-3 group-hover:text-emerald-500 transition-colors inline-flex items-center gap-2">Financial Review <svg className="w-5 h-5 text-emerald-400 group-hover:text-emerald-600 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg></h3>
+                  <div className="flex gap-2 flex-wrap mb-4"><span className="text-xs font-semibold bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full">Finance</span><span className="text-xs font-semibold bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full">Strategy</span></div>
+                  <p className="text-gray-700 text-lg mb-6 leading-relaxed">A deep-dive into your restaurant's financial health — food cost, labor cost, margins, and pricing — with a clear action plan to improve profitability.</p>
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    {['P&L Analysis', 'Food & Labor Cost Breakdown', 'Menu Pricing Assessment', 'Cash Flow Overview'].map(item => (<div key={item} className="flex items-start gap-3"><svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg><span className="text-gray-800 font-medium">{item}</span></div>))}
+                  </div>
+                </div>
+              </div>
+              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
+            </Link>
+            </ScrollFadeIn>
+
+            {/* Service 12 - Pipeline Analysis */}
+            <ScrollFadeIn delay={250}>
+            <Link href="/service/pipeline-analysis" className="block relative overflow-hidden bg-gradient-to-r from-emerald-50 to-white rounded-2xl p-8 border-2 border-emerald-600/20 hover:border-emerald-600 hover:shadow-xl transition-all group">
+              <div className="grid md:grid-cols-[auto,1fr] gap-8 items-start">
+                <div className="w-20 h-20 bg-emerald-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0 shadow-lg">
+                  <svg className="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-3xl font-bold text-emerald-700 mb-3 group-hover:text-emerald-500 transition-colors inline-flex items-center gap-2">Pipeline Analysis <svg className="w-5 h-5 text-emerald-400 group-hover:text-emerald-600 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg></h3>
+                  <div className="flex gap-2 flex-wrap mb-4"><span className="text-xs font-semibold bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full">Strategy</span><span className="text-xs font-semibold bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full">Diagnosis</span></div>
+                  <p className="text-gray-700 text-lg mb-6 leading-relaxed">We map your entire business pipeline from customer acquisition to retention, identifying bottlenecks, revenue leaks, and untapped efficiency opportunities.</p>
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    {['Customer Journey Mapping', 'Revenue Flow Analysis', 'Bottleneck Identification', 'Efficiency Opportunities'].map(item => (<div key={item} className="flex items-start gap-3"><svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg><span className="text-gray-800 font-medium">{item}</span></div>))}
+                  </div>
+                </div>
+              </div>
+              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
+            </Link>
+            </ScrollFadeIn>
+
+            {/* Service 13 - Strategic Recommendations */}
+            <ScrollFadeIn delay={300}>
+            <Link href="/service/strategic-recommendations" className="block relative overflow-hidden bg-gradient-to-r from-white to-emerald-50 rounded-2xl p-8 border-2 border-emerald-600/20 hover:border-emerald-600 hover:shadow-xl transition-all group">
+              <div className="grid md:grid-cols-[auto,1fr] gap-8 items-start">
+                <div className="w-20 h-20 bg-emerald-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0 shadow-lg">
+                  <svg className="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-3xl font-bold text-emerald-700 mb-3 group-hover:text-emerald-500 transition-colors inline-flex items-center gap-2">Strategic Recommendations <svg className="w-5 h-5 text-emerald-400 group-hover:text-emerald-600 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg></h3>
+                  <div className="flex gap-2 flex-wrap mb-4"><span className="text-xs font-semibold bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full">Strategy</span><span className="text-xs font-semibold bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full">Planning</span></div>
+                  <p className="text-gray-700 text-lg mb-6 leading-relaxed">Prioritized, actionable recommendations based on what will move the needle most for your specific situation — with a clear order of operations and resource allocation guide.</p>
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    {['Prioritized Action Items', 'Quick Wins Identified', 'Long-term Strategy', 'Resource Allocation Guide'].map(item => (<div key={item} className="flex items-start gap-3"><svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg><span className="text-gray-800 font-medium">{item}</span></div>))}
+                  </div>
+                </div>
+              </div>
+              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
+            </Link>
+            </ScrollFadeIn>
+
           </div>
 
           {/* CTA */}
@@ -677,7 +724,7 @@ const ServicePage = () => {
               {/* Stats row */}
               <div className="grid grid-cols-3 gap-6 mb-10">
                 {[
-                  { value: '5 min', label: 'To complete' },
+                  { value: '10 min', label: 'To complete' },
                   { value: '100%', label: 'Free' },
                   { value: 'PDF', label: 'Report included' },
                 ].map(stat => (
@@ -704,12 +751,15 @@ const ServicePage = () => {
               <p className="text-xs font-bold uppercase tracking-widest text-emerald-400 mb-6">What the audit covers</p>
               <div className="space-y-4">
                 {[
-                  { icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2', label: 'Operations & Systems', desc: 'SOPs, consistency, kitchen efficiency' },
-                  { icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z', label: 'Staffing & Leadership', desc: 'Hiring, training, retention' },
-                  { icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z', label: 'Financial Health', desc: 'Food cost, labor cost, margins' },
-                  { icon: 'M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z', label: 'Guest Experience', desc: 'Reviews, hospitality, loyalty' },
-                  { icon: 'M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z', label: 'Marketing & Visibility', desc: 'Online presence, social, promotions' },
-                  { icon: 'M13 10V3L4 14h7v7l9-11h-7z', label: 'Growth & Scalability', desc: 'Expansion readiness, partnerships' },
+                  { icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2', label: 'Operations & Kitchen Management', desc: 'SOPs, workflow, inventory, waste tracking' },
+                  { icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z', label: 'Financial Performance', desc: 'Food cost, labor cost, P&L, cash flow' },
+                  { icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M12 12h.01M12 16h.01M12 8h.01', label: 'Menu & Product Quality', desc: 'Pricing, recipes, profitability, suppliers' },
+                  { icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z', label: 'Staff & Human Resources', desc: 'Hiring, training, retention, scheduling' },
+                  { icon: 'M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z', label: 'Customer Experience', desc: 'Reviews, feedback, loyalty, wait times' },
+                  { icon: 'M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z', label: 'Marketing & Brand', desc: 'Online presence, social, promotions' },
+                  { icon: 'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z', label: 'Technology & Systems', desc: 'POS, reservations, reporting tools' },
+                  { icon: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z', label: 'Maintenance & Preventative Care', desc: 'Equipment upkeep, repairs, safety checks' },
+                  { icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z', label: 'Compliance & Safety', desc: 'Health codes, permits, food safety standards' },
                 ].map(item => (
                   <div key={item.label} className="flex items-center gap-4 p-4 rounded-xl bg-emerald-900/50 border border-emerald-800/60">
                     <div className="w-9 h-9 rounded-lg bg-emerald-600/20 border border-emerald-600/40 flex items-center justify-center flex-shrink-0">

@@ -70,13 +70,14 @@ const MeetTheTeam = () => {
                               {member.name.split(' ').map(n => n[0]).join('')}
                             </div>
                           </div>
-                          {/* Uncomment when you add actual images */}
-                          {/* <Image
-                            src={member.image}
-                            alt={member.name}
-                            fill
-                            className="object-cover group-hover:scale-105 transition-transform duration-300"
-                          /> */}
+                          {member.image && (
+                            <Image
+                              src={member.image}
+                              alt={member.name}
+                              fill
+                              className="object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                            />
+                          )}
                         </div>
                       </div>
 
