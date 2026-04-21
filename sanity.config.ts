@@ -23,18 +23,6 @@ export default defineConfig({
           enable: '/api/draft-mode/enable',
         },
       },
-      resolve: {
-        locations: {
-          post: (doc) => ({
-            locations: [
-              {
-                title: doc?.title as string || 'Blog Post',
-                href: `/blog/${(doc?.slug as any)?.current}`,
-              },
-            ],
-          }),
-        },
-      },
     }),
     visionTool(),
   ],

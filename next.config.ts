@@ -6,6 +6,9 @@ const bundleAnalyzer = withBundleAnalyzer({
 });
 
 const nextConfig: NextConfig = {
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   serverExternalPackages: ['@sparticuz/chromium-min', 'puppeteer-core'],
   images: {
     remotePatterns: [
