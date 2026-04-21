@@ -10,17 +10,17 @@ const Footer = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
 
           {/* Company Info */}
-          <div className="space-y-2 fade-slide-up text-delay-1 -mt-8">
+          <div className="space-y-4 fade-slide-up text-delay-1">
             <div className="flex items-center">
               <Image
                 src="/assets/logos/servia-logo-negativo.png"
                 alt="Servia Consulting"
-                width={240}
-                height={80}
+                width={180}
+                height={60}
                 className="object-contain"
               />
             </div>
-            <p className="text-gray-400 leading-relaxed">
+            <p className="text-white leading-relaxed">
               Transforming insights into strategic advantage. Your trusted partner for sustainable business growth.
             </p>
             <div className="flex space-x-4 pt-2">
