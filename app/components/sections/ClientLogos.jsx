@@ -3,14 +3,7 @@ import React from 'react'
 import ScrollFadeIn from '../ui/ScrollFadeIn'
 
 const clients = [
-  { name: 'La Casa Restaurant',    type: 'Fine Dining',   city: 'Houston, TX' },
-  { name: 'The Harbor Grill',      type: 'Casual Dining', city: 'Austin, TX' },
-  { name: 'Spice Garden',          type: 'Fast Casual',   city: 'Dallas, TX' },
-  { name: 'Uptown Bistro',         type: 'Bistro',        city: 'San Antonio, TX' },
-  { name: 'Mesa Verde Kitchen',    type: 'Fast Casual',   city: 'Houston, TX' },
-  { name: 'The Blue Door Café',    type: 'Café',          city: 'Austin, TX' },
-  { name: 'Rosewood Dining',       type: 'Fine Dining',   city: 'Dallas, TX' },
-  { name: 'Cornerstone Eatery',    type: 'Casual Dining', city: 'Fort Worth, TX' },
+  { name: "Moran's Pizzeria", type: 'Pizzeria', city: 'Texas' },
 ]
 
 export default function ClientLogos() {
@@ -31,10 +24,10 @@ export default function ClientLogos() {
         </ScrollFadeIn>
 
         {/* Logo grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div className="flex justify-center">
           {clients.map((client, i) => (
             <ScrollFadeIn key={client.name} delay={i * 60}>
-            <div className="flex flex-col items-center justify-center text-center p-5 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md hover:bg-white/10 hover:border-white/20 transition-all group">
+            <div className="w-48 flex flex-col items-center justify-center text-center p-5 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md hover:bg-white/10 hover:border-white/20 transition-all group">
               {/* Monogram */}
               <div className="w-12 h-12 rounded-full bg-white/10 group-hover:bg-emerald-600 flex items-center justify-center mb-3 transition-colors">
                 <span className="text-lg font-black text-white transition-colors">

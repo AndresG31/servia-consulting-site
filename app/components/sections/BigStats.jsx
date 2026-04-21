@@ -4,8 +4,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import CountUp from '../ui/CountUp'
 
 const STATS = [
-  { value: 50, suffix: '+', label: 'Clients Served',       detail: 'Across the U.S. & beyond'     },
-  { value: 98,  suffix: '%', label: 'Success Rate',         detail: 'Measured by client outcomes'  },
+  { value: 5,  suffix: '+', label: 'Clients Served',       detail: 'Across the U.S. & beyond'     },
+  { value: 100, suffix: '%', label: 'Success Rate',         detail: 'Measured by client outcomes'  },
   { value: 5,  suffix: '+', label: 'Years of Experience',  detail: 'In restaurant operations'     },
   { value: 25,  suffix: '%', label: 'Avg. Revenue Increase', detail: 'In the first 6 months'      },
 ]

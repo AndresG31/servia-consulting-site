@@ -113,11 +113,11 @@ const HeroSection = () => {
               {/* Stats */}
               <div className="grid grid-cols-3 gap-6 mt-16 pt-8 border-t border-gray-600 opacity-0 animate-page-hero" style={{ animationDelay: '0.65s' }}>
                 <div>
-                  <div className="text-3xl font-bold text-emerald-400"><CountUp end={50} suffix="+" /></div>
+                  <div className="text-3xl font-bold text-emerald-400"><CountUp end={5} suffix="+" /></div>
                   <div className="text-sm text-gray-300 mt-1">Clients Served</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-emerald-400"><CountUp end={98} suffix="%" /></div>
+                  <div className="text-3xl font-bold text-emerald-400"><CountUp end={100} suffix="%" /></div>
                   <div className="text-sm text-gray-300 mt-1">Success Rate</div>
                 </div>
                 <div>
