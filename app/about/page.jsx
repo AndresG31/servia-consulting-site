@@ -1,7 +1,10 @@
+'use client'
+
 import React from 'react'
 import Image from 'next/image'
 import Footer from '../components/layout/Footer'
 import MeetTheTeam from '../components/sections/MeetTheTeam'
+import ScrollFadeIn from '../components/ui/ScrollFadeIn'
 
 const AboutPage = () => {
   return (
@@ -116,13 +119,16 @@ const AboutPage = () => {
         }}></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollFadeIn>
           <div className="text-center mb-12">
             <div className="w-16 h-1 bg-emerald-600 mx-auto mb-6"></div>
             <h2 className="text-4xl font-bold text-emerald-700">Meet the Founder</h2>
           </div>
+          </ScrollFadeIn>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Image Section with Emerald Wrapper */}
+            <ScrollFadeIn delay={100}>
             <div className="relative">
               <div className="relative p-6 bg-gradient-to-br from-emerald-600 via-emerald-500 to-emerald-600 rounded-xl shadow-2xl">
                 {/* Decorative corner elements */}
@@ -160,8 +166,10 @@ const AboutPage = () => {
               {/* Background decorative element */}
               <div className="absolute -z-10 top-8 right-8 w-full h-full bg-emerald-100 rounded-xl"></div>
             </div>
+            </ScrollFadeIn>
 
             {/* Info Section */}
+            <ScrollFadeIn delay={200}>
             <div className="space-y-6">
               <div className="flex flex-wrap items-center gap-3 mb-1">
                 <h3 className="text-3xl font-bold text-emerald-900">Andres Gutierrez</h3>
@@ -195,6 +203,7 @@ const AboutPage = () => {
                 ))}
               </div>
             </div>
+            </ScrollFadeIn>
           </div>
         </div>
       </section>
@@ -203,6 +212,7 @@ const AboutPage = () => {
       <section data-header-theme="dark" className="relative bg-emerald-900 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <ScrollFadeIn>
             <div className="space-y-6">
               <div className="w-20 h-1 bg-emerald-400"></div>
               <h2 className="text-4xl sm:text-5xl font-bold text-white leading-tight">
@@ -236,6 +246,8 @@ const AboutPage = () => {
                 </div>
               </div>
             </div>
+            </ScrollFadeIn>
+            <ScrollFadeIn delay={100}>
             <div className="relative">
               <div className="bg-gradient-to-br from-emerald-600 to-emerald-700 p-8 rounded-2xl shadow-2xl">
                 <div className="bg-white rounded-lg p-8">
@@ -277,6 +289,7 @@ const AboutPage = () => {
                 </div>
               </div>
             </div>
+            </ScrollFadeIn>
           </div>
         </div>
       </section>
@@ -296,6 +309,7 @@ const AboutPage = () => {
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-emerald-50 rounded-full blur-3xl opacity-50 -z-10"></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollFadeIn>
           <div className="text-center space-y-6 mb-16">
             <div className="flex justify-center">
               <div className="w-20 h-1 bg-emerald-600"></div>
@@ -309,8 +323,10 @@ const AboutPage = () => {
               organizations that have championed service, leadership, and integrity for over a century.
             </p>
           </div>
+          </ScrollFadeIn>
 
           {/* Service in Action - Moved to top */}
+          <ScrollFadeIn delay={100}>
           <div className="bg-gradient-to-br from-emerald-50 to-white border-2 border-emerald-600/20 rounded-2xl p-8 mb-16">
             <div className="text-center mb-8">
               <h3 className="text-3xl font-bold text-emerald-700 mb-4">Service in Action</h3>
@@ -349,9 +365,11 @@ const AboutPage = () => {
               </div>
             </div>
           </div>
+          </ScrollFadeIn>
 
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Boy Scouts of America */}
+            <ScrollFadeIn delay={200}>
             <div className="bg-white p-8 rounded-2xl border-2 border-emerald-600/20 shadow-lg hover:shadow-xl transition-shadow">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-16 h-16 bg-emerald-600 rounded-full flex items-center justify-center">
@@ -373,8 +391,10 @@ const AboutPage = () => {
                 every relationship is built on trust.
               </p>
             </div>
+            </ScrollFadeIn>
 
             {/* Order of the Arrow */}
+            <ScrollFadeIn delay={300}>
             <div className="bg-white p-8 rounded-2xl border-2 border-emerald-600/20 shadow-lg hover:shadow-xl transition-shadow">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-16 h-16 bg-emerald-600 rounded-full flex items-center justify-center">
@@ -394,6 +414,7 @@ const AboutPage = () => {
                 provide solutions—we serve our clients with dedication, going above and beyond to ensure their success.
               </p>
             </div>
+            </ScrollFadeIn>
           </div>
         </div>
       </section>
@@ -419,6 +440,7 @@ const AboutPage = () => {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <ScrollFadeIn delay={100}>
             <div className="order-2 lg:order-1">
               <div className="bg-gradient-to-br from-emerald-600 to-emerald-700 p-8 rounded-2xl shadow-2xl">
                 <div className="bg-white rounded-lg p-8">
@@ -460,7 +482,9 @@ const AboutPage = () => {
                 </div>
               </div>
             </div>
+            </ScrollFadeIn>
 
+            <ScrollFadeIn delay={200}>
             <div className="space-y-6 order-1 lg:order-2">
               <div className="w-20 h-1 bg-emerald-400"></div>
               <h2 className="text-4xl sm:text-5xl font-bold text-white leading-tight">
@@ -497,6 +521,7 @@ const AboutPage = () => {
                 </div>
               </div>
             </div>
+            </ScrollFadeIn>
           </div>
         </div>
       </section>
@@ -518,6 +543,7 @@ const AboutPage = () => {
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollFadeIn>
           <div className="text-center space-y-6 mb-16">
             <div className="flex justify-center">
               <div className="w-20 h-1 bg-emerald-600"></div>
@@ -527,8 +553,10 @@ const AboutPage = () => {
               <span className="block text-emerald-600 mt-2">Values</span>
             </h2>
           </div>
+          </ScrollFadeIn>
 
           <div className="grid md:grid-cols-3 gap-8">
+            <ScrollFadeIn delay={100}>
             <div className="bg-gradient-to-br from-emerald-700 to-emerald-800 p-8 rounded-2xl border-2 border-emerald-600/30 hover:border-emerald-600 hover:from-emerald-600 hover:to-emerald-700 transition-all group hover:scale-105 transform duration-300 shadow-lg hover:shadow-2xl hover:shadow-emerald-600/50">
               <div className="w-16 h-16 bg-emerald-600/20 rounded-full flex items-center justify-center mb-6 group-hover:bg-white/20 transition-colors">
                 <svg className="w-8 h-8 text-emerald-400 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -540,7 +568,9 @@ const AboutPage = () => {
                 Trustworthy, loyal, and honest in every interaction. Our word is our bond, and we honor our commitments.
               </p>
             </div>
+            </ScrollFadeIn>
 
+            <ScrollFadeIn delay={200}>
             <div className="bg-gradient-to-br from-emerald-700 to-emerald-800 p-8 rounded-2xl border-2 border-emerald-600/30 hover:border-emerald-600 hover:from-emerald-600 hover:to-emerald-700 transition-all group hover:scale-105 transform duration-300 shadow-lg hover:shadow-2xl hover:shadow-emerald-600/50">
               <div className="w-16 h-16 bg-emerald-600/20 rounded-full flex items-center justify-center mb-6 group-hover:bg-white/20 transition-colors">
                 <svg className="w-8 h-8 text-emerald-400 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -552,7 +582,9 @@ const AboutPage = () => {
                 Cheerfully serving our clients with dedication, going beyond expectations to ensure their success.
               </p>
             </div>
+            </ScrollFadeIn>
 
+            <ScrollFadeIn delay={300}>
             <div className="bg-gradient-to-br from-emerald-700 to-emerald-800 p-8 rounded-2xl border-2 border-emerald-600/30 hover:border-emerald-600 hover:from-emerald-600 hover:to-emerald-700 transition-all group hover:scale-105 transform duration-300 shadow-lg hover:shadow-2xl hover:shadow-emerald-600/50">
               <div className="w-16 h-16 bg-emerald-600/20 rounded-full flex items-center justify-center mb-6 group-hover:bg-white/20 transition-colors">
                 <svg className="w-8 h-8 text-emerald-400 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -564,6 +596,7 @@ const AboutPage = () => {
                 Prepared, resourceful, and committed to delivering the highest quality in everything we do.
               </p>
             </div>
+            </ScrollFadeIn>
           </div>
         </div>
       </section>
@@ -581,6 +614,7 @@ const AboutPage = () => {
         }}></div>
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <ScrollFadeIn>
           <div className="space-y-6">
             <h2 className="text-4xl sm:text-5xl font-bold text-emerald-700 leading-tight">
               Ready to Experience
@@ -599,6 +633,7 @@ const AboutPage = () => {
               </a>
             </div>
           </div>
+          </ScrollFadeIn>
         </div>
       </section>
 

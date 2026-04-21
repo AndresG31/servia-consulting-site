@@ -1,6 +1,7 @@
 import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
+import { presentationTool } from 'sanity/presentation'
 import { schemaTypes } from './sanity/schemas'
 import { structure } from './sanity/structure'
 
@@ -14,8 +15,26 @@ export default defineConfig({
   basePath: '/studio',
 
   plugins: [
-    structureTool({
-      structure,
+    structureTool({ structure }),
+    presentationTool({
+      previewUrl: {
+        origin: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+        previewMode: {
+          enable: '/api/draft-mode/enable',
+        },
+      },
+      resolve: {
+        locations: {
+          post: (doc) => ({
+            locations: [
+              {
+                title: doc?.title as string || 'Blog Post',
+                href: `/blog/${(doc?.slug as any)?.current}`,
+              },
+            ],
+          }),
+        },
+      },
     }),
     visionTool(),
   ],

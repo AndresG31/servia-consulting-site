@@ -1,20 +1,17 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Footer from '../components/layout/Footer'
 import ScrollFadeIn from '../components/ui/ScrollFadeIn'
 import { getFeaturedPosts } from '../lib/sanity'
+import { newsources, previewSourceNames } from './insightsData'
+import TypewriterSearch from './TypewriterSearch'
 
 const InsightsPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('All')
-  const [searchTerm, setSearchTerm] = useState('')
   const [sanityPosts, setSanityPosts] = useState([])
-  const [showDropdown, setShowDropdown] = useState(false)
-  const [placeholderText, setPlaceholderText] = useState('')
-  const [activePhraseIndex, setActivePhraseIndex] = useState(0)
-  const [previewFading, setPreviewFading] = useState(false)
   const [showSuggestModal, setShowSuggestModal] = useState(false)
   const [suggestForm, setSuggestForm] = useState({ name: '', email: '', source: '', url: '', category: '', reason: '' })
   const [suggestStatus, setSuggestStatus] = useState(null)
@@ -36,19 +33,7 @@ const InsightsPage = () => {
     requestAnimationFrame(animate)
   }
 
-  // Phrases mapped 1-to-1 with preview sources below
-  const previewSourceNames = [
-    'Harvard Business Review',
-    'Forbes Business',
-    'Wall Street Journal',
-    'Bloomberg Business',
-    'TechCrunch',
-    'Nation\'s Restaurant News',
-    'QSR Magazine',
-    'McKinsey Insights',
-  ]
-
-  const previewAssociations = {
+  const previewAssociations = Object.freeze({
     'Harvard Business Review':  { text: 'Trusted by executives and business school leaders worldwide for management strategy.' },
     'Forbes Business':          { text: 'Go-to source for entrepreneurs, innovators, and business executives across every industry.' },
     'Wall Street Journal':      { text: 'The gold standard in financial and business journalism — essential daily reading for operators.' },
@@ -57,49 +42,7 @@ const InsightsPage = () => {
     'Nation\'s Restaurant News':{ text: 'The leading trade publication covering foodservice trends, operations, and restaurant news.' },
     'QSR Magazine':             { text: 'Dedicated coverage of quick-service and fast-casual restaurant trends, technology, and growth.' },
     'McKinsey Insights':        { text: 'Research-backed strategy insights from one of the world\'s top management consulting firms.' },
-  }
-
-  useEffect(() => {
-    const phrases = previewSourceNames.map(n => n + '...')
-    let phraseIndex = 0
-    let charIndex = 0
-    let deleting = false
-    let timeout
-
-    const type = () => {
-      const current = phrases[phraseIndex]
-
-      if (!deleting) {
-        charIndex++
-        setPlaceholderText(current.slice(0, charIndex))
-        if (charIndex === current.length) {
-          // Phrase fully typed — surface the preview card then hold 4 s
-          setActivePhraseIndex(phraseIndex)
-          setPreviewFading(false)
-          deleting = true
-          timeout = setTimeout(type, 5000)
-        } else {
-          timeout = setTimeout(type, 60)
-        }
-      } else {
-        charIndex--
-        setPlaceholderText(current.slice(0, charIndex))
-        if (charIndex === 0) {
-          // Word fully erased — fade the card out then switch to next phrase
-          setPreviewFading(true)
-          deleting = false
-          phraseIndex = (phraseIndex + 1) % phrases.length
-          timeout = setTimeout(type, 400)
-        } else {
-          timeout = setTimeout(type, 30)
-        }
-      }
-    }
-
-    timeout = setTimeout(type, 800)
-    return () => clearTimeout(timeout)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  })
 
   // Fetch Sanity blog posts
   useEffect(() => {
@@ -116,221 +59,21 @@ const InsightsPage = () => {
     fetchSanityPosts()
   }, [])
 
-  // Curated business news sources
-  const newsources = [
-    {
-      name: "Harvard Business Review",
-      description: "Management tips and insights from business leaders",
-      url: "https://hbr.org/topic/business-management",
-      category: "Strategy",
-      iconImage: "/assets/insights/Icons/Harvard.png",
-      color: "from-blue-500 to-blue-600",
-      featured: true,
-      image: "/assets/insights/Photos/Harvard.png"
-    },
-    {
-      name: "Forbes Business",
-      description: "Latest business news, entrepreneurs, and innovation",
-      url: "https://www.forbes.com/business/",
-      category: "Business News",
-      iconImage: "/assets/insights/Icons/Forbes.png",
-      color: "from-gray-700 to-gray-800",
-      featured: true,
-      image: "/assets/insights/Photos/Forbes.png"
-    },
-    {
-      name: "Entrepreneur",
-      description: "Startup advice, small business tips, and success stories",
-      url: "https://www.entrepreneur.com/topic/starting-a-business",
-      category: "Entrepreneurship",
-      iconImage: "/assets/insights/Icons/EntreLogo.png",
-      color: "from-red-500 to-red-600",
-      featured: true,
-      image: "/assets/insights/Photos/Entreprenuer.png"
-    },
-    {
-      name: "Inc. Magazine",
-      description: "Resources for growing your business and leadership",
-      url: "https://www.inc.com/",
-      category: "Growth",
-      iconImage: "/assets/insights/Icons/IncLogo.png",
-      color: "from-emerald-500 to-emerald-600",
-      featured: false
-    },
-    {
-      name: "Fast Company",
-      description: "Innovation, technology, and business creativity",
-      url: "https://www.fastcompany.com/section/news",
-      category: "Innovation",
-      iconImage: "/assets/insights/Icons/fastcompany.png",
-      logoPadding: "p-0 scale-125",
-      color: "from-orange-500 to-orange-600",
-      featured: false
-    },
-    {
-      name: "Bloomberg Business",
-      description: "Global business and financial market news",
-      url: "https://www.bloomberg.com/businessweek",
-      category: "Finance",
-      iconImage: "/assets/insights/Icons/Bloomberg.png",
-      color: "from-indigo-500 to-indigo-600",
-      featured: true,
-      image: "/assets/insights/Photos/Bloomberg.png"
-    },
-    {
-      name: "Restaurant Business",
-      description: "News and trends in the restaurant industry",
-      url: "https://www.restaurantbusinessonline.com/",
-      category: "Restaurant",
-      iconImage: "/assets/insights/Icons/restaurantbusiness.png",
-      color: "from-pink-500 to-pink-600",
-      featured: false
-    },
-    {
-      name: "Nation's Restaurant News",
-      description: "Foodservice industry insights and restaurant operations",
-      url: "https://www.nrn.com/",
-      category: "Restaurant",
-      iconImage: "/assets/insights/Icons/nrn.png",
-      color: "from-purple-500 to-purple-600",
-      featured: false
-    },
-    {
-      name: "QSR Magazine",
-      description: "Quick-service restaurant news and trends",
-      url: "https://www.qsrmagazine.com/",
-      category: "Fast Casual",
-      iconImage: "/assets/insights/Icons/qsr.png",
-      color: "from-yellow-500 to-yellow-600",
-      featured: false
-    },
-    {
-      name: "Small Business Trends",
-      description: "News, tips, and resources for small business owners",
-      url: "https://smallbiztrends.com/",
-      category: "Small Business",
-      iconImage: "/assets/insights/Icons/SmallBusinessTrends.png",
-      color: "from-teal-500 to-teal-600",
-      featured: false
-    },
-    {
-      name: "McKinsey Insights",
-      description: "Business strategy and consulting insights",
-      url: "https://www.mckinsey.com/featured-insights",
-      category: "Consulting",
-      iconImage: "/assets/insights/Icons/mckinseyandcompany.png",
-      logoPadding: "p-0",
-      color: "from-cyan-500 to-cyan-600",
-      featured: false
-    },
-    {
-      name: "TechCrunch",
-      description: "Stay ahead of the technology disruptions",
-      url: "https://techcrunch.com/category/startups/",
-      category: "Tech",
-      iconImage: "/assets/insights/Icons/TechCrunch.png",
-      color: "from-green-500 to-green-600",
-      featured: true,
-      image: "/assets/insights/Photos/TechCrunch.png"
-    },
-    {
-      name: "Wall Street Journal",
-      description: "Breaking business and financial news",
-      url: "https://www.wsj.com/news/business",
-      category: "Business News",
-      iconImage: "/assets/insights/Icons/wallstreetjournal.png",
-      color: "from-slate-600 to-slate-700",
-      featured: true,
-      image: "/assets/insights/Photos/Wallstreetjournal.png"
-    },
-    {
-      name: "Business Insider",
-      description: "Business strategy, finance, and markets",
-      url: "https://www.businessinsider.com/",
-      category: "Business News",
-      iconImage: "/assets/insights/Icons/BusinessInsider.png",
-      color: "from-blue-600 to-blue-700",
-      featured: false
-    },
-    {
-      name: "MIT Sloan Review",
-      description: "Research-based insights on management",
-      url: "https://sloanreview.mit.edu/",
-      category: "Management",
-      iconImage: "/assets/insights/Icons/mitsmr.png",
-      color: "from-red-600 to-red-700",
-      featured: false
-    },
-    {
-      name: "CNBC Business",
-      description: "Real-time business and market news",
-      url: "https://www.cnbc.com/business/",
-      category: "Markets",
-      iconImage: "/assets/insights/Icons/cnbc.png",
-      color: "from-blue-500 to-blue-600",
-      featured: false
-    },
-    {
-      name: "Restaurant Dive",
-      description: "Restaurant industry news and analysis",
-      url: "https://www.restaurantdive.com/",
-      category: "Restaurant",
-      iconImage: "/assets/insights/Icons/restaurantdive.jpg",
-      color: "from-orange-500 to-orange-600",
-      featured: false
-    },
-    {
-      name: "Food & Wine",
-      description: "Food industry trends and restaurant business",
-      url: "https://www.foodandwine.com/",
-      category: "Food Industry",
-      iconImage: "/assets/insights/Icons/foodandwine.png",
-      color: "from-rose-500 to-rose-600",
-      featured: false
-    }
-  ]
-
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = () => setShowDropdown(false)
-    if (showDropdown) {
-      document.addEventListener('click', handleClickOutside)
-    }
-    return () => document.removeEventListener('click', handleClickOutside)
-  }, [showDropdown])
-
-  const handleSearchClick = (e) => {
-    e.stopPropagation()
-    setShowDropdown(true)
-  }
-
-  const handleSourceClick = (url) => {
-    window.open(url, '_blank')
-    setSearchTerm('')
-    setShowDropdown(false)
-  }
-
-  const categories = ['All', ...new Set(newsources.map(source => source.category))]
-
-  // Used only for the search dropdown — filters by both search term and category
-  const filteredSources = newsources.filter(source => {
-    const matchesCategory = selectedCategory === 'All' || source.category === selectedCategory
-    const matchesSearch = source.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         source.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         source.category.toLowerCase().includes(searchTerm.toLowerCase())
-    return matchesCategory && matchesSearch
-  })
-
-  // Used for the library grid — only filters by category, never by search
-  const librarySources = newsources.filter(source =>
-    selectedCategory === 'All' || source.category === selectedCategory
+  // Memoize expensive computations
+  const categories = useMemo(
+    () => ['All', ...new Set(newsources.map(source => source.category))],
+    []
   )
 
-  // Featured sources — always show all, never filtered by search
-  const featuredSources = newsources.filter(source => source.featured)
+  // Used for the library grid — only filters by category, never by search
+  const librarySources = useMemo(() => {
+    return newsources.filter(source =>
+      selectedCategory === 'All' || source.category === selectedCategory
+    )
+  }, [selectedCategory])
 
-  // Show search is active
-  const isSearching = searchTerm.length > 0
+  // Featured sources — always show all, never filtered by search
+  const featuredSources = useMemo(() => newsources.filter(source => source.featured), [])
 
   // Generate random stars
   const generateStars = (count) => {
@@ -365,7 +108,7 @@ const InsightsPage = () => {
   const [shootingStars, setShootingStars] = useState([])
 
   useEffect(() => {
-    setStars(generateStars(200))
+    setStars(generateStars(80))
     setShootingStars(Array.from({ length: 12 }, (_, i) => ({
       id: i,
       top: Math.random() * 60,
@@ -377,7 +120,7 @@ const InsightsPage = () => {
   }, [])
 
   return (
-    <div className="-mt-[92px] min-h-screen bg-emerald-950 relative overflow-x-hidden">
+    <div className="-mt-[92px] min-h-screen bg-emerald-950 relative">
       {/* Starfield Background - Fixed across entire page */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         {/* Animated gradient background */}
@@ -413,7 +156,8 @@ const InsightsPage = () => {
               left: `${star.left}%`,
               animationDelay: `${star.animationDelay}s`,
               animationDuration: `${star.animationDuration}s`,
-              opacity: star.opacity
+              opacity: star.opacity,
+              willChange: 'opacity',
             }}
           />
         ))}
@@ -425,14 +169,14 @@ const InsightsPage = () => {
       {/* Hero Section with Animated Background */}
       <section className="relative overflow-visible min-h-[700px] pb-32">
         {/* Video Background */}
-        <div className="absolute inset-0 z-0 overflow-hidden">
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <video
             autoPlay
             loop
             muted
             playsInline
             preload="auto"
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover pointer-events-none"
           >
             <source src="/assets/insights/insights-hero.mp4" type="video/mp4" />
           </video>
@@ -469,170 +213,12 @@ const InsightsPage = () => {
               Stay informed, stay ahead.
             </p>
 
-            {/* Search Bar with Dropdown */}
-            <div className="max-w-2xl mx-auto relative">
-              <div className="relative" onClick={handleSearchClick}>
-                <input
-                  type="text"
-                  placeholder={searchTerm ? 'Search news sources...' : placeholderText}
-                  value={searchTerm}
-                  onChange={(e) => {
-                    setSearchTerm(e.target.value)
-                    setShowDropdown(true)
-                  }}
-                  onFocus={() => setShowDropdown(true)}
-                  className="w-full px-6 py-4 pl-14 bg-white/10 backdrop-blur-md border-2 border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none transition-colors search-glow"
-                />
-                <svg className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-                {searchTerm && (
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      setSearchTerm('')
-                      setShowDropdown(false)
-                    }}
-                    className="absolute right-5 top-1/2 -translate-y-1/2 w-6 h-6 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors z-10"
-                  >
-                    <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
-                )}
-              </div>
-
-              {/* Dropdown Results - Moved outside inner div for better positioning */}
-              {showDropdown && searchTerm && (
-                <div className="absolute top-full mt-2 left-0 right-0 bg-gray-900/95 backdrop-blur-xl border-2 border-emerald-600/30 rounded-2xl shadow-2xl shadow-emerald-500/20 overflow-hidden z-[60] max-h-96 overflow-y-auto">
-                  {filteredSources.length > 0 ? (
-                    <>
-                      <div className="px-4 py-3 bg-emerald-600/20 border-b border-emerald-600/30">
-                        <p className="text-emerald-400 text-sm font-semibold">
-                          {filteredSources.length} source{filteredSources.length !== 1 ? 's' : ''} found
-                        </p>
-                      </div>
-                      {filteredSources.map((source, index) => (
-                        <button
-                          key={index}
-                          onClick={(e) => {
-                            e.preventDefault()
-                            e.stopPropagation()
-                            window.open(source.url, '_blank', 'noopener,noreferrer')
-                            setSearchTerm('')
-                            setShowDropdown(false)
-                          }}
-                          className="w-full px-6 py-4 hover:bg-emerald-600/20 transition-all text-left border-b border-white/5 last:border-b-0 group cursor-pointer"
-                        >
-                          <div className="flex items-center gap-4">
-                            {source.iconImage ? (
-                              <div className={`${source.logoSize ?? 'w-12 h-12'} relative flex-shrink-0 rounded-lg overflow-hidden bg-white`}>
-                                <Image
-                                  src={source.iconImage}
-                                  alt={`${source.name} logo`}
-                                  fill
-                                  className={`object-contain ${source.logoPadding ?? 'p-1'}`}
-                                />
-                              </div>
-                            ) : (
-                              <div className="text-3xl">{source.icon}</div>
-                            )}
-                            <div className="flex-1">
-                              <div className="flex items-center gap-2 mb-1">
-                                <h4 className="text-white font-bold group-hover:text-emerald-400 transition-colors">
-                                  {source.name}
-                                </h4>
-                                <svg className="w-4 h-4 text-gray-400 group-hover:text-emerald-400 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                </svg>
-                              </div>
-                              <p className="text-gray-400 text-sm line-clamp-1">{source.description}</p>
-                              <div className="mt-1">
-                                <span className="inline-block bg-emerald-600/20 text-emerald-400 text-xs px-2 py-1 rounded-full">
-                                  {source.category}
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        </button>
-                      ))}
-                    </>
-                  ) : (
-                    <div className="px-6 py-8 text-center">
-                      <div className="text-4xl mb-2">🔍</div>
-                      <p className="text-gray-400">No sources match "{searchTerm}"</p>
-                      <p className="text-gray-500 text-sm mt-1">Try a different search term</p>
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-
-            {/* Typewriter Preview Card */}
-            {!searchTerm && (() => {
-              const previewSource = newsources.find(s => s.name === previewSourceNames[activePhraseIndex])
-              if (!previewSource) return null
-              return (
-                <>
-                <a
-                  href={previewSource.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block w-full mt-4"
-                  style={{ opacity: previewFading ? 0 : 1, transition: 'opacity 0.35s ease' }}
-                >
-                  <div className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br ${previewSource.color} flex flex-row items-stretch`}>
-                    {/* Text content — left */}
-                    <div className="flex-1 px-10 py-10 flex flex-col justify-center relative z-10 text-left">
-                      <div className="flex items-center gap-3 mb-3">
-                        <span className="text-white font-bold text-2xl leading-tight">{previewSource.name}</span>
-                        <svg className="w-6 h-6 text-white/70 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                        </svg>
-                      </div>
-                      <p className="text-white/80 text-base leading-relaxed mb-4 line-clamp-3">{previewSource.description}</p>
-                      <span className="inline-block self-start bg-white/20 backdrop-blur-sm text-white text-sm font-semibold px-5 py-1.5 rounded-full">
-                        {previewSource.category}
-                      </span>
-                    </div>
-
-                    {/* Logo — right */}
-                    <div className="w-24 sm:w-40 md:w-56 lg:w-72 flex-shrink-0 relative bg-white">
-                      {previewSource.iconImage ? (
-                        <Image
-                          src={previewSource.iconImage}
-                          alt={`${previewSource.name} logo`}
-                          fill
-                          className={`object-contain ${previewSource.logoPadding ?? 'p-3'}`}
-                        />
-                      ) : (
-                        <div className="absolute inset-0 flex items-center justify-center text-8xl">
-                          {previewSource.icon}
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Hover overlay */}
-                    <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors duration-300 pointer-events-none" />
-                  </div>
-                </a>
-
-                {/* Association Banner */}
-                {(() => {
-                  const assoc = previewAssociations[previewSourceNames[activePhraseIndex]]
-                  if (!assoc) return null
-                  return (
-                    <div
-                      className="w-full mt-1 px-5 py-3 rounded-xl bg-emerald-900/60 backdrop-blur-sm border border-emerald-700/40 flex items-center gap-3"
-                      style={{ opacity: previewFading ? 0 : 1, transition: 'opacity 0.35s ease' }}
-                    >
-                      <p className="text-emerald-300 text-sm leading-snug">{assoc.text}</p>
-                    </div>
-                  )
-                })()}
-                </>
-              )
-            })()}
+            {/* Search Bar + Typewriter Preview */}
+            <TypewriterSearch
+              newsources={newsources}
+              previewSourceNames={previewSourceNames}
+              previewAssociations={previewAssociations}
+            />
           </div>
         </div>
       </section>
@@ -965,20 +551,6 @@ const InsightsPage = () => {
         </div>
       </section>
 
-      {/* Search Results Section Title */}
-      {isSearching && (
-        <section className="relative bg-transparent py-12">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-bold text-white mb-2">
-              🔍 Search Results
-            </h2>
-            <p className="text-gray-400">
-              Showing {filteredSources.length} source{filteredSources.length !== 1 ? 's' : ''} for "{searchTerm}"
-            </p>
-          </div>
-        </section>
-      )}
-
       {/* Category Filter Pills */}
       <section className="relative py-8 sticky top-0 z-40 backdrop-blur-lg bg-emerald-950/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1014,16 +586,11 @@ const InsightsPage = () => {
               <div className="text-6xl mb-4">🔍</div>
               <h3 className="text-2xl font-bold text-white mb-2">No sources found</h3>
               <p className="text-gray-400 text-lg mb-6">
-                {isSearching
-                  ? `No sources match "${searchTerm}". Try a different search term.`
-                  : 'No sources match your selected category.'}
+                No sources match your selected category.
               </p>
-              {(searchTerm || selectedCategory !== 'All') && (
+              {selectedCategory !== 'All' && (
                 <button
-                  onClick={() => {
-                    setSearchTerm('')
-                    setSelectedCategory('All')
-                  }}
+                  onClick={() => setSelectedCategory('All')}
                   className="bg-emerald-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-emerald-700 transition-all inline-flex items-center gap-2"
                 >
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -7,6 +7,14 @@ const bundleAnalyzer = withBundleAnalyzer({
 
 const nextConfig: NextConfig = {
   serverExternalPackages: ['@sparticuz/chromium-min', 'puppeteer-core'],
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+      },
+    ],
+  },
 };
 
 export default bundleAnalyzer(nextConfig);

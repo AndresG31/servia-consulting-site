@@ -3,6 +3,7 @@
 import React, { Suspense } from 'react'
 import Footer from '../components/layout/Footer'
 import ContactForm from '../components/ContactForm'
+import ScrollFadeIn from '../components/ui/ScrollFadeIn'
 
 const ContactPage = () => {
   const scrollToForm = (e) => {
@@ -131,11 +132,14 @@ const ContactPage = () => {
           <div className="grid lg:grid-cols-2 gap-12">
 
             {/* Contact Form */}
+            <ScrollFadeIn>
             <Suspense fallback={null}>
               <ContactForm />
             </Suspense>
+            </ScrollFadeIn>
 
             {/* Contact Information */}
+            <ScrollFadeIn delay={100}>
             <div className="space-y-8">
               {/* Contact Details */}
               <div className="bg-gradient-to-br from-emerald-900/90 to-emerald-950 p-8 rounded-2xl border-2 border-emerald-600/30 shadow-lg">
@@ -225,6 +229,7 @@ const ContactPage = () => {
                 </div>
               </div>
             </div>
+            </ScrollFadeIn>
 
           </div>
         </div>
@@ -239,6 +244,7 @@ const ContactPage = () => {
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollFadeIn>
           <div className="text-center mb-12">
             <div className="w-20 h-1 bg-emerald-600 mx-auto mb-6"></div>
             <h2 className="text-4xl sm:text-5xl font-bold text-emerald-900 mb-4">
@@ -249,8 +255,10 @@ const ContactPage = () => {
               Located in the heart of San Antonio, serving businesses across Texas and beyond.
             </p>
           </div>
+          </ScrollFadeIn>
 
           {/* Google Maps Embed */}
+          <ScrollFadeIn delay={100}>
           <div className="rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d224344.55019498!2d-98.69682!3d29.4241!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x865c58af04d00ebd%3A0xef44c7e0abe90dcc!2sSan%20Antonio%2C%20TX!5e0!3m2!1sen!2sus!4v1234567890"
@@ -263,9 +271,11 @@ const ContactPage = () => {
               title="Servia Consulting Location"
             ></iframe>
           </div>
+          </ScrollFadeIn>
 
           {/* Location Benefits */}
           <div className="grid md:grid-cols-3 gap-6 mt-12">
+            <ScrollFadeIn delay={200}>
             <div className="bg-white p-6 rounded-xl shadow-md text-center">
               <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg className="w-8 h-8 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -277,7 +287,9 @@ const ContactPage = () => {
                 Strategically positioned to serve businesses throughout the region
               </p>
             </div>
+            </ScrollFadeIn>
 
+            <ScrollFadeIn delay={300}>
             <div className="bg-white p-6 rounded-xl shadow-md text-center">
               <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg className="w-8 h-8 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -289,7 +301,9 @@ const ContactPage = () => {
                 English and Spanish support to serve our diverse community
               </p>
             </div>
+            </ScrollFadeIn>
 
+            <ScrollFadeIn delay={400}>
             <div className="bg-white p-6 rounded-xl shadow-md text-center">
               <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg className="w-8 h-8 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -301,6 +315,7 @@ const ContactPage = () => {
                 Virtual and in-person consulting available across the United States
               </p>
             </div>
+            </ScrollFadeIn>
           </div>
         </div>
       </section>

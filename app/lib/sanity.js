@@ -13,6 +13,15 @@ export const client = createClient({
   useCdn: process.env.NODE_ENV === 'production',
 })
 
+export const draftClient = createClient({
+  projectId,
+  dataset,
+  apiVersion: '2026-04-16',
+  useCdn: false,
+  token: process.env.SANITY_API_READ_TOKEN,
+  perspective: 'previewDrafts',
+})
+
 export const isSanityConfigured = () => {
   return projectId !== 'placeholder' && projectId !== 'REPLACE_WITH_YOUR_PROJECT_ID'
 }
@@ -43,18 +52,19 @@ export async function getAllPosts() {
       }
     `)
   } catch (error) {
-    console.error('Sanity fetch error:', error)
+    console.warn('Sanity fetch error:', error)
     return []
   }
 }
 
 // Fetch single post by slug
-export async function getPostBySlug(slug) {
+export async function getPostBySlug(slug, draft = false) {
   if (!isSanityConfigured()) {
     return null
   }
+  const activeClient = draft && process.env.SANITY_API_READ_TOKEN ? draftClient : client
   try {
-    return await client.fetch(
+    return await activeClient.fetch(
       `
       *[_type == "post" && slug.current == $slug][0] {
         _id,
@@ -72,7 +82,7 @@ export async function getPostBySlug(slug) {
       { slug }
     )
   } catch (error) {
-    console.error('Sanity fetch error:', error)
+    console.warn('Sanity fetch error:', error)
     return null
   }
 }
@@ -100,7 +110,7 @@ export async function getPostsByCategory(category) {
       { category }
     )
   } catch (error) {
-    console.error('Sanity fetch error:', error)
+    console.warn('Sanity fetch error:', error)
     return []
   }
 }
@@ -125,7 +135,7 @@ export async function getFeaturedPosts(limit = 3) {
       }
     `)
   } catch (error) {
-    console.error('Sanity fetch error:', error)
+    console.warn('Sanity fetch error:', error)
     return []
   }
 }

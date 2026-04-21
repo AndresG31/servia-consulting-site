@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import Footer from '../../components/layout/Footer'
+import ScrollFadeIn from '../../components/ui/ScrollFadeIn'
 import { services, QUIZ_SCORING } from '../serviceData'
 
 const questions = [

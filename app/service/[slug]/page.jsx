@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Footer from '../../components/layout/Footer'
 import { services, getServiceBySlug } from '../serviceData'
+import { teamMembers } from '../../team/teamData'
 
 export function generateStaticParams() {
   return services.map(s => ({ slug: s.slug }))
@@ -30,6 +31,11 @@ export default async function ServicePage({ params }) {
 
   const style = pkgStyles[service.pkgColor]
   const related = service.relatedSlugs.map(s => services.find(x => x.slug === s)).filter(Boolean)
+
+  // Find consultants who specialize in this service
+  const consultants = teamMembers.filter(member =>
+    member.servicesSlugs.includes(service.slug)
+  )
 
   return (
     <div className="min-h-screen bg-emerald-950">
@@ -235,6 +241,75 @@ export default async function ServicePage({ params }) {
           </div>
         </div>
       </section>
+
+      {/* Consultants Section */}
+      {consultants.length > 0 && (
+        <section data-header-theme="light" className="relative bg-white py-20">
+          <div className="absolute inset-0 -z-10" style={{
+            backgroundImage: `linear-gradient(to right, rgba(5, 150, 105, 0.15) 1px, transparent 1px),
+                             linear-gradient(to bottom, rgba(5, 150, 105, 0.15) 1px, transparent 1px)`,
+            backgroundSize: '40px 40px'
+          }}></div>
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl sm:text-4xl font-bold text-emerald-900 mb-4">
+                Meet Your {service.label} Specialists
+              </h2>
+              <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+                Our consultants bring deep expertise in {service.label.toLowerCase()} to help you achieve your goals.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {consultants.map((consultant) => (
+                <div
+                  key={consultant.id}
+                  className="group bg-gradient-to-br from-emerald-50 to-white rounded-xl border-2 border-emerald-200 hover:border-emerald-400 p-6 transition-all hover:shadow-xl"
+                >
+                  {/* Photo */}
+                  <div className="relative w-24 h-24 rounded-xl overflow-hidden border-2 border-emerald-400/40 mx-auto mb-4">
+                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-600 to-emerald-500 flex items-center justify-center">
+                      <div className="text-white text-2xl font-bold">
+                        {consultant.name.split(' ').map(n => n[0]).join('')}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Info */}
+                  <div className="text-center">
+                    <h3 className="text-xl font-bold text-emerald-900 mb-1">
+                      {consultant.name}
+                    </h3>
+                    <p className="text-emerald-600 font-semibold text-sm mb-3">
+                      {consultant.title}
+                    </p>
+                    <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                      {consultant.bio}
+                    </p>
+
+                    {/* Actions */}
+                    <div className="space-y-2">
+                      <Link
+                        href={`/team/${consultant.slug}`}
+                        className="block w-full bg-emerald-600 text-white px-4 py-2 rounded-lg font-semibold text-sm hover:bg-emerald-700 transition-all"
+                      >
+                        View Profile
+                      </Link>
+                      <Link
+                        href={`/contact?consultant=${consultant.slug}&service=${service.contactParam}`}
+                        className="block w-full border-2 border-emerald-600 text-emerald-600 px-4 py-2 rounded-lg font-semibold text-sm hover:bg-emerald-50 transition-all"
+                      >
+                        Work with {consultant.name.split(' ')[0]}
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <Footer />
     </div>

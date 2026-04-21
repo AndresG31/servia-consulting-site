@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 /* ====== BRAND COLORS ====== */
 /* #0ecb7b — bright green (accents, CTAs, highlights)  */

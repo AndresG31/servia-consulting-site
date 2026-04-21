@@ -1,15 +1,15 @@
 'use client'
 import { useEffect } from 'react'
-
-// To activate: create a free account at https://tawk.to
-// Then replace TAWK_PROPERTY_ID and TAWK_WIDGET_ID below with your values
-// Found in: Tawk.to Dashboard → Administration → Chat Widget → Direct Chat Link
+import { usePathname } from 'next/navigation'
 
 const TAWK_PROPERTY_ID = '69d2a4bab8aa781c3b3109d4'
 const TAWK_WIDGET_ID = '1jlfd6ts4'
 
 export default function TawkTo() {
+  const pathname = usePathname()
+
   useEffect(() => {
+    if (pathname?.startsWith('/studio')) return
 
     const s = document.createElement('script')
     s.async = true
@@ -19,9 +19,9 @@ export default function TawkTo() {
     document.head.appendChild(s)
 
     return () => {
-      document.head.removeChild(s)
+      if (document.head.contains(s)) document.head.removeChild(s)
     }
-  }, [])
+  }, [pathname])
 
   return null
 }

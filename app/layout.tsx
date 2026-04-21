@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Playfair_Display } from "next/font/google";
+import { draftMode } from "next/headers";
+import VisualEditingComponent from "./components/ui/VisualEditing";
 import "./globals.css";
 import Header from "./components/layout/Header";
 import ScrollProgress from "./components/ui/ScrollProgress";
@@ -43,27 +45,28 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { isEnabled: isDraftMode } = await draftMode()
+
   return (
     <html lang="en">
-      
-    
       <body
         suppressHydrationWarning
         className={`${stackSans.variable} ${playfair.variable} antialiased pt-[92px]`}
       >
-         <ScrollProgress />
-        <Header/>
+        <ScrollProgress />
+        <Header />
         <PageTransition>
           {children}
         </PageTransition>
         <BackToTop />
         <CookieConsent />
         <TawkTo />
+        {isDraftMode && <VisualEditingComponent />}
       </body>
     </html>
   );

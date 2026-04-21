@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+import ScrollFadeIn from '../ui/ScrollFadeIn'
 
 const UpperBanner = () => {
   return (
@@ -16,6 +17,7 @@ const UpperBanner = () => {
         <div className="grid lg:grid-cols-2 gap-8 items-center">
 
           {/* Left Content - Message about Eagle Scout Values */}
+          <ScrollFadeIn>
           <div className="space-y-6">
             {/* Emerald accent bar */}
             <div className="w-20 h-1 bg-emerald-600"></div>
@@ -66,8 +68,10 @@ const UpperBanner = () => {
               ))}
             </div>
           </div>
+          </ScrollFadeIn>
 
           {/* Right Content - Eagle Scout Badge */}
+          <ScrollFadeIn delay={100}>
           <div className="flex justify-center lg:justify-end">
             <div className="relative">
               {/* Glowing background effect */}
@@ -97,6 +101,7 @@ const UpperBanner = () => {
               <div className="absolute -bottom-3 -right-3 w-12 h-12 border-2 border-emerald-600/40 rounded-lg -rotate-12"></div>
             </div>
           </div>
+          </ScrollFadeIn>
 
         </div>
       </div>

@@ -4,6 +4,7 @@ import React, { useEffect, useState, Suspense } from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import Footer from '../../../components/layout/Footer'
+import ScrollFadeIn from '../../../components/ui/ScrollFadeIn'
 import { services, QUIZ_SCORING } from '../../serviceData'
 
 function computeResults(answers) {

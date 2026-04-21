@@ -146,6 +146,7 @@ const ServicePage = () => {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
           {/* Section Header */}
+          <ScrollFadeIn>
           <div className="text-center mb-16">
             <div className="w-20 h-1 bg-emerald-600 mx-auto mb-6"></div>
             <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
@@ -157,11 +158,13 @@ const ServicePage = () => {
               providing comprehensive solutions for sustainable growth.
             </p>
           </div>
+          </ScrollFadeIn>
 
           {/* Packages Grid */}
           <div className="grid md:grid-cols-3 gap-8">
 
             {/* Package 1 - Foundation */}
+            <ScrollFadeIn delay={100}>
             <div className="relative bg-gradient-to-b from-emerald-800 to-emerald-900 rounded-2xl p-8 border-2 border-emerald-600/30 hover:border-emerald-400 hover:bg-gradient-to-b hover:from-emerald-600 hover:to-emerald-700 transition-all group hover:scale-105 transform duration-300 hover:shadow-2xl hover:shadow-emerald-500/50">
               {/* Package Badge */}
               <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-emerald-600 text-white px-6 py-2 rounded-full font-bold text-sm group-hover:bg-white group-hover:text-emerald-600 transition-colors">
@@ -221,8 +224,10 @@ const ServicePage = () => {
                 </Link>
               </div>
             </div>
+            </ScrollFadeIn>
 
             {/* Package 2 - Growth */}
+            <ScrollFadeIn delay={200}>
             <div className="relative bg-gradient-to-b from-emerald-900/40 to-gray-900 rounded-2xl p-8 border-2 border-emerald-500 hover:border-emerald-400 hover:bg-gradient-to-b hover:from-emerald-600 hover:to-emerald-700 transition-all group hover:scale-105 transform duration-300 shadow-xl shadow-emerald-600/20 hover:shadow-2xl hover:shadow-emerald-500/50">
               {/* Popular Badge */}
               <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-emerald-500 text-white px-6 py-2 rounded-full font-bold text-sm group-hover:bg-white group-hover:text-emerald-600 transition-colors text-center">
@@ -288,8 +293,10 @@ const ServicePage = () => {
                 </Link>
               </div>
             </div>
+            </ScrollFadeIn>
 
             {/* Package 3 - Enterprise */}
+            <ScrollFadeIn delay={300}>
             <div className="relative bg-gradient-to-b from-emerald-800 to-emerald-900 rounded-2xl p-8 border-2 border-emerald-600/30 hover:border-emerald-400 hover:bg-gradient-to-b hover:from-emerald-600 hover:to-emerald-700 transition-all group hover:scale-105 transform duration-300 hover:shadow-2xl hover:shadow-emerald-500/50">
               {/* Package Badge */}
               <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-emerald-600 text-white px-6 py-2 rounded-full font-bold text-sm group-hover:bg-white group-hover:text-emerald-600 transition-colors">
@@ -361,6 +368,7 @@ const ServicePage = () => {
                 </Link>
               </div>
             </div>
+            </ScrollFadeIn>
 
           </div>
 

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start"
   },
@@ -12,8 +12,10 @@
     "@emailjs/browser": "^4.4.1",
     "@next/bundle-analyzer": "^16.2.2",
     "@sanity/image-url": "^2.1.1",
+    "@sanity/presentation": "^2.0.0",
     "@sanity/vision": "^5.21.0",
     "@sparticuz/chromium-min": "^143.0.4",
+    "@tailwindcss/typography": "^0.5.19",
     "next": "^16.2.4",
     "next-sanity": "^12.2.2",
     "puppeteer-core": "^24.40.0",
@@ -21,7 +23,8 @@
     "react-dom": "^19.2.4",
     "resend": "^6.9.4",
     "sanity": "^5.21.0",
-    "sharp": "^0.34.5"
+    "sharp": "^0.34.5",
+    "styled-components": "^6.4.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

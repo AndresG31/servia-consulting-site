@@ -94,7 +94,7 @@ const FoundationPackagePage = () => {
                     <p className="text-gray-700 text-lg mb-6 leading-relaxed">
                       We conduct a thorough 48-point diagnostic across 8 critical business areas—operations, financials, staffing, marketing, customer experience, and more. This isn't a surface-level review; we dive deep to understand how your restaurant actually runs day-to-day.
                     </p>
-                    <div className="grid sm:grid-cols-2 gap-4">
+                    <div className="grid sm:grid-cols-2 gap-4 mb-6">
                       {['Pipeline Analysis', 'Operations Review', 'Technology Audit', 'Growth Opportunities'].map(item => (
                         <div key={item} className="flex items-start gap-3">
                           <svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -104,6 +104,15 @@ const FoundationPackagePage = () => {
                         </div>
                       ))}
                     </div>
+                    <Link
+                      href="/service/business-assessment"
+                      className="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:text-emerald-700 transition-colors group"
+                    >
+                      Learn More About This Service
+                      <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -123,7 +132,7 @@ const FoundationPackagePage = () => {
                     <p className="text-gray-700 text-lg mb-6 leading-relaxed">
                       Based on the assessment findings, we develop a tailored strategic plan designed specifically for your restaurant. This actionable roadmap includes clear milestones, timelines, and measurable KPIs so you know exactly what to focus on first, second, and third.
                     </p>
-                    <div className="grid sm:grid-cols-2 gap-4">
+                    <div className="grid sm:grid-cols-2 gap-4 mb-6">
                       {['Strategic Roadmap', 'Clear Milestones', 'Measurable KPIs', 'Implementation Timeline'].map(item => (
                         <div key={item} className="flex items-start gap-3">
                           <svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -133,6 +142,15 @@ const FoundationPackagePage = () => {
                         </div>
                       ))}
                     </div>
+                    <Link
+                      href="/service/plan-of-action"
+                      className="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:text-emerald-700 transition-colors group"
+                    >
+                      Learn More About This Service
+                      <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -152,7 +170,7 @@ const FoundationPackagePage = () => {
                     <p className="text-gray-700 text-lg mb-6 leading-relaxed">
                       We map out your entire business pipeline—from customer acquisition to retention, from ordering to delivery, from staffing to training. This gives you visibility into where bottlenecks exist, where revenue is leaking, and where opportunities are hiding.
                     </p>
-                    <div className="grid sm:grid-cols-2 gap-4">
+                    <div className="grid sm:grid-cols-2 gap-4 mb-6">
                       {['Customer Journey Mapping', 'Revenue Flow Analysis', 'Bottleneck Identification', 'Efficiency Opportunities'].map(item => (
                         <div key={item} className="flex items-start gap-3">
                           <svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -162,6 +180,15 @@ const FoundationPackagePage = () => {
                         </div>
                       ))}
                     </div>
+                    <Link
+                      href="/service/financial-review"
+                      className="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:text-emerald-700 transition-colors group"
+                    >
+                      Learn More About This Service
+                      <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -181,7 +208,7 @@ const FoundationPackagePage = () => {
                     <p className="text-gray-700 text-lg mb-6 leading-relaxed">
                       You'll receive prioritized, actionable recommendations based on what will move the needle most for your specific situation. We don't just point out problems—we tell you exactly what to do about them, in what order, and why it matters.
                     </p>
-                    <div className="grid sm:grid-cols-2 gap-4">
+                    <div className="grid sm:grid-cols-2 gap-4 mb-6">
                       {['Prioritized Action Items', 'Quick Wins Identified', 'Long-term Strategy', 'Resource Allocation Guide'].map(item => (
                         <div key={item} className="flex items-start gap-3">
                           <svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -191,6 +218,15 @@ const FoundationPackagePage = () => {
                         </div>
                       ))}
                     </div>
+                    <Link
+                      href="/service/plan-of-action"
+                      className="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:text-emerald-700 transition-colors group"
+                    >
+                      Learn More About This Service
+                      <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
                   </div>
                 </div>
               </div>

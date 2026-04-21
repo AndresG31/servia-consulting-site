@@ -1,3 +1,4 @@
+import ScrollFadeIn from '../components/ui/ScrollFadeIn'
 import Footer from '../components/layout/Footer'
 
 export const metadata = {

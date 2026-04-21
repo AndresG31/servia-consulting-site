@@ -4,14 +4,18 @@ import React, { useRef, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import CustomSelect from './ui/CustomSelect'
 import Toast from './ui/Toast'
+import { teamMembers } from '../team/teamData'
 
 export default function ContactForm() {
   const formRef = useRef(null)
   const [status, setStatus] = useState('idle') // 'idle' | 'loading' | 'success' | 'error'
   const searchParams = useSearchParams()
   const preselectedService = searchParams.get('service') || ''
+  const preselectedConsultant = searchParams.get('consultant') || ''
   const [restaurantType, setRestaurantType] = useState('')
   const [service, setService] = useState(preselectedService)
+
+  const consultantMember = teamMembers.find(m => m.slug === preselectedConsultant) || null
 
   const restaurantOptions = [
     { value: 'italian', label: 'Italian' },
@@ -61,6 +65,9 @@ export default function ContactForm() {
     const data = Object.fromEntries(new FormData(formRef.current))
     data.restaurantType = restaurantType
     data.service = service
+    data.consultantSlug = consultantMember?.slug || ''
+    data.consultantName = consultantMember?.name || ''
+    data.consultantEmail = consultantMember?.email || ''
 
     try {
       const res = await fetch('/api/contact', {
@@ -191,6 +198,25 @@ export default function ContactForm() {
             placeholder="Select restaurant type"
           />
         </div>
+
+        {/* Working with (pre-filled from team page) */}
+        {consultantMember && (
+          <div className="flex items-center gap-3 bg-emerald-50 border-2 border-emerald-200 rounded-lg px-4 py-3">
+            <div className="w-8 h-8 bg-emerald-600 rounded-full flex items-center justify-center flex-shrink-0">
+              <span className="text-white text-xs font-bold">
+                {consultantMember.name.split(' ').map(n => n[0]).join('')}
+              </span>
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-xs font-semibold text-emerald-600 uppercase tracking-wide">Working with</p>
+              <p className="text-sm font-bold text-emerald-900 truncate">{consultantMember.name}</p>
+              <p className="text-xs text-emerald-700">{consultantMember.title}</p>
+            </div>
+            <svg className="w-5 h-5 text-emerald-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+        )}
 
         {/* Service Interest */}
         <div>

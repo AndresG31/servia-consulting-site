@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect, useRef } from 'react'
+import ScrollFadeIn from '../../components/ui/ScrollFadeIn'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import emailjs from '@emailjs/browser'
@@ -505,7 +506,7 @@ export default function AuditResultsPage() {
           {/* Main Panel */}
           <main>
             {/* Category Breakdown */}
-            <div className="relative bg-emerald-50 rounded-2xl p-8 border-2 border-emerald-300 mb-8 shadow-lg hover:shadow-xl transition-shadow">
+            <div className="relative bg-emerald-50 rounded-2xl p-8 border-2 border-emerald-300 mb-8 transition-shadow duration-300" style={{ boxShadow: '0 8px 32px -4px rgba(16,185,129,0.2), 0 4px 12px -2px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.9)' }}>
               {/* Subtle gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-br from-emerald-100/50 to-transparent rounded-2xl pointer-events-none"></div>
               <div className="relative">
@@ -534,7 +535,7 @@ export default function AuditResultsPage() {
 
             {/* Priority Focus Areas */}
             {weakestCategories.length > 0 && (
-              <div className="relative bg-emerald-50 rounded-2xl p-8 border-2 border-emerald-300 mb-8 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="relative bg-emerald-50 rounded-2xl p-8 border-2 border-emerald-300 mb-8 transition-shadow duration-300" style={{ boxShadow: '0 8px 32px -4px rgba(16,185,129,0.2), 0 4px 12px -2px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.9)' }}>
                 {/* Subtle gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-br from-emerald-100/50 to-transparent rounded-2xl pointer-events-none"></div>
                 <div className="relative">
@@ -558,7 +559,7 @@ export default function AuditResultsPage() {
 
             {/* Recommended Services */}
             {recommendedServices.length > 0 && (
-              <div className="relative bg-emerald-50 rounded-2xl p-8 border-2 border-emerald-300 mb-8 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="relative bg-emerald-50 rounded-2xl p-8 border-2 border-emerald-300 mb-8 transition-shadow duration-300" style={{ boxShadow: '0 8px 32px -4px rgba(16,185,129,0.2), 0 4px 12px -2px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.9)' }}>
                 {/* Subtle gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-br from-emerald-100/50 to-transparent rounded-2xl pointer-events-none"></div>
                 <div className="relative">

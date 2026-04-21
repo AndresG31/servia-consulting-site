@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
+import ScrollFadeIn from '../components/ui/ScrollFadeIn'
 import Link from 'next/link'
 import Image from 'next/image'
 import Footer from '../components/layout/Footer'

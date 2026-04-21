@@ -3,6 +3,7 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import ScrollFadeIn from '../ui/ScrollFadeIn'
 
 const teamMembers = [
   {
@@ -43,6 +44,7 @@ const TeamPreview = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
+        <ScrollFadeIn>
         <div className="text-center mb-12">
           <div className="w-20 h-1 bg-emerald-600 mx-auto mb-6"></div>
           <h2 className="text-4xl sm:text-5xl font-bold text-emerald-900 mb-4">
@@ -52,15 +54,13 @@ const TeamPreview = () => {
             Experienced professionals dedicated to transforming your restaurant operations
           </p>
         </div>
+        </ScrollFadeIn>
 
         {/* Team Grid - Condensed Preview */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-12">
           {teamMembers.map((member, index) => (
-            <div
-              key={member.id}
-              className="group text-center opacity-0 animate-page-hero"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
+            <ScrollFadeIn key={member.id} delay={index * 60}>
+            <div className="group text-center">
               {/* Photo */}
               <div className="relative w-full aspect-square mb-4 rounded-2xl overflow-hidden border-2 border-emerald-200 group-hover:border-emerald-600 transition-all duration-300 shadow-lg group-hover:shadow-xl">
                 <div className="absolute inset-0 bg-gradient-to-br from-emerald-600 to-emerald-500 flex items-center justify-center">
@@ -86,10 +86,12 @@ const TeamPreview = () => {
                 {member.title}
               </p>
             </div>
+            </ScrollFadeIn>
           ))}
         </div>
 
         {/* CTA to Full Team Page */}
+        <ScrollFadeIn delay={300}>
         <div className="text-center">
           <Link
             href="/about#meet-the-team"
@@ -106,6 +108,7 @@ const TeamPreview = () => {
             </svg>
           </Link>
         </div>
+        </ScrollFadeIn>
       </div>
     </section>
   )

@@ -25,6 +25,11 @@ export default function StudioLayout({
         #back-to-top { display: none !important; }
         #cookie-consent { display: none !important; }
         #tawk-to { display: none !important; }
+        #tawkchat-container { display: none !important; }
+        .tawk-min-container { display: none !important; }
+        .tawk-button { display: none !important; }
+        iframe[src*="tawk.to"] { display: none !important; }
+        iframe[title*="chat"] { display: none !important; }
       `}</style>
       <div style={{
         position: 'fixed',
@@ -33,7 +38,7 @@ export default function StudioLayout({
         right: 0,
         bottom: 0,
         overflow: 'hidden',
-        background: '#1a1a1a',
+        background: '#002e2c',
         zIndex: 9999
       }}>
         {children}

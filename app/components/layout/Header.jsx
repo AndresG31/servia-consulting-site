@@ -18,6 +18,7 @@ const Header = () => {
   const [hidden, setHidden] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [theme, setTheme] = useState('dark')
+  const [showBackToTop, setShowBackToTop] = useState(false)
   const pathname = usePathname()
 
   // Close menu on route change
@@ -35,10 +36,16 @@ const Header = () => {
     return () => observer.disconnect()
   }, [])
 
-  // Detect which section is under the header and swap pill theme
+  // Detect which section is under the header and swap pill theme + show back to top
   useEffect(() => {
-    const getTheme = () => {
+    const handleScroll = () => {
       const y = 92
+      const scrollY = window.scrollY
+
+      // Show back to top button after scrolling down 400px
+      setShowBackToTop(scrollY > 400)
+
+      // Update theme based on section
       const els = document.querySelectorAll('[data-header-theme]')
       let current = 'dark'
       els.forEach(el => {
@@ -49,10 +56,14 @@ const Header = () => {
       })
       setTheme(current)
     }
-    getTheme()
-    window.addEventListener('scroll', getTheme, { passive: true })
-    return () => window.removeEventListener('scroll', getTheme)
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [pathname])
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   return (
     <header
@@ -62,6 +73,30 @@ const Header = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between py-3">
+
+          {/* Back to Top Button - appears on hover at bottom of header */}
+          {showBackToTop && (
+            <div className="absolute left-1/2 -translate-x-1/2 -bottom-5 group/backtotop">
+              {/* Hover trigger zone */}
+              <div className="w-40 h-10 flex items-end justify-center">
+                <button
+                  onClick={scrollToTop}
+                  className={`opacity-0 group-hover/backtotop:opacity-100 translate-y-full group-hover/backtotop:translate-y-2 transition-all duration-300 px-4 py-2 rounded-full font-medium text-sm flex items-center gap-2 shadow-lg whitespace-nowrap ${
+                    theme === 'light'
+                      ? 'bg-emerald-600 text-white hover:bg-emerald-500 border border-emerald-700'
+                      : 'bg-white text-emerald-900 hover:bg-white/90 border border-white/60'
+                  }`}
+                  aria-label="Back to top"
+                >
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+                  </svg>
+                  Back to Top
+                </button>
+              </div>
+            </div>
+          )}
+
           <Link href="/" className="flex items-center gap-3 -ml-3">
             <Image
               src="/assets/logos/servia-isotipo-ai14.png"

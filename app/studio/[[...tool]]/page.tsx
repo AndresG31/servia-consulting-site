@@ -3,6 +3,7 @@
 import { NextStudio } from 'next-sanity/studio'
 import { memo } from 'react'
 import config from '../../../sanity.config'
+import { serviaTheme } from '../../../sanity/theme'
 
 const StudioLoading = memo(function StudioLoading() {
   return (
@@ -38,7 +39,7 @@ const StudioLoading = memo(function StudioLoading() {
 })
 
 export default function StudioPage() {
-  return <NextStudio config={config} />
+  return <NextStudio config={config} theme={serviaTheme} unstable_noAuthBoundary />
 }
 
 // This ensures the page is only rendered on the client

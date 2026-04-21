@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import ScrollFadeIn from '../ui/ScrollFadeIn'
 
 const LowerBanner = () => {
   return (
@@ -20,6 +21,7 @@ const LowerBanner = () => {
       <div className="absolute bottom-8 right-8 w-12 h-12 border-2 border-emerald-600/30 rounded-lg -rotate-12 animate-pulse"></div>
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+        <ScrollFadeIn>
         <div className="text-center space-y-6">
           {/* Emerald accent bar */}
           <div className="flex justify-center">
@@ -86,6 +88,7 @@ const LowerBanner = () => {
             </Link>
           </div>
         </div>
+        </ScrollFadeIn>
       </div>
 
       {/* Bottom subtle border */}

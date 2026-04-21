@@ -109,7 +109,7 @@ const EnterprisePackagePage = () => {
                     <p className="text-gray-700 text-lg mb-6 leading-relaxed">
                       Our dedicated consultant works on-site at your restaurant three days a week to ensure your strategic plan is executed flawlessly. This hands-on approach provides accountability, real-time problem-solving, and direct support to your team during the critical implementation phase.
                     </p>
-                    <div className="grid sm:grid-cols-2 gap-4">
+                    <div className="grid sm:grid-cols-2 gap-4 mb-6">
                       {['3 Days/Week On-Site', 'Hands-on Implementation', 'Team Training', 'Real-Time Problem Solving'].map(item => (
                         <div key={item} className="flex items-start gap-3">
                           <svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -119,6 +119,20 @@ const EnterprisePackagePage = () => {
                         </div>
                       ))}
                     </div>
+                    <Link
+                      href="/service/in-field-consultant"
+                      className="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:text-emerald-700 transition-colors group"
+                    >
+                      Learn More About This Service
+                      <svg
+                        className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -138,7 +152,7 @@ const EnterprisePackagePage = () => {
                     <p className="text-gray-700 text-lg mb-6 leading-relaxed">
                       A strategy is only as good as its execution. We stay involved through the entire rollout phase—helping your team adopt new processes, troubleshoot issues in real time, and ensure changes stick across your operation. No more shelf-ware consulting reports.
                     </p>
-                    <div className="grid sm:grid-cols-2 gap-4">
+                    <div className="grid sm:grid-cols-2 gap-4 mb-6">
                       {['Phased Rollout Planning', 'Launch Support', 'Change Management', 'Process Documentation'].map(item => (
                         <div key={item} className="flex items-start gap-3">
                           <svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -148,6 +162,20 @@ const EnterprisePackagePage = () => {
                         </div>
                       ))}
                     </div>
+                    <Link
+                      href="/service/implementation-support"
+                      className="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:text-emerald-700 transition-colors group"
+                    >
+                      Learn More About This Service
+                      <svg
+                        className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -167,7 +195,7 @@ const EnterprisePackagePage = () => {
                     <p className="text-gray-700 text-lg mb-6 leading-relaxed">
                       Regular, structured reporting keeps you accountable and informed. Each month you receive a clear breakdown of key metrics, milestones hit, open action items, and our recommendations for the period ahead. You always know exactly where you stand.
                     </p>
-                    <div className="grid sm:grid-cols-2 gap-4">
+                    <div className="grid sm:grid-cols-2 gap-4 mb-6">
                       {['Monthly KPI Review', 'Milestone Tracking', 'Action Item Follow-Up', 'Trend Analysis'].map(item => (
                         <div key={item} className="flex items-start gap-3">
                           <svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -177,6 +205,20 @@ const EnterprisePackagePage = () => {
                         </div>
                       ))}
                     </div>
+                    <Link
+                      href="/service/monthly-reports"
+                      className="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:text-emerald-700 transition-colors group"
+                    >
+                      Learn More About This Service
+                      <svg
+                        className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
                   </div>
                 </div>
               </div>

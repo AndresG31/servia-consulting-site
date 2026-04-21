@@ -109,7 +109,7 @@ const GrowthPackagePage = () => {
                     <p className="text-gray-700 text-lg mb-6 leading-relaxed">
                       We identify and close the revenue gaps that are costing you money—analyzing pricing, upsell opportunities, peak hour performance, and underperforming revenue streams to build a clear plan for top-line growth.
                     </p>
-                    <div className="grid sm:grid-cols-2 gap-4">
+                    <div className="grid sm:grid-cols-2 gap-4 mb-6">
                       {['Pricing Gap Analysis', 'Upsell & Cross-sell Strategy', 'Peak Hour Optimization', 'Revenue Stream Review'].map(item => (
                         <div key={item} className="flex items-start gap-3">
                           <svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -119,6 +119,15 @@ const GrowthPackagePage = () => {
                         </div>
                       ))}
                     </div>
+                    <Link
+                      href="/service/financial-review"
+                      className="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:text-emerald-700 transition-colors group"
+                    >
+                      Learn More About This Service
+                      <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -138,7 +147,7 @@ const GrowthPackagePage = () => {
                     <p className="text-gray-700 text-lg mb-6 leading-relaxed">
                       Your menu is one of your most powerful profit levers. We analyze item-level food cost, sales velocity, and contribution margin to restructure your menu for maximum profitability without sacrificing guest experience.
                     </p>
-                    <div className="grid sm:grid-cols-2 gap-4">
+                    <div className="grid sm:grid-cols-2 gap-4 mb-6">
                       {['Item-Level Cost Analysis', 'Profitability Matrix', 'Strategic Pricing', 'Menu Design Guidance'].map(item => (
                         <div key={item} className="flex items-start gap-3">
                           <svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -148,6 +157,15 @@ const GrowthPackagePage = () => {
                         </div>
                       ))}
                     </div>
+                    <Link
+                      href="/service/menu-engineering"
+                      className="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:text-emerald-700 transition-colors group"
+                    >
+                      Learn More About This Service
+                      <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -167,7 +185,7 @@ const GrowthPackagePage = () => {
                     <p className="text-gray-700 text-lg mb-6 leading-relaxed">
                       High turnover and inconsistent service kill restaurants. We build structured training programs, define role expectations, and create a development path that improves retention, performance, and team culture.
                     </p>
-                    <div className="grid sm:grid-cols-2 gap-4">
+                    <div className="grid sm:grid-cols-2 gap-4 mb-6">
                       {['Training Programs', 'Role Expectations', 'Development Paths', 'Manager Coaching'].map(item => (
                         <div key={item} className="flex items-start gap-3">
                           <svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -177,6 +195,15 @@ const GrowthPackagePage = () => {
                         </div>
                       ))}
                     </div>
+                    <Link
+                      href="/service/staff-training"
+                      className="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:text-emerald-700 transition-colors group"
+                    >
+                      Learn More About This Service
+                      <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -196,7 +223,7 @@ const GrowthPackagePage = () => {
                     <p className="text-gray-700 text-lg mb-6 leading-relaxed">
                       Most operators are flying blind. We set up the right KPIs, build simple dashboards, and establish a reporting cadence so you always know what's working, what isn't, and where to focus next.
                     </p>
-                    <div className="grid sm:grid-cols-2 gap-4">
+                    <div className="grid sm:grid-cols-2 gap-4 mb-6">
                       {['KPI Framework', 'Dashboard Setup', 'Weekly Reporting', 'Data-Driven Decisions'].map(item => (
                         <div key={item} className="flex items-start gap-3">
                           <svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -206,6 +233,15 @@ const GrowthPackagePage = () => {
                         </div>
                       ))}
                     </div>
+                    <Link
+                      href="/service/financial-review"
+                      className="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:text-emerald-700 transition-colors group"
+                    >
+                      Learn More About This Service
+                      <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
                   </div>
                 </div>
               </div>

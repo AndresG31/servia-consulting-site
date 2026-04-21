@@ -3,21 +3,32 @@ import { Resend } from 'resend'
 const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function POST(request) {
-  const { firstName, lastName, email, phone, company, restaurantType, service, message } = await request.json()
+  const { firstName, lastName, email, phone, company, restaurantType, service, message, consultantName, consultantEmail } = await request.json()
 
   if (!email || !message) return Response.json({ ok: false, error: 'Missing required fields' }, { status: 400 })
 
   const fullName = `${firstName} ${lastName}`.trim()
   const fromInternal = process.env.RESEND_FROM_INTERNAL ?? 'Servia Consulting <notifications@serviaconsulting.com>'
   const fromExternal = process.env.RESEND_FROM_EMAIL ?? 'Servia Consulting <notifications@serviaconsulting.com>'
+  const ownerEmail = process.env.RESEND_TO_EMAIL
+
+  // Build recipient list: always include owner; add consultant only if different
+  const internalRecipients = [ownerEmail]
+  if (consultantEmail && consultantEmail !== ownerEmail) {
+    internalRecipients.push(consultantEmail)
+  }
+
+  const consultantLine = consultantName
+    ? `<p><strong>Working With:</strong> ${consultantName}${consultantEmail ? ` &lt;${consultantEmail}&gt;` : ''}</p>`
+    : ''
 
   await Promise.all([
-    // Internal notification to Servia
+    // Internal notification — owner always receives; consultant receives only if it's their lead
     resend.emails.send({
       from: fromInternal,
-      to: process.env.RESEND_TO_EMAIL,
+      to: internalRecipients,
       reply_to: email,
-      subject: `New Contact Form Submission — ${fullName}`,
+      subject: `New Lead${consultantName ? ` for ${consultantName}` : ''} — ${fullName}`,
       html: `
         <h2>New Contact Form Submission</h2>
         <p><strong>Name:</strong> ${fullName}</p>
@@ -26,6 +37,7 @@ export async function POST(request) {
         ${company ? `<p><strong>Company:</strong> ${company}</p>` : ''}
         ${restaurantType ? `<p><strong>Restaurant Type:</strong> ${restaurantType}</p>` : ''}
         ${service ? `<p><strong>Interested In:</strong> ${service}</p>` : ''}
+        ${consultantLine}
         <hr/>
         <p><strong>Message:</strong></p>
         <p>${message.replace(/\n/g, '<br/>')}</p>
@@ -45,10 +57,11 @@ export async function POST(request) {
 
           <p>Hi ${firstName},</p>
 
-          <p>Thank you for reaching out to Servia Consulting. We've received your message and one of our consultants will be in touch within <strong>24 hours</strong>.</p>
+          <p>Thank you for reaching out to Servia Consulting. We've received your message and ${consultantName ? `<strong>${consultantName}</strong> will be` : 'one of our consultants will be'} in touch within <strong>24 hours</strong>.</p>
 
           <div style="background:#f0fdf4;border:1px solid #d1fae5;border-radius:10px;padding:16px 20px;margin:24px 0;">
             <p style="margin:0 0 8px;font-size:13px;color:#6b7280;text-transform:uppercase;font-weight:700;letter-spacing:0.05em;">Your Submission</p>
+            ${consultantName ? `<p style="margin:0 0 4px;"><strong>Working With:</strong> ${consultantName}</p>` : ''}
             ${company ? `<p style="margin:0 0 4px;"><strong>Company:</strong> ${company}</p>` : ''}
             ${restaurantType ? `<p style="margin:0 0 4px;"><strong>Restaurant Type:</strong> ${restaurantType}</p>` : ''}
             ${service ? `<p style="margin:0 0 4px;"><strong>Service Interest:</strong> ${service}</p>` : ''}
