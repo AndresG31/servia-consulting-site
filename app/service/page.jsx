@@ -63,7 +63,7 @@ const ServicePage = () => {
     <div className="min-h-screen bg-emerald-950">
 
       {/* Hero Section */}
-      <section data-header-theme="dark" className="relative bg-emerald-950 overflow-hidden min-h-[600px] -mt-[92px]">
+      <section data-header-theme="dark" className="relative bg-emerald-950 overflow-hidden min-h-screen lg:min-h-[600px] -mt-[92px]">
         {/* Full-width Video Background */}
         <div className="absolute inset-0">
           <video
@@ -82,10 +82,10 @@ const ServicePage = () => {
 
         {/* Content Overlay */}
         <div className="relative max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-0 min-h-[600px]">
+          <div className="grid lg:grid-cols-2 gap-0 min-h-screen lg:min-h-[600px]">
 
             {/* Left Side - Headline Content with Black Background Filter */}
-            <div className="relative flex flex-col justify-start px-8 sm:px-12 lg:px-16 pt-32 pb-12 lg:pt-36 lg:pb-16 z-10">
+            <div className="relative flex flex-col justify-start px-6 sm:px-12 lg:px-16 pt-28 sm:pt-32 pb-12 lg:pt-36 lg:pb-16 z-10">
               {/* Black background filter with 50% transparency */}
               <div className="absolute inset-0 bg-black/50 opacity-0 animate-fade-in-page"></div>
 
@@ -94,7 +94,7 @@ const ServicePage = () => {
                 {/* Emerald accent */}
                 <div className="w-20 h-1 bg-emerald-600 mb-8 opacity-0 animate-page-hero"></div>
 
-                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 opacity-0 animate-page-hero" style={{ animationDelay: '0.1s' }}>
+                <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 opacity-0 animate-page-hero" style={{ animationDelay: '0.1s' }}>
                   Analyzing Your
                   <span className="block text-emerald-400 mt-2">
                     Business Pipeline
@@ -125,8 +125,8 @@ const ServicePage = () => {
               </div>
             </div>
 
-            {/* Right Side - Empty (video is full-width background) */}
-            <div className="relative h-full min-h-[500px] lg:min-h-full">
+            {/* Right Side - hidden on mobile */}
+            <div className="hidden lg:block relative h-full lg:min-h-full">
               {/* Video shows through from background */}
             </div>
 
