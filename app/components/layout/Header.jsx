@@ -153,8 +153,8 @@ const Header = () => {
       </div>
 
       {/* Mobile Dropdown */}
-      <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${menuOpen ? 'max-h-[100dvh] opacity-100' : 'max-h-0 opacity-0'}`}>
-        <div className="bg-emerald-950 min-h-screen border-t border-white/10">
+      <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${menuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
+        <div className="bg-emerald-950 border-t border-white/10">
           <nav className="px-4 py-4 flex flex-col gap-1">
             {navLinks.map(({ href, label }) => (
               <Link
