@@ -66,10 +66,11 @@ export default function StickyProcess() {
     const HEADER_HEIGHT = 92
 
     const handleScroll = () => {
+      const threshold = window.innerWidth < 1024 ? window.innerHeight / 2 : HEADER_HEIGHT
       let current = 0
       stepRefs.current.forEach((el, i) => {
         if (!el) return
-        if (el.getBoundingClientRect().top <= HEADER_HEIGHT) current = i
+        if (el.getBoundingClientRect().top <= threshold) current = i
       })
       setActiveStep(current)
     }
@@ -164,7 +165,7 @@ export default function StickyProcess() {
                 key={i}
                 ref={el => (stepRefs.current[i] = el)}
                 className={`border-b border-emerald-800/40 last:border-0 py-16 transition-all duration-500 ${
-                  i <= activeStep ? 'opacity-100' : 'opacity-40 lg:opacity-30'
+                  i <= activeStep ? 'opacity-100' : 'opacity-30'
                 }`}
               >
                 {/* Mobile: icon + title */}

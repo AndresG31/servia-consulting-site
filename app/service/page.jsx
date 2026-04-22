@@ -410,7 +410,7 @@ const ServicePage = () => {
                   </div>
                 </div>
               </div>
-              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
+              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none hidden lg:flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
             </Link>
             </ScrollFadeIn>
 
@@ -432,7 +432,7 @@ const ServicePage = () => {
                   </div>
                 </div>
               </div>
-              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
+              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none hidden lg:flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
             </Link>
             </ScrollFadeIn>
 
@@ -454,7 +454,7 @@ const ServicePage = () => {
                   </div>
                 </div>
               </div>
-              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
+              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none hidden lg:flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
             </Link>
             </ScrollFadeIn>
 
@@ -476,7 +476,7 @@ const ServicePage = () => {
                   </div>
                 </div>
               </div>
-              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
+              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none hidden lg:flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
             </Link>
             </ScrollFadeIn>
 
@@ -498,7 +498,7 @@ const ServicePage = () => {
                   </div>
                 </div>
               </div>
-              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
+              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none hidden lg:flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
             </Link>
             </ScrollFadeIn>
 
@@ -520,7 +520,7 @@ const ServicePage = () => {
                   </div>
                 </div>
               </div>
-              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
+              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none hidden lg:flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
             </Link>
             </ScrollFadeIn>
 
@@ -542,7 +542,7 @@ const ServicePage = () => {
                   </div>
                 </div>
               </div>
-              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
+              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none hidden lg:flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
             </Link>
             </ScrollFadeIn>
 
@@ -564,7 +564,7 @@ const ServicePage = () => {
                   </div>
                 </div>
               </div>
-              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
+              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none hidden lg:flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
             </Link>
             </ScrollFadeIn>
 
@@ -586,7 +586,7 @@ const ServicePage = () => {
                   </div>
                 </div>
               </div>
-              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
+              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none hidden lg:flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
             </Link>
             </ScrollFadeIn>
 
@@ -608,7 +608,7 @@ const ServicePage = () => {
                   </div>
                 </div>
               </div>
-              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
+              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none hidden lg:flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
             </Link>
             </ScrollFadeIn>
 
@@ -630,7 +630,7 @@ const ServicePage = () => {
                   </div>
                 </div>
               </div>
-              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
+              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none hidden lg:flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
             </Link>
             </ScrollFadeIn>
 
@@ -652,7 +652,7 @@ const ServicePage = () => {
                   </div>
                 </div>
               </div>
-              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
+              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none hidden lg:flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
             </Link>
             </ScrollFadeIn>
 
@@ -674,7 +674,7 @@ const ServicePage = () => {
                   </div>
                 </div>
               </div>
-              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
+              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-emerald-600/[0.12] to-transparent group-hover:from-emerald-600/25 transition-all duration-300 rounded-r-2xl pointer-events-none hidden lg:flex items-center justify-end pr-6"><svg className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-600 group-hover:translate-x-1.5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></div>
             </Link>
             </ScrollFadeIn>
 
