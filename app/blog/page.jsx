@@ -78,12 +78,13 @@ const BlogPage = () => {
   useEffect(() => {
     async function fetchPosts() {
       try {
-        const posts = await getAllPosts()
-        if (posts && posts.length > 0) {
-          setBlogPosts(posts)
+        const res = await fetch('/api/posts')
+        const data = await res.json()
+        if (data.posts && data.posts.length > 0) {
+          setBlogPosts(data.posts)
         }
       } catch (error) {
-        console.warn('Sanity not configured yet, using fallback posts:', error.message)
+        console.warn('Could not fetch posts, using fallback:', error.message)
       } finally {
         setLoading(false)
       }
