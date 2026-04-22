@@ -31,7 +31,7 @@ const AboutPage = () => {
           <div className="grid lg:grid-cols-2 gap-0 min-h-screen">
 
             {/* Left Side - Headline Content with Black Background Filter */}
-            <div className="relative flex flex-col justify-center px-8 sm:px-12 lg:px-16 pt-36 pb-12 lg:pt-44 lg:pb-16 z-10">
+            <div className="relative flex flex-col justify-center px-6 sm:px-12 lg:px-16 pt-28 sm:pt-36 pb-12 lg:pt-44 lg:pb-16 z-10">
               {/* Black background filter with 50% transparency */}
               <div className="absolute inset-0 bg-black/50 opacity-0 animate-fade-in-page"></div>
 
@@ -40,7 +40,7 @@ const AboutPage = () => {
                 {/* Emerald accent */}
                 <div className="w-20 h-1 bg-emerald-600 mb-8 opacity-0 animate-page-hero"></div>
 
-                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 opacity-0 animate-page-hero" style={{ animationDelay: '0.1s' }}>
+                <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 opacity-0 animate-page-hero" style={{ animationDelay: '0.1s' }}>
                   About
                   <span className="block text-emerald-400 mt-2">
                     Servia Consulting
@@ -100,8 +100,8 @@ const AboutPage = () => {
               </div>
             </div>
 
-            {/* Right Side - Empty (image is full-width background) */}
-            <div className="relative h-full min-h-[500px] lg:min-h-full">
+            {/* Right Side - hidden on mobile */}
+            <div className="hidden lg:block relative h-full lg:min-h-full">
               {/* Image shows through from background */}
             </div>
 

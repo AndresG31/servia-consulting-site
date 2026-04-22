@@ -53,7 +53,7 @@ const HeroSection = () => {
   }, [started])
 
   return (
-    <section data-header-theme="dark" className="relative bg-emerald-950 overflow-hidden min-h-[700px] -mt-[92px]">
+    <section data-header-theme="dark" className="relative bg-emerald-950 overflow-hidden min-h-screen lg:min-h-[700px] -mt-[92px]">
       {/* Full-width Video Background */}
       <div className="absolute inset-0">
         <video
@@ -70,10 +70,10 @@ const HeroSection = () => {
 
       {/* Content Overlay */}
       <div className="relative max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-0 min-h-[700px]">
+        <div className="grid lg:grid-cols-2 gap-0 min-h-screen lg:min-h-[700px]">
 
           {/* Left Side */}
-          <div className="relative flex flex-col justify-center px-8 sm:px-12 lg:px-16 pt-36 pb-16 lg:pt-44 lg:pb-24 z-10">
+          <div className="relative flex flex-col justify-center px-6 sm:px-12 lg:px-16 pt-28 sm:pt-36 pb-16 lg:pt-44 lg:pb-24 z-10">
             {/* Black background filter */}
             <div className="absolute inset-0 bg-black/50 opacity-0 animate-fade-in-delayed"></div>
 
@@ -86,7 +86,7 @@ const HeroSection = () => {
               {/* Emerald accent */}
               <div className="w-20 h-1 bg-emerald-600 mb-6 opacity-0 animate-page-hero" style={{ animationDelay: '0.1s' }}></div>
 
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 opacity-0 animate-page-hero" style={{ animationDelay: '0.2s' }}>
+              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 opacity-0 animate-page-hero" style={{ animationDelay: '0.2s' }}>
                 <span className="font-playfair font-normal italic">Strategy</span> That
                 <span className="block text-white mt-2">Drives</span>
                 <span className="block text-emerald-400">
@@ -128,8 +128,8 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Right Side — video shows through */}
-          <div className="relative h-full min-h-[500px] lg:min-h-full" />
+          {/* Right Side — video shows through, hidden on mobile */}
+          <div className="hidden lg:block relative h-full lg:min-h-full" />
 
         </div>
       </div>
