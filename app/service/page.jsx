@@ -75,7 +75,7 @@ const ServicePage = () => {
             className="absolute inset-0 w-full h-full object-cover"
             key="service-hero-video"
           >
-            <source src="/assets/services/servicesHR.mp4" type="video/mp4" />
+            <source src="/assets/services/servicesHR_compressed.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>

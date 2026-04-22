@@ -35,7 +35,7 @@ const ContactPage = () => {
             className="absolute inset-0 w-full h-full object-cover"
             key="contact-hero-video"
           >
-            <source src="/assets/contact/contact-hero.mp4" type="video/mp4" />
+            <source src="/assets/contact/contact-hero_compressed.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>

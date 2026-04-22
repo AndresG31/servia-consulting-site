@@ -22,7 +22,7 @@ const AboutPage = () => {
             preload="auto"
             className="absolute inset-0 w-full h-full object-cover"
           >
-            <source src="/assets/aboutus/about-hero.mp4" type="video/mp4" />
+            <source src="/assets/aboutus/about-hero_compressed.mp4" type="video/mp4" />
           </video>
         </div>
 
@@ -430,7 +430,7 @@ const AboutPage = () => {
             playsInline
             className="absolute inset-0 w-full h-full object-cover"
           >
-            <source src="/assets/aboutus/aboutus.mp4" type="video/mp4" />
+            <source src="/assets/aboutus/aboutus_compressed.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
