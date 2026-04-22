@@ -152,26 +152,28 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile Full-Screen Menu */}
-      {menuOpen && (
-        <div className="md:hidden fixed inset-0 top-[62px] z-40 bg-emerald-950/98 backdrop-blur-sm border-t border-white/10 flex flex-col px-4 py-6 gap-1 overflow-y-auto">
-          {navLinks.map(({ href, label }) => (
+      {/* Mobile Dropdown */}
+      <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${menuOpen ? 'max-h-[100dvh] opacity-100' : 'max-h-0 opacity-0'}`}>
+        <div className="bg-emerald-950 min-h-screen border-t border-white/10">
+          <nav className="px-4 py-4 flex flex-col gap-1">
+            {navLinks.map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                className="text-white hover:text-emerald-300 hover:bg-white/10 transition-colors font-medium px-4 py-4 rounded-lg text-lg"
+              >
+                {label}
+              </Link>
+            ))}
             <Link
-              key={href}
-              href={href}
-              className="text-white hover:text-emerald-300 hover:bg-white/10 transition-colors font-medium px-4 py-4 rounded-lg text-lg"
+              href="/contact"
+              className="mt-4 bg-emerald-600 text-white px-4 py-4 rounded-lg hover:bg-emerald-500 transition-colors font-semibold text-center text-lg"
             >
-              {label}
+              Work With Us
             </Link>
-          ))}
-          <Link
-            href="/contact"
-            className="mt-4 bg-emerald-600 text-white px-4 py-4 rounded-lg hover:bg-emerald-500 transition-colors font-semibold text-center text-lg"
-          >
-            Work With Us
-          </Link>
+          </nav>
         </div>
-      )}
+      </div>
     </header>
   )
 }
