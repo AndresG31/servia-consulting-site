@@ -247,7 +247,7 @@ export default function AuditResultsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-100 overflow-x-hidden">
 
       {/* Hard Truth Hero */}
       <section data-header-theme="dark" className="relative bg-black min-h-screen flex items-center justify-center overflow-hidden -mt-[92px]">
@@ -306,7 +306,7 @@ export default function AuditResultsPage() {
             : 'rgba(239, 68, 68, 0.1)'  // red tint
         }} />
         <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'linear-gradient(rgba(16,185,129,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(16,185,129,0.3) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
-        <div className="relative max-w-7xl mx-auto px-8 sm:px-12 lg:px-16 py-14 lg:py-20 z-10">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-12 lg:px-16 py-14 lg:py-20 z-10">
           <div className="w-16 h-1 bg-emerald-600 mb-6" />
           <div className="grid lg:grid-cols-2 gap-12 items-center">
 
@@ -323,8 +323,8 @@ export default function AuditResultsPage() {
             {/* Right: score + bar + buttons */}
             <div className="flex flex-col gap-6">
               <div>
-                <div className="flex items-end gap-4 mb-3">
-                  <span className={`text-8xl font-black leading-none ${band.color}`}>{overallPct}%</span>
+                <div className="flex items-end gap-4 mb-3 flex-wrap">
+                  <span className={`text-6xl sm:text-8xl font-black leading-none ${band.color}`}>{overallPct}%</span>
                   <div className={`inline-flex items-center px-5 py-2 rounded-full text-white font-bold text-lg mb-2 ${band.bg}`}>
                     {band.label}
                   </div>
@@ -506,7 +506,7 @@ export default function AuditResultsPage() {
           {/* Main Panel */}
           <main>
             {/* Category Breakdown */}
-            <div className="relative bg-emerald-50 rounded-2xl p-8 border-2 border-emerald-300 mb-8 transition-shadow duration-300" style={{ boxShadow: '0 8px 32px -4px rgba(16,185,129,0.2), 0 4px 12px -2px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.9)' }}>
+            <div className="relative bg-emerald-50 rounded-2xl p-5 sm:p-8 border-2 border-emerald-300 mb-8 transition-shadow duration-300" style={{ boxShadow: '0 8px 32px -4px rgba(16,185,129,0.2), 0 4px 12px -2px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.9)' }}>
               {/* Subtle gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-br from-emerald-100/50 to-transparent rounded-2xl pointer-events-none"></div>
               <div className="relative">
@@ -514,14 +514,14 @@ export default function AuditResultsPage() {
               <div className="space-y-5">
                 {categoryStats.map(cat => (
                   <div key={cat.id}>
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="flex items-center gap-2">
-                        <span className="text-sm font-medium text-gray-900">{cat.title}</span>
-                        <span className="text-xs text-gray-500">{cat.answered}/{cat.items.length}</span>
+                    <div className="flex items-center justify-between gap-2 mb-2">
+                      <div className="flex items-center gap-1.5 min-w-0">
+                        <span className="text-sm font-medium text-gray-900 truncate">{cat.title}</span>
+                        <span className="text-xs text-gray-500 flex-shrink-0">{cat.answered}/{cat.items.length}</span>
                       </div>
-                      <div className="flex items-center gap-3">
-                        <span className={`text-sm font-bold ${cat.band.color}`}>{cat.band.label}</span>
-                        <span className="text-sm font-black text-gray-900 w-10 text-right">{cat.catPct}%</span>
+                      <div className="flex items-center gap-2 flex-shrink-0">
+                        <span className={`text-xs sm:text-sm font-bold ${cat.band.color}`}>{cat.band.label}</span>
+                        <span className="text-sm font-black text-gray-900 w-9 text-right">{cat.catPct}%</span>
                       </div>
                     </div>
                     <div className="h-3 bg-gray-200 rounded-full overflow-hidden">
@@ -535,7 +535,7 @@ export default function AuditResultsPage() {
 
             {/* Priority Focus Areas */}
             {weakestCategories.length > 0 && (
-              <div className="relative bg-emerald-50 rounded-2xl p-8 border-2 border-emerald-300 mb-8 transition-shadow duration-300" style={{ boxShadow: '0 8px 32px -4px rgba(16,185,129,0.2), 0 4px 12px -2px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.9)' }}>
+              <div className="relative bg-emerald-50 rounded-2xl p-5 sm:p-8 border-2 border-emerald-300 mb-8 transition-shadow duration-300" style={{ boxShadow: '0 8px 32px -4px rgba(16,185,129,0.2), 0 4px 12px -2px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.9)' }}>
                 {/* Subtle gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-br from-emerald-100/50 to-transparent rounded-2xl pointer-events-none"></div>
                 <div className="relative">
@@ -559,7 +559,7 @@ export default function AuditResultsPage() {
 
             {/* Recommended Services */}
             {recommendedServices.length > 0 && (
-              <div className="relative bg-emerald-50 rounded-2xl p-8 border-2 border-emerald-300 mb-8 transition-shadow duration-300" style={{ boxShadow: '0 8px 32px -4px rgba(16,185,129,0.2), 0 4px 12px -2px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.9)' }}>
+              <div className="relative bg-emerald-50 rounded-2xl p-5 sm:p-8 border-2 border-emerald-300 mb-8 transition-shadow duration-300" style={{ boxShadow: '0 8px 32px -4px rgba(16,185,129,0.2), 0 4px 12px -2px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.9)' }}>
                 {/* Subtle gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-br from-emerald-100/50 to-transparent rounded-2xl pointer-events-none"></div>
                 <div className="relative">
