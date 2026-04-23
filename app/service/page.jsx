@@ -85,7 +85,7 @@ const ServicePage = () => {
           <div className="grid lg:grid-cols-2 gap-0 min-h-screen lg:min-h-[600px]">
 
             {/* Left Side - Headline Content with Black Background Filter */}
-            <div className="relative flex flex-col justify-start px-6 sm:px-12 lg:px-16 pt-28 sm:pt-32 pb-12 lg:pt-36 lg:pb-16 z-10">
+            <div className="relative flex flex-col justify-start px-6 sm:px-12 lg:px-16 pt-24 sm:pt-24 pb-12 lg:pt-28 lg:pb-16 z-10">
               {/* Black background filter with 50% transparency */}
               <div className="absolute inset-0 bg-black/50 opacity-0 animate-fade-in-page"></div>
 
