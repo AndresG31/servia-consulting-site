@@ -264,7 +264,7 @@ export default function AuditPage() {
           <div className="grid lg:grid-cols-2 gap-0" style={{ minHeight: 'calc(90vh + 9px)' }}>
 
             {/* Left Side */}
-            <div className="relative flex flex-col justify-center px-8 sm:px-12 lg:px-16 pt-36 pb-12 lg:pt-44 lg:pb-16 z-10">
+            <div className="relative flex flex-col justify-center px-8 sm:px-12 lg:px-16 pt-24 pb-12 lg:pt-28 lg:pb-16 z-10">
               <div className="absolute inset-0 bg-black/50 opacity-0 animate-fade-in-page"></div>
 
               <div className="relative z-10">
