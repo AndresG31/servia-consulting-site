@@ -16,7 +16,6 @@ const playfair = Playfair_Display({
   variable: "--font-playfair",
   display: "swap",
 });
-
 const stackSans = localFont({
   src: [
     { path: "../public/fonts/StackSansHeadline-Light.ttf",    weight: "300", style: "normal" },
