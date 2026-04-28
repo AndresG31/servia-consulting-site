@@ -92,7 +92,7 @@ const FoundationPackagePage = () => {
                   <div>
                     <h3 className="text-3xl font-bold text-emerald-700 mb-3">Complete Business Assessment</h3>
                     <p className="text-gray-700 text-lg mb-6 leading-relaxed">
-                      We conduct a thorough 48-point diagnostic across 8 critical business areas—operations, financials, staffing, marketing, customer experience, and more. This isn't a surface-level review; we dive deep to understand how your restaurant actually runs day-to-day.
+                      We conduct a thorough 54-point diagnostic across 9 critical business areas—operations, financials, staffing, marketing, customer experience, and more. This isn't a surface-level review; we dive deep to understand how your restaurant actually runs day-to-day.
                     </p>
                     <div className="grid sm:grid-cols-2 gap-4 mb-6">
                       {['Pipeline Analysis', 'Operations Review', 'Technology Audit', 'Growth Opportunities'].map(item => (
@@ -260,7 +260,7 @@ const FoundationPackagePage = () => {
               {
                 step: '02',
                 title: 'Deep Dive Assessment',
-                desc: 'We conduct the 48-point diagnostic, review your operations, analyze your financials, and evaluate your systems over a 1-2 week period.',
+                desc: 'We conduct the 54-point diagnostic, review your operations, analyze your financials, and evaluate your systems over a 1-2 week period.',
                 icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4'
               },
               {

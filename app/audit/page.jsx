@@ -280,12 +280,12 @@ export default function AuditPage() {
                 </h1>
 
                 <p className="text-xl text-gray-100 mb-10 leading-relaxed opacity-0 animate-page-hero" style={{ animationDelay: '0.5s' }}>
-                  A structured 48-point diagnostic across 8 critical business areas. Score your restaurant honestly and receive a clear picture of where to focus first.
+                  A structured 54-point diagnostic across 9 critical business areas. Score your restaurant honestly and receive a clear picture of where to focus first.
                 </p>
 
                 <div className="flex flex-wrap gap-8 text-sm text-white mb-10 opacity-0 animate-page-hero" style={{ animationDelay: '0.7s' }}>
-                  <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-emerald-500" />8 Assessment Categories</div>
-                  <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-emerald-500" />48 Diagnostic Criteria</div>
+                  <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-emerald-500" />9 Assessment Categories</div>
+                  <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-emerald-500" />54 Diagnostic Criteria</div>
                   <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-emerald-500" />Instant Scored Results</div>
                 </div>
 

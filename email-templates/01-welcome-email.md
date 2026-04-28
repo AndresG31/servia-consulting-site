@@ -21,7 +21,7 @@ You're now part of a community of restaurant owners and operators who are commit
 
 ## Start Here: Take Your Free Restaurant Audit
 
-Before you dive into our content library, I recommend taking our **free 48-point Restaurant Audit**. It takes about 10 minutes and gives you a detailed scorecard across 9 critical areas of your business.
+Before you dive into our content library, I recommend taking our **free 54-point Restaurant Audit**. It takes about 10 minutes and gives you a detailed scorecard across 9 critical areas of your business.
 
 **[Take the Free Audit →](https://serviaconsulting.com/audit)**
 
